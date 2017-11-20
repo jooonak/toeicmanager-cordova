@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="/cordva/www/css/index.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top'
+                'middle middle middle'
+                'bottom bottom bottom'
+                'footer footer footer';
+        grid-auto-rows: 0.7fr 150px 150px 150px 1fr;
+        grid-auto-columns: 20% 50% 25%;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 640px;
+    }
+
+    .box {
+        font-size: 150%;
+    }
+
+    .camera{
+    //background-color: #aff8db;
+        margin-top: 10px;
+        grid-column: 1/2;
+    }
+    .header {
+        background-color: beige;
+        margin-top: 10px;
+        grid-column: 2/4;
+    }
+
+    .top {
+        background-color: cadetblue;
+        grid-column: 1/4;
+        grid-row: 2/6;
+    }
+
+
+    .left {
+        margin-left: 10px;
+    }
+
+    .right{
+        margin-right: 10px;
+    }
+
+
+</style>
+<body>
+<div class='container'>
+    <div class="box camera left " >
+        <a href="camera.html" >camera</a></div>
+    <div class="box header left right">
+        <form id="olform" method="GET" action="search.html">
+            <input id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
+            <input class = "searchBtn" type="submit" value="search">
+        </form>
+    </div>
+    <div class="box top left right">
+        <div class = "correct-word">
+
+        </div>
+
+        <a href="words.html">voca a</a>
+        <a href="teststart.html">test</a>
+        <a href="add.html">add</a>
+
+
+        <!--단어장 리스트를 보여주는 곳-->
+        <div class = "vocabulary-list">
+        </div>
+
+        <form action="/cordva/www/add.html" method="get">
+            <input type="submit" value="make voca" />
+        </form>
+    </div>
+
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script TYPE="application/javascript">
+    $(document).ready(function () {
+
+        //단어장 리스트를 가져오는 ajax 요청
+        $.ajax({
+            url: "http://localhost:8080/vocabulary/",
+            dataType: "json",
+            type : 'get',
+            success: function(data) {
+                var $vocabularyList = $(".vocabulary-list");
+                console.log(data);
+                data.forEach(function(voca){
+                    console.log(voca.vno);
+                    console.log(voca.vname);
+                    $vocabularyList.append("<div><a href=words.html/?vno="+ voca.vno+">"+voca.vno+" "+voca.vname+"</a></div>");
+                })
+            }
+        });
+
+
+        //자동 완성 기능에 대한 이벤트 등록
+        $(function() {
+            last_req = "";
+            $( "#olinput" ).autocomplete({
+                minLength: 2,
+                delay: 10,
+                open: function(event, ui) {
+                    //$.off() 메서드는 해당 엘리먼트에 연결된 이벤트(핸들러)를 제거한다. 여기서 'menufocus, hover, mouseenter'가 해당된다.
+                    $('.ui-autocomplete').off('menufocus hover mouseenter mouseover');
+                },
+                //관련 단어를 클릭할 경우에 발생시키는 이벤트이다. 기본 값으로 관련단어 클릭 시 텍스트 창의 단어를 선택된 단어로 변경하는 것이 설정되어 있으므로 따로 설정할 필요는 없다.
+                /*select: function(event, ui) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'loc',
+                        value: 'home_ac_' + last_req
+                    }).appendTo('#olform');
+                    $( "#olinput" ).val(ui.item.value);
+                    $( "#olform" ).submit();
+                },*/
+                //관련 단어를 가져오는 코드이다. https://jqueryui.com/autocomplete/ 사이트의 view source를 확인하면 쉽게 이해가능하다.
+                source: function( request, response ) {
+                    var res = request.term.split(":");
+                    var url;
+                    //Datamuse API에 text창에 입력한 문자에 해당하는 글자를 가져오는 url이다. 우리에게 필요한 쿼리가 작성되어 있으므로 쿼리에 대한 설명은 생략한다
+                    if (res.length > 1) {
+                        url = '//api.datamuse.com/words?v=ol_gte3&max=10&k=ol_clue&sp=' + encodeURIComponent(res[0]) + '&ml=' + encodeURIComponent(res[1]);
+                    } else {
+                        url = '//api.datamuse.com/sug?v=ol_gte3&k=ol_home&s=' + encodeURIComponent(request.term.replace(/[:].*/,''));
+                    }
+                    $.ajax({
+                        dataType: "json",
+                        type : 'Get',
+                        url: url,
+                        success: function(data) {
+                            response( $.map( data, function(item) { return item["word"]; }))
+                        },
+                    });
+                    last_req = request.term;
+                }
+            });
+        });
+
+        //검색 버튼에 대한 이벤트 동작
+        $(".searchBtn").on("click", function(e){
+            e.preventDefault();
+            var data = {key: 'AIzaSyDevHG0cXl0LY6Q0czkfOvnzYuXXcx6B-0' ,q : $("#olinput").val(), cx : '005071159500739572678:momm98irnz4'};
+            $.ajax({
+                url: "https://www.googleapis.com/customsearch/v1",
+                method: "get",
+                data: data,
+                success: function(result){
+                    if(result.spelling){
+                        //아래 구문은 모달창에서 할 예정, 임시로 넣어놓음
+                        $("#olinput").val(result.spelling.correctedQuery);
+                        $(".correct-word").html(result.spelling);
+                        $(".correct-word").append("<input class = 'correct' type='button' value='confirm'>");
+                        $('.correct').on("click", function(){
+                            $("#olform").submit();
+                        });
+                    }else {
+                        $("#olform").submit();
+                    }
+                }
+            });
+        });
+
+
+
+    })
+
+
+
+
+
+
+</script>
+</html>

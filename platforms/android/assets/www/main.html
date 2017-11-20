@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top'
+                'middle middle middle'
+                'bottom bottom bottom'
+                'footer footer footer';
+        grid-auto-rows: 1fr 100px 125px 100px 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 640px;
+
+    }
+
+    .box {
+        font-size: 150%;
+    }
+
+    .header {
+    // min-height: 100px;
+    //background-color: beige;
+        margin-top: 10px;
+    }
+
+    .top {
+        background-color: #b28dff;
+        grid-column: 1/4;
+        grid-row: 2/3;
+    }
+
+    .middle {
+        background-color: #aff8db;
+    }
+
+    .middle.mid{
+        background-color: #FFFFFF;
+    }
+
+    .bottom {
+        background-color: #ffc9de;
+        grid-column: 1/4;
+        grid-row: 4/5;
+    }
+
+    .footer {
+    //min-height: 100px;
+    //background-color: tan;
+        margin-bottom: 10px;
+    }
+    .left {
+        margin-left: 10px;
+    }
+
+    .right{
+        margin-right: 10px;
+    }
+
+
+</style>
+<body>
+<div class='container'>
+    <div class="box header left"></div>
+    <div class="box header "></div>
+    <div class="box header right"></div>
+    <div class="box top left right">
+        <a href="vocabulary.html?id=123&time=1234">top c</a>
+    </div>
+    <div class="box middle left">middle a</div>
+    <div class="box middle mid">middle b</div>
+    <div class="box middle right">middle c</div>
+    <div class="box bottom left right">bottom a</div>
+    <div class="box footer left"></div>
+    <div class="box footer "></div>
+    <div class="box footer right"></div>
+</div>
+</body>
+
+</html>
