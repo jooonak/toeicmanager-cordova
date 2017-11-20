@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="/cordva/www/css/index.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+
+    }
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top'
+                'middle middle middle'
+                'bottom bottom bottom'
+                'footer footer footer';
+        grid-auto-rows:  1fr 150px 150px 150px 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 640px;
+
+    }
+
+    .box {
+        font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header {
+        background-color: beige;
+        grid-column: 1/4;
+        margin-top: 10px;
+    }
+
+    .top {
+        background-color: cadetblue;
+        grid-column: 1/4;
+        grid-row: 2/5;
+        margin-bottom: 10px;
+    }
+
+    .left {
+
+    }
+
+    .right{
+
+    }
+</style>
+<body>
+    <div class='container'>
+        <div class="box header">
+            <div class="word">
+
+            </div>
+        </div>
+
+        <div class="box top">
+            <div class="meaning">
+            </div>
+
+            <select class = "vocaOpt" name="vno">
+            </select>
+
+
+            <input class = "regBtn" type="button" value="register">
+            <input class = "back" type="button" value="back">
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script TYPE="application/javascript">
+    var words = getUrlParams('words');
+    var meaning = "";
+    $("document").ready(function(){
+        $(".word").html(words);
+
+        //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
+        $.ajax({
+            dataType: "json",
+            type : 'get',
+            url: 'http://localhost:3000/dic',
+            data: {'words':words},
+            success: function(data) {
+                $(".meaning").append(data);
+                meaning = data;
+            }
+        });
+
+        //단어장 리스트를 가져오는 ajax 요청
+        $.ajax({
+            dataType: "json",
+            type : 'get',
+            url: 'http://localhost:8080/vocabulary/',
+            success: function(data) {
+                data.forEach(function(voca){
+                    $(".vocaOpt").append("<option value="+voca.vno+">"+voca.vname+"</option>");
+                    console.log(voca);
+                })
+            }
+        });
+
+        //vocabulary로 이동하는 back 버튼에 대한 이벤트 처리
+        $(".back").on("click",function(){
+            window.location.href = "/cordva/www/vocabulary.html";
+        });
+
+        //register 버튼에 대한 이벤트 처리
+        $(".regBtn").on("click",function(){
+            var vno = $(".vocaOpt").val();
+            console.log(vno);
+            var data = {word:words, meaning:meaning};
+
+            $.ajax({
+                type : 'post',
+                data : JSON.stringify(data),
+                contentType:"application/json; charset=UTF-8",
+                url: 'http://localhost:8080/vocabulary/'+vno+"/words",
+                success: function() {
+                    alert("등록 성공");
+                    window.location.href = "/cordva/www/words.html/?vno="+vno;
+                }
+            });
+        });
+    });
+</script>
+</html>

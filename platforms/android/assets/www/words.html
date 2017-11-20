@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <!--경로를 절대 경로로 해줘야 한다.-->
+    <link rel="stylesheet" type="text/css" href="/cordva/www/css/index.css">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top'
+                'middle middle middle'
+                'bottom bottom bottom'
+                'footer footer footer';
+        grid-auto-rows:  1fr 150px 150px 150px 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 640px;
+    }
+
+    .box {
+        font-size: 150%;
+    }
+
+    .header {
+        background-color: beige;
+        grid-column: 1/4;
+        margin-top: 10px;
+    }
+
+    .top {
+        background-color: cadetblue;
+        grid-column: 1/4;
+        grid-row: 2/5;
+        margin-bottom: 10px;
+    }
+
+    .left {
+        margin-left: 10px;
+    }
+
+    .right{
+        margin-right: 10px;
+    }
+
+
+</style>
+<body>
+<div class='container'>
+    <div class="box header left right">words page</div>
+
+    <div class="box top left right">
+        <a href="view.html">word a</a>
+
+        <!--단어 리스트를 보여주는 곳-->
+        <div class = "word-list">
+        </div>
+        <input class = "back" type="button" value="back">
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/cordva/www/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/cordva/www/js/getUrlParams.js"></script>
+<script TYPE="application/javascript">
+    $(document).ready(function(){
+        var vno = getUrlParams('vno');
+
+        //단어 리스트를 가져오는 ajax 요청
+        $.ajax({
+            url: "http://localhost:8080/vocabulary/"+vno+"/words",
+            dataType: "json",
+            type : 'get',
+            success: function(result) {
+                var $wordList = $(".word-list");
+                console.log(result);
+                result.forEach(function(word){
+                    console.log(word.wno);
+                    console.log(word.word);
+                    console.log(word.meaning);
+                    $wordList.append("<div><a href=/cordva/www/view.html/?wno="+ word.wno+"&vno="+vno+">"+word.wno+" "+word.word+" "+word.meaning+"</a></div>");
+                })
+            }
+        });
+
+        $(".back").on("click",function(){
+            window.location.href = "/cordva/www/vocabulary.html";
+        });
+    });
+</script>
+</html>
