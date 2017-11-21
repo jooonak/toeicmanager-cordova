@@ -8,7 +8,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="/cordva/www/css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <title>Title</title>
 </head>
@@ -97,7 +97,7 @@
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://localhost:3000/dic',
+            url: 'http://192.168.0.25:3000/dic',
             data: {'words':words},
             success: function(data) {
                 $(".meaning").append(data);
@@ -109,7 +109,7 @@
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://localhost:8080/vocabulary/',
+            url: 'http://192.168.0.25:8080/vocabulary/',
             success: function(data) {
                 data.forEach(function(voca){
                     $(".vocaOpt").append("<option value="+voca.vno+">"+voca.vname+"</option>");
@@ -120,7 +120,7 @@
 
         //vocabulary로 이동하는 back 버튼에 대한 이벤트 처리
         $(".back").on("click",function(){
-            window.location.href = "/cordva/www/vocabulary.html";
+            window.location.href = "vocabulary.html";
         });
 
         //register 버튼에 대한 이벤트 처리
@@ -133,10 +133,10 @@
                 type : 'post',
                 data : JSON.stringify(data),
                 contentType:"application/json; charset=UTF-8",
-                url: 'http://localhost:8080/vocabulary/'+vno+"/words",
+                url: 'http://192.168.0.25:8080/vocabulary/'+vno+"/words",
                 success: function() {
                     alert("등록 성공");
-                    window.location.href = "/cordva/www/words.html/?vno="+vno;
+                    window.location.href = "words.html?vno="+vno;
                 }
             });
         });

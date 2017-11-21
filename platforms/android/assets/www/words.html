@@ -28,7 +28,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <!--경로를 절대 경로로 해줘야 한다.-->
-    <link rel="stylesheet" type="text/css" href="/cordva/www/css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>Title</title>
 </head>
 <style>
@@ -94,16 +94,16 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="/cordva/www/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/cordva/www/js/getUrlParams.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
 <script TYPE="application/javascript">
     $(document).ready(function(){
         var vno = getUrlParams('vno');
 
         //단어 리스트를 가져오는 ajax 요청
         $.ajax({
-            url: "http://localhost:8080/vocabulary/"+vno+"/words",
+            url: "http://192.168.0.25:8080/vocabulary/"+vno+"/words",
             dataType: "json",
             type : 'get',
             success: function(result) {
@@ -113,13 +113,13 @@
                     console.log(word.wno);
                     console.log(word.word);
                     console.log(word.meaning);
-                    $wordList.append("<div><a href=/cordva/www/view.html/?wno="+ word.wno+"&vno="+vno+">"+word.wno+" "+word.word+" "+word.meaning+"</a></div>");
+                    $wordList.append("<div><a href=view.html?wno="+ word.wno+"&vno="+vno+">"+word.wno+" "+word.word+" "+word.meaning+"</a></div>");
                 })
             }
         });
 
         $(".back").on("click",function(){
-            window.location.href = "/cordva/www/vocabulary.html";
+            window.location.href = "vocabulary.html";
         });
     });
 </script>

@@ -99,10 +99,10 @@
             e.preventDefault();
             $.ajax({
                 type : 'post',
-                url: 'http://localhost:8080/vocabulary/'+$(".vname").val(),
+                url: 'http://192.168.0.25:8080/vocabulary/'+$(".vname").val(),
                 success: function() {
                     alert("등록 성공");
-                    window.location.href = "/cordva/www/vocabulary.html";
+                    window.location.href = "vocabulary.html";
                 }
             });
         });
