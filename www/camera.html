@@ -17,14 +17,13 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<!DOCTYPE html>
 <html>
 <head>
     <title>Capture Photo</title>
 
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
 
-
-  <!--  <script type="text/javascript" charset="utf-8">
 
         var pictureSource;   // picture source
         var destinationType; // sets the format of returned value
@@ -58,33 +57,38 @@
             // Show the captured photo
             // The inline CSS rules are used to resize the image
             //
-            smallImage.src = "data:image/jpeg;base64," + imageData;
             //console.log(imageData);
+            smallImage.src = "data:image/jpeg;base64," + imageData;
+            console.log(smallImage);
 
-            var file = new File(imageData);
-            console.log(file);
+
+            var src = "data:image/jpeg;base64," + imageData;
+
+            var data = new FormData();
+            data.set("file",imageData);
+            data.set("file",imageData);
+            console.log(src);
 
 
-        }
 
-        // Called when a photo is successfully retrieved
-        //
-        function onPhotoURISuccess(imageURI) {
-            // Uncomment to view the image file URI
-            // console.log(imageURI);
+            /*var file = new File(imageData);
+            console.log(file);*/
 
-            // Get image handle
-            //
-            var largeImage = document.getElementById('largeImage');
 
-            // Unhide image elements
-            //
-            largeImage.style.display = 'block';
+            $.ajax({
 
-            // Show the captured photo
-            // The inline CSS rules are used to resize the image
-            //
-            largeImage.src = imageURI;
+                url : 'http://192.168.0.19:3000/ocr',
+                data : data,
+                dataType : 'json',
+                processData : false,
+                contentType : false,
+                type : 'POST',
+                success : function(response) {
+                    console.log(response);
+
+                }
+            });
+
         }
 
         // A button will call this function
@@ -95,25 +99,13 @@
                 destinationType: destinationType.DATA_URL });
         }
 
-
-        // A button will call this function
-        //
-        function getPhoto(source) {
-            // Retrieve image file location from specified source
-            navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-                destinationType: destinationType.FILE_URI,
-                sourceType: source });
-        }
-
         // Called if something bad happens.
         //
         function onFail(message) {
             alert('Failed because: ' + message);
         }
 
-    </script>-->
-
-
+    </script>
 
 </head>
 <body>
@@ -128,44 +120,43 @@
 <div class="resultText">
 
 
-<button onclick="capturePhoto();">Capture Photo</button> <br>
-<!--<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>-->
-<img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-<img style="display:none;" id="largeImage" src="" />
-</body>
+    <button onclick="capturePhoto();">Capture Photo</button> <br>
+    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+    <img style="display:none;" id="largeImage" src="" />
 
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
 
-        $(".btn").on("click",function(e) {
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-            var formData = new FormData();
+            $(".btn").on("click",function(e) {
 
-            console.log($(".img")[0].files[0]);
+                var formData = new FormData();
 
-            formData.set('file', $(".img")[0].files[0]);
+                console.log($(".img")[0].files[0]);
 
-            console.log(formData);
-            //console.log(formData.get('file'));
+                formData.set('file', $(".img")[0].files[0]);
 
-            $.ajax({
+                console.log(formData);
+                //console.log(formData.get('file'));
 
-                url : 'http://192.168.0.25:3000/ocr',
-                data : formData,
-                dataType : 'json',
-                processData : false,
-                contentType : false,
-                type : 'POST',
-                success : function(response) {
-                    //console.log(response);
-                   // document.querySelector(".resultText").innerHTML += "<h1>"+response+"</h1>"
-                }
+                $.ajax({
+
+                    url : 'http://192.168.0.19:3000/ocr',
+                    data : formData,
+                    dataType : 'json',
+                    processData : false,
+                    contentType : false,
+                    type : 'POST',
+                    success : function(response) {
+                        //console.log(response);
+                        // document.querySelector(".resultText").innerHTML += "<h1>"+response+"</h1>"
+                    }
+                });
+
             });
-
         });
-    });
 
-</script>
+    </script>
+</body>
 </html>
