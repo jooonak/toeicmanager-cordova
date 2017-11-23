@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Title</title>
+</head>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top'
+                'middle middle middle'
+                'bottom bottom bottom'
+                'footer footer footer';
+        grid-auto-rows:  1fr 25% 25% 25% 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 100%;
+    }
+
+    .box {
+        font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header {
+        background-color: beige;
+        grid-column: 1/4;
+        margin-top: 5px;
+    }
+
+    .top {
+        background-color: cadetblue;
+        grid-column: 1/4;
+        grid-row: 2/5;
+    }
+
+    .footer {
+        background-color: #ffc9de;
+        grid-column: 1/4;
+        margin-bottom: 5px;
+    }
+
+    .title{
+        background-color: #333333;
+        height: 20%;
+    }
+
+    ul li{
+        margin-left: 0;
+        text-align: center;
+        list-style: none;
+        float: left;
+        width: 40%;
+    }
+
+</style>
+<body>
+<div class='container'>
+    <div class="box header"></div>
+    <div class="box top">context
+        <div class="question" >
+            <!--<img width="20%" height="20%" src="http://localhost:8080/file/panda.png">-->
+            <h1></h1>
+        </div>
+        <div>
+            <ul class="example">
+            </ul>
+        </div>
+    </div>
+    <div class="box footer">
+        제한시간 : <B><span id="timeLeft"></span></B> 초
+    </div>
+
+</div>
+
+<script type="text/javascript" src="http://192.168.0.25:3000/javascripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+    var time = 10;
+    var ord = 0;
+    var score = 0;
+
+    function timeLimit() {
+        if (time > 1){
+            time--;
+            $("#timeLeft").html(time);
+        } else {
+            var qNum = $('.header').html().split("/");
+
+            if (qNum[0] === qNum[1]){
+                console.log(qNum[0]);
+                console.log(qNum[1]);
+                console.log(qNum[0] === qNum[1]);
+                dataTransfer();
+            } else {
+                dataTransfer();
+                getList();
+            }
+        }
+    }
+    
+    function makeQuiz(type, ord, list) {
+        $(".header").html( (ord + 1) + "/" + 20);
+        $(".example").attr("data-total", list[ord].length);
+
+        if (type === 1){
+            $('.question').html("<h1>" + list[ord].word + "</h1>");
+
+            var examples = ['배추', '무', '가지'];
+            examples.push(list[ord].meaning);
+            arrayShuffle(examples);
+
+            var str = "";
+            for (var i = 0; i < examples.length; i++){
+                if (examples[i] === list[ord].meaning){
+                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
+                } else {
+                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i] + "</li>";
+                }
+            }
+
+        } else if (type === 2){
+            $('.question').html("<img width='100%' height='50%' src=http://192.168.0.25:8080/file/" + list[ord].img + ">");
+
+            var examples = ['AAA', 'BBB', 'CCC'];
+            examples.push(list[ord].word);
+            arrayShuffle(examples);
+
+            var str = "";
+            for (var i = 0; i < examples.length; i++){
+                if (examples[i] === list[ord].word){
+                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
+                } else {
+                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i] + "</li>";
+                }
+            }
+
+        } else if (type === 3) {
+
+            var q = list[ord].sentence.split(list[ord].word);
+
+            $('.question>h1').html("<h5>" + q[0] + Array(list[ord].word.length + 1).join("_") + q[1] + "</h5>");
+
+            var examples = ['qweasfasdg', 'dgearta', 'asdgser'];
+            examples.push(list[ord].word);
+            arrayShuffle(examples);
+            var str = "";
+            for (var i = 0; i < examples.length; i++){
+                if (examples[i] === list[ord].word){
+                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
+                } else {
+                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i] + "</li>";
+                }
+            }
+        }
+        str += "<li data-wno=" + list[ord].wno + ">모른다</li>";
+
+        $("#timeLeft").html(time);
+        $(".example").html(str);
+    }
+
+    window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
+
+    function arrayShuffle(arr) {
+        for (var i = arr.length - 1; i > 0; i--){
+            var random = Math.floor(Math.random() * (i + 1));
+            var temp = arr[i];
+            arr[i] = arr[random];
+            arr[random] = temp;
+        }
+        return arr;
+    }
+
+    function getList() {
+        var obj = [];
+        $.getJSON("http://192.168.0.25:8080/exam/", function (result) {
+            for (var i = 0; i < result.length; i++){
+                obj.push({vno : result[i].vno,
+                    wno : result[i].wno,
+                    word : result[i].word,
+                    meaning : result[i].meaning,
+                    img : result[i].img,
+                    sentence : result[i].sentence,
+                    examcnt : result[i].examcnt
+                });
+            }
+            var type = Math.ceil(Math.random() * 3);
+            makeQuiz(type, ord, obj);
+
+        });
+    }
+    getList();
+
+
+    document.querySelector("div>ul").addEventListener("click", dataTransfer);
+
+    function dataTransfer(e) {
+        var data = {};
+        var uAnswer = e || null;
+        var wno = $("div>ul>li").attr("data-wno");
+
+        if (uAnswer){
+            if (uAnswer.target.getAttribute("data-answer")){
+                data = {wno : wno, result : "know"};
+                score++;
+            } else {
+                data = {wno : wno, result : "no"};
+            }
+        } else {
+            data = {wno : wno, result : "no"};
+        }
+
+    $.ajax({
+        url : 'http://192.168.0.25:8080/exam/',
+        type: 'post',
+        data: JSON.stringify(data),
+        contentType: 'application/json;',
+        success : function() {
+            if (++ord < 20){
+                time = 10;
+                getList();
+            } else {
+                window.location="testend.html?score=" + score;
+            }
+        }
+    });
+    }
+</script>
+</body>
+</html>

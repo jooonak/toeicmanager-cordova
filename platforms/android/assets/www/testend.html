@@ -21,7 +21,9 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -29,10 +31,11 @@
     <title>Title</title>
 </head>
 
-<style>
-    body {
+<style type="text/css">
+    html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
     }
 
     .container {
@@ -43,76 +46,74 @@
                 'middle middle middle'
                 'bottom bottom bottom'
                 'footer footer footer';
-        grid-auto-rows: 1fr 100px 125px 100px 1fr;
+        grid-auto-rows:  1fr 150px 150px 150px 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
         text-align: center;
-        height: 640px;
-
+        height: 100%;
     }
 
     .box {
         font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .header {
-    // min-height: 100px;
-    //background-color: beige;
+        background-color: beige;
+        grid-column: 1/4;
         margin-top: 10px;
     }
 
     .top {
-        background-color: #b28dff;
+        background-color: cadetblue;
         grid-column: 1/4;
-        grid-row: 2/3;
-    }
-
-    .middle {
-        background-color: #aff8db;
-    }
-
-    .middle.mid{
-        background-color: #FFFFFF;
-    }
-
-    .bottom {
-        background-color: #ffc9de;
-        grid-column: 1/4;
-        grid-row: 4/5;
-    }
-
-    .footer {
-    //min-height: 100px;
-    //background-color: tan;
+        grid-row: 1/6;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
-    .left {
-        margin-left: 10px;
+
+
+    .img{
+        background-color: #ffc9de;
+        height: 65%;
     }
 
-    .right{
-        margin-right: 10px;
+    .title{
+        background-color: #333333;
+        height: 15%;
     }
 
 
 </style>
 <body>
 <div class='container'>
-    <div class="box header left"></div>
-    <div class="box header "></div>
-    <div class="box header right"></div>
-    <div class="box top left right">
-        <a href="vocabulary.html?id=123&time=1234">top c</a>
-    </div>
-    <div class="box middle left"><a href="test.html">middle a</a></div>
-    <div class="box middle mid">middle b</div>
-    <div class="box middle right">middle c</div>
-    <div class="box bottom left right">bottom a</div>
-    <div class="box footer left"></div>
-    <div class="box footer "></div>
-    <div class="box footer right"></div>
-</div>
-</body>
 
+    <div class="box top box">TestEnd page
+        <div class="title box">
+            <h1>끝났습니다</h1>
+        </div>
+        <div class="img box">
+            img
+        </div>
+        <div>
+                <input type="button" value="status"></input>
+                <input type="button" value="next"></input>
+                <input type="button" value="stop"></input>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="http://192.168.0.25:3000/javascripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript">
+    var score = getUrlParams('score');
+
+    console.log(score);
+    $(".title").append("<h3>" + score + "</h3>");
+</script>
+</body>
 </html>
