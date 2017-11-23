@@ -1,23 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
@@ -28,13 +9,27 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Title</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+
+    <script src="dist/js/ratchet.js"></script>
+
+    <title>Views</title>
 </head>
 
 <style>
-    body {
+    html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
     }
 
     .container {
@@ -45,12 +40,12 @@
                 'middle middle middle'
                 'bottom bottom bottom'
                 'footer footer footer';
-        grid-auto-rows:  1fr 150px 150px 150px 1fr;
+        grid-auto-rows:  44px 25% 25% 25% 44px;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
         text-align: center;
-        height: 640px;
+        height: 100%;
     }
 
     .box {
@@ -60,44 +55,79 @@
     }
 
     .header {
-        background-color: beige;
+
         grid-column: 1/4;
-        margin-top: 10px;
     }
 
     .top {
         background-color: cadetblue;
         grid-column: 1/4;
         grid-row: 2/5;
-        margin-bottom: 10px;
     }
 
+    .word{
 
+        border-style: solid ;
+        border:5px;
+        border-color: #00AFF0;
+
+    }
 
 </style>
+
 <body>
 <div class='container'>
     <div class="box header">
-        <div class="word">
-
-        </div>
+        <header class="bar bar-nav">
+            <a class="icon icon-left-nav pull-left back"></a>
+            <h1 class="title">Toeic Manager</h1>
+        </header>
     </div>
 
     <div class="box top">
-        <div class="meaning">
+        <div class="word">
+
         </div>
 
-        <input class = "modBtn" type="button" value="modify">
-        <input class = "back" type="button" value="back">
+
     </div>
+
+    <div class="slider" id="mySlider">
+        <div class="slide-group">
+            <div class="slide">
+                <img src="/assets/img/slide-1.jpg">
+                <span class="slide-text">
+        <span class="icon icon-left-nav"></span>
+        Slide me
+      </span>
+            </div>
+            <div class="slide">
+                <img src="/assets/img/slide-2.jpg">
+            </div>
+            <div class="slide">
+                <img src="/assets/img/slide-3.jpg">
+            </div>
+        </div>
+    </div>
+
+    <span class="icon icon-right-nav"></span>
+
+    <input class = "modBtn" type="button" value="modify">
+
+    <!--<div class="box middle">
+        <div class="meaning">
+
+        </div>
+    </div>-->
+
+
 </div>
 </body>
-
-
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
+
 <script TYPE="application/javascript">
     $(document).ready(function(){
         var vno = getUrlParams('vno');
@@ -111,14 +141,16 @@
             success: function(result) {
                 console.log(result);
                 $(".word").append(result.word);
-                $(".meaning").append(result.meaning);
+                $(".word").append(result.meaning);
 
             }
         });
 
+        //뒤로 가기 버튼
         $(".back").on("click",function(){
             window.location.href = "words.html?vno="+vno;
         });
+
 
     });
 </script>
