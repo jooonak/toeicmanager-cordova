@@ -21,7 +21,9 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -105,14 +107,16 @@
     <div class="box top left right">
         <a href="vocabulary.html?id=123&time=1234">top c</a>
     </div>
-    <div class="box middle left"><a href="test.html">middle a</a></div>
+    <div class="box middle left"><a href="examstart.html">middle a</a></div>
     <div class="box middle mid">middle b</div>
-    <div class="box middle right">middle c</div>
-    <div class="box bottom left right">bottom a</div>
+    <div class="box middle right"><a href="examend.html?score=20">middle c</a></div>
+    <div class="box bottom left right"><a href="learn.html">bottom a</a></div>
     <div class="box footer left"></div>
     <div class="box footer "></div>
     <div class="box footer right"></div>
 </div>
-</body>
 
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+</body>
 </html>

@@ -22,7 +22,7 @@
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="dist/js/ratchet.js"></script>
+    <!--<script src="dist/js/ratchet.js"></script>-->
 
     <title>Views</title>
 </head>
@@ -33,13 +33,18 @@
         padding: 0;
         height: 100%;
     }
-
+    .dark {
+        background: #222222;
+    }
     .container {
         display: grid;
         grid-template-areas:
                 'header header header'
-                'top top top';
-        grid-auto-rows:  44px 90%;
+                'img img img'
+                'info info info'
+                'bottom bottom bottom'
+                'footer footer footer';
+        grid-auto-rows:  1fr 10% 50% 20% 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
@@ -57,12 +62,39 @@
         grid-column: 1/4;
     }
 
-    .top {
-        background-color: cadetblue;
+    .img {
         grid-column: 1/4;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        /*margin-top: 2%;*/
-        /*margin-bottom: 2%;*/
+    .info {
+        grid-column: 1/4;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .footer {
+        grid-column: 1/4;
+    }
+
+    .bottom {
+        grid-column: 1/4;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .word{
@@ -71,64 +103,31 @@
         border-color: #00AFF0;
 
     }
-
 </style>
-
 <body>
 <div class='container'>
+
     <div class="box header">
-        <header class="bar bar-nav">
-            <a class="icon icon-left-nav pull-left back"></a>
-            <h1 class="title">Toeic Manager</h1>
+        <header class="bar bar-nav dark">
+            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
         </header>
     </div>
 
-    <div class="box top">
-        <div class="word">
+        <div class="box img">
+            <!--<h1>title</h1>-->
+            <h2 style="width: 100%; margin: 0;">EXAM</h2>
 
         </div>
-    </div>
-
-
-
-    <!--<div class="box middle">
-        <div class="meaning">
-
+        <div class="box info">
+            <img src="img/exam.png" style="width: 80%; height: 80%">
+            <h3 style="margin: 0;">TOTAL: 50개</h3>
         </div>
-    </div>-->
-
-
+        <div class="box bottom btns">
+            <a style="width: 100%" href="exam.html"><button class="btn btn-primary btn-block btn-outlined" style="margin: 0">STARRRRRRRRRRRRRRRT</button></a>
+        </div>
 </div>
-</body>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="js/getUrlParams.js"></script>
-
-<script TYPE="application/javascript">
-    $(document).ready(function(){
-        var vno = getUrlParams('vno');
-        var wno = getUrlParams('wno');
-
-        //단어 리스트를 가져오는 ajax 요청
-        $.ajax({
-            url: "http://192.168.0.25:8080/vocabulary/"+vno+"/words/"+wno,
-            dataType: "json",
-            type : 'get',
-            success: function(result) {
-                console.log(result);
-                $(".word").append(result.word);
-                $(".word").append(result.meaning);
-
-            }
-        });
-
-        //뒤로 가기 버튼
-        $(".back").on("click",function(){
-            window.location.href = "words.html?vno="+vno;
-        });
-
-
-    });
-</script>
+</body>
 </html>
