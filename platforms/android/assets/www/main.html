@@ -1,36 +1,34 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Title</title>
+
+    <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <!--<script src="dist/js/ratchet.js"></script>-->
+
+    <title>Main</title>
 </head>
 
 <style>
-    body {
+    html, body {
         margin: 0;
         padding: 0;
     }
@@ -42,14 +40,14 @@
                 'top top top'
                 'middle middle middle'
                 'bottom bottom bottom'
-                'footer footer footer';
-        grid-auto-rows: 1fr 100px 125px 100px 1fr;
+                'footer footer footer'
+                'button button button';
+        grid-auto-rows: 44px 56px 15% 15% 28.5% 15%;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
         text-align: center;
-        height: 640px;
-
+        height: 100%;
     }
 
     .box {
@@ -57,35 +55,35 @@
     }
 
     .header {
-    // min-height: 100px;
-    //background-color: beige;
-        margin-top: 10px;
+        grid-column: 1/4;
+        grid-row: 1/2;
     }
 
     .top {
-        background-color: #b28dff;
         grid-column: 1/4;
         grid-row: 2/3;
     }
 
     .middle {
-        background-color: #aff8db;
-    }
-
-    .middle.mid{
-        background-color: #FFFFFF;
+        grid-column: 1/4;
+        grid-row: 3/4;
+        box-shadow:0 0 10px #999;
     }
 
     .bottom {
-        background-color: #ffc9de;
         grid-column: 1/4;
         grid-row: 4/5;
     }
 
     .footer {
-    //min-height: 100px;
-    //background-color: tan;
+        background-color: tan;
+        grid-column: 1/4;
+        grid-row: 5/6;
+    }
+    .button{
         margin-bottom: 10px;
+        grid-column: 1/4;
+        grid-row: 6/7;
     }
     .left {
         margin-left: 10px;
@@ -95,24 +93,174 @@
         margin-right: 10px;
     }
 
+    .dark {
+        background: #222222;
+    }
 
+    .camera{
+        margin: 10px 10px 10px 20px;
+        float: left;
+        width: 36px;
+        height: 36px;
+    }
+
+    .img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .searchPostion{
+        width: 79%;
+        margin: 9.25px;
+        float:left;
+        }
+
+    .center{
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 </style>
+
 <body>
+
 <div class='container'>
-    <div class="box header left"></div>
-    <div class="box header "></div>
-    <div class="box header right"></div>
-    <div class="box top left right">
-        <a href="vocabulary.html?id=123&time=1234">top c</a>
+
+    <div class="box header ">
+        <header class="bar bar-nav dark">
+            <a class="icon icon-bars pull-left" style="color: white"></a>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
+        </header>
     </div>
-    <div class="box middle left"><a href="test.html">middle a</a></div>
-    <div class="box middle mid">middle b</div>
-    <div class="box middle right">middle c</div>
-    <div class="box bottom left right">bottom a</div>
-    <div class="box footer left"></div>
-    <div class="box footer "></div>
-    <div class="box footer right"></div>
+
+    <div class="box top">
+        <div class="camera">
+            <a  href="camera.html" >
+                <img class="img" src="img/camera.jpg">
+            </a>
+        </div>
+
+        <div class="box searchPostion">
+            <form id="olform" method="GET" action="search.html">
+                <input style="width: 79%; margin:0px" id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
+                <button style=" margin:0px" class="btn icon icon-search searchBtn"></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="box middle center">
+        <a href="vocabulary.html?id=123&time=1234">단어장리스트</a>
+    </div>
+
+    <div class="box bottom left right center">챗봇 및 명언</div>
+
+    <div class="box footer left right center">
+            암기현황
+    </div>
+
+    <div class="box button left right center">
+        <a href="test.html" class="learnbtn btn btn-negative btn-block">학습
+        </a>
+        <a href="test.html" class="reviewbtn btn btn-negative btn-block">시험
+        </a>
+    </div>
+
+    <form id="formData" action="result.html?" method="get">
+        <input type="hidden" >
+    </form>
 </div>
 </body>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //자동 완성 기능에 대한 이벤트 등록
+        $(function() {
+            last_req = "";
+            $( "#olinput" ).autocomplete({
+                minLength: 2,
+                delay: 10,
+                open: function(event, ui) {
+                    //$.off() 메서드는 해당 엘리먼트에 연결된 이벤트(핸들러)를 제거한다. 여기서 'menufocus, hover, mouseenter'가 해당된다.
+                    $('.ui-autocomplete').off('menufocus hover mouseenter mouseover');
+                },
+                //관련 단어를 클릭할 경우에 발생시키는 이벤트이다. 기본 값으로 관련단어 클릭 시 텍스트 창의 단어를 선택된 단어로 변경하는 것이 설정되어 있으므로 따로 설정할 필요는 없다.
+                /*select: function(event, ui) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'loc',
+                        value: 'home_ac_' + last_req
+                    }).appendTo('#olform');
+                    $( "#olinput" ).val(ui.item.value);
+                    $( "#olform" ).submit();
+                },*/
+                //관련 단어를 가져오는 코드이다. https://jqueryui.com/autocomplete/ 사이트의 view source를 확인하면 쉽게 이해가능하다.
+                source: function( request, response ) {
+                    var res = request.term.split(":");
+                    var url;
+                    //Datamuse API에 text창에 입력한 문자에 해당하는 글자를 가져오는 url이다. 우리에게 필요한 쿼리가 작성되어 있으므로 쿼리에 대한 설명은 생략한다
+                    if (res.length > 1) {
+                        url = '//api.datamuse.com/words?v=ol_gte3&max=10&k=ol_clue&sp=' + encodeURIComponent(res[0]) + '&ml=' + encodeURIComponent(res[1]);
+                    } else {
+                        url = '//api.datamuse.com/sug?v=ol_gte3&k=ol_home&s=' + encodeURIComponent(request.term.replace(/[:].*/,''));
+                    }
+                    $.ajax({
+                        dataType: "json",
+                        type : 'Get',
+                        url: url,
+                        success: function(data) {
+                            response( $.map( data, function(item) { return item["word"]; }))
+                        },
+                    });
+                    last_req = request.term;
+                }
+            });
+        });
+
+        //검색 버튼에 대한 이벤트 동작
+        $(".searchBtn").on("click", function(e){
+            e.preventDefault();
+            var data = {key: 'AIzaSyDevHG0cXl0LY6Q0czkfOvnzYuXXcx6B-0' ,q : $("#olinput").val(), cx : '005071159500739572678:momm98irnz4'};
+            $.ajax({
+                url: "https://www.googleapis.com/customsearch/v1",
+                method: "get",
+                data: data,
+                success: function(result){
+                    if(result.spelling){
+                        //아래 구문은 모달창에서 할 예정, 임시로 넣어놓음
+                        $("#olinput").val(result.spelling.correctedQuery);
+                        $(".correct-word").html(result.spelling);
+                        $(".correct-word").append("<input class = 'correct' type='button' value='confirm'>");
+                        $('.correct').on("click", function(){
+                            $("#olform").submit();
+                        });
+                    }else {
+                        $("#olform").submit();
+                    }
+                }
+            });
+        });
+
+        //암기현황 구역 클릭시 페이지 이동
+        $(".footer").on("click",function (e) {
+            e.preventDefault();
+            $("#formData").submit();
+
+
+        });
+    })
+</script>
 
 </html>
