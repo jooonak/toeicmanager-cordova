@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="css/ratchet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Group</title>
+</head>
+<body>
+<!-- Make sure all your bars are the first things in your <body> -->
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .container {
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .contents {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 3em;
+        width: 1em;
+        height: 1em;
+        border-radius: 3em;
+        background-color: #444;
+        font-size: 1em;
+        color: #FFFFFF;
+    }
+</style>
+<!--<header class="bar bar-nav">-->
+<!--<h1 class="title">Dongne Bansang</h1>-->
+<!--</header>-->
+<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+<header class="bar bar-nav">
+    <a class="icon icon-left-nav pull-left" href="view.html"></a>
+    <h1 class="title">My Groups</h1>
+</header>
+<div class="content">
+    <div class="wrapper">
+        <div class="container a"><div class="contents">A</div></div>
+        <div class="container b"><div class="contents">A</div></div>
+        <div class="container c"><div class="contents">A</div></div>
+        <div class="container d"><div class="contents">A</div></div>
+        <div class="container e"><div class="contents">A</div></div>
+        <div class="container f"><div class="contents">A</div></div>
+        <div class="container f"><div class="contents">A</div></div>
+    </div>
+</div>
+<nav class="bar bar-tab">
+    <a class="tab-item" href="register.html"> <!--'내 추천'으로 이동-->
+        <span class="icon icon-compose"></span>
+        <span class="tab-label">내 추천</span>
+    </a>
+    <a class="tab-item active" href="group.html"> <!--'그룹'으로 이동-->
+        <img class="icon" src="img/group.png">
+        <span class="tab-label">그룹</span>
+    </a>
+    <a class="tab-item" href="search.html"> <!--'검색'으로 이동-->
+        <span class="icon icon-search"></span>
+        <span class="tab-label">검색</span>
+    </a>
+    <a class="tab-item" href="profile.html"> <!--'프로필'으로 이동-->
+        <span class="icon icon-person"></span>
+        <span class="tab-label">프로필</span>
+    </a>
+    <a class="tab-item" href="settings.html"> <!--'설정'으로 이동-->
+        <span class="icon icon-gear"></span>
+        <span class="tab-label">설정</span>
+    </a>
+</nav>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/ratchet.js"></script>
+</body>
+</html>
