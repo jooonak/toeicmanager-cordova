@@ -1,23 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
@@ -29,10 +10,25 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <!--경로를 절대 경로로 해줘야 한다.-->
     <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <!-- <script src="dist/js/ratchet.js"></script>-->
+    <title>Title</title>
     <title>Title</title>
 </head>
 <style>
-    body {
+    html, body {
         margin: 0;
         padding: 0;
     }
@@ -40,86 +36,123 @@
     .container {
         display: grid;
         grid-template-areas:
-                'header header header'
-                'top top top'
-                'middle middle middle'
-                'bottom bottom bottom'
-                'footer footer footer';
-        grid-auto-rows:  1fr 150px 150px 150px 1fr;
+                'header header'
+                'content content'
+                'footer footer';
+        grid-auto-rows: 1fr 90% 1fr ;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
         text-align: center;
-        height: 640px;
-    }
-
-    .box {
-        font-size: 150%;
+        height: 100%
     }
 
     .header {
-        background-color: beige;
-        grid-column: 1/4;
-        margin-top: 10px;
+        grid-column: 1/3;
+        grid-row: 1/2;
     }
 
-    .top {
-        background-color: cadetblue;
-        grid-column: 1/4;
-        grid-row: 2/5;
-        margin-bottom: 10px;
+    .contents {
+        grid-column: 1/3;
+        grid-row: 2/4;
+        overflow: scroll;
+        -ms-overflow-style: none;
+        text-align: left ;
+        background-color: white;
+        text-indent: 20%;
     }
 
-    .left {
-        margin-left: 10px;
+    .dark {
+        background: #222222;
     }
 
-    .right{
-        margin-right: 10px;
+    .center{
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
     }
 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    h3{
+        min-height: 55px;
+        text-indent: 10%;
+    }
+
+    .table-view-cell{
+        padding: 12.5px 0px 12.5px 0px;
+        margin:0 ;
+    }
 
 </style>
 <body>
 <div class='container'>
-    <div class="box header left right">words page</div>
+    <div class="header">
+        <header class="bar bar-nav dark">
+            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
+        </header>
+    </div>
 
-    <div class="box top left right">
-        <a href="view.html">word a</a>
+    <div class="contents">
+       <!--<a href="view.html">word a</a>-->
 
-        <!--단어 리스트를 보여주는 곳-->
-        <div class = "word-list">
+        <div class = "table-view">
+            <hr>
+            <h3 class='table-view-cell'>Toeic Voca</h3>
+            <div class = "word-list">
+
+
+            </div>
+
         </div>
-        <input class = "back" type="button" value="back">
     </div>
 </div>
 </body>
+
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
+
 <script TYPE="application/javascript">
     $(document).ready(function(){
+
         var vno = getUrlParams('vno');
 
         //단어 리스트를 가져오는 ajax 요청
         $.ajax({
-            url: "http://192.168.0.25:8080/vocabulary/"+vno+"/words",
+            url: "http://192.168.0.19:8080/vocabulary/"+vno+"/words",
             dataType: "json",
             type : 'get',
             success: function(result) {
                 var $wordList = $(".word-list");
-                console.log(result);
+                //console.log(result);
                 result.forEach(function(word){
-                    console.log(word.wno);
-                    console.log(word.word);
-                    console.log(word.meaning);
-                    $wordList.append("<div><a href=view.html?wno="+ word.wno+"&vno="+vno+">"+word.wno+" "+word.word+" "+word.meaning+"</a></div>");
+                    //console.log(word.wno ,word.word, word.meaning);
+                    $wordList.append("<div class='table-view-cell' data-vno="+word.vno+" data-wno="+word.wno+">"
+                        +word.word+""+word.meaning+"</a></div>");
                 })
             }
         });
 
+        //단어상세 페이지로 이동
+        $(".word-list").on("click",function (e) {
+            e.preventDefault();
+            //var vno = $(e.target);
+            var vno = $(e.target).attr("data-vno");
+            var wno = $(e.target).attr("data-wno");
+            window.location.href = "view.html?wno="+wno+"&vno="+vno+"";
+        })
+
+        //뒤로가기
         $(".back").on("click",function(){
             window.location.href = "vocabulary.html";
+
         });
     });
 </script>

@@ -22,7 +22,7 @@
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="dist/js/ratchet.js"></script>
+    <!--<script src="dist/js/ratchet.js"></script>-->
 
     <title>Views</title>
 </head>
@@ -31,7 +31,7 @@
     html, body {
         margin: 0;
         padding: 0;
-        height: 100%;
+
     }
 
     .container {
@@ -55,49 +55,106 @@
 
     .header {
         grid-column: 1/4;
+        grid-row: 1/2;
     }
 
     .top {
-        background-color: cadetblue;
         grid-column: 1/4;
+        grid-row: 2/3;
+    }
 
-        /*margin-top: 2%;*/
-        /*margin-bottom: 2%;*/
+    .wordbox{
+        border-width: 1px;
+        border-style: solid ;
+        border-color: #999;
+        border-radius: 15px;
+        margin:10px 10px 20px 10px;
+        min-height: 80%;
+        box-shadow:0 0 10px #999;
+    }
+
+    .word-position{
+        margin-top: 10%;
+        min-height: 80%;
     }
 
     .word{
-        border-style: solid ;
-        border:5px;
-        border-color: #00AFF0;
+        margin:15px;
+        font-size: 40px;
+    }
+
+    .meaning{
+        margin:15px;
+        font-size: 30px;
 
     }
 
+    .img-position{
+        margin: 10px auto;
+        width: 240px;
+        height: 130px;
+        border-radius: 5px;
+        box-shadow:0 0 10px #999;
+    }
+
+    .img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .stc-position{
+        height: 6em;
+        margin:15px 5%;
+        overflow: scroll;
+        -ms-overflow-style: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    .dark {
+        background: #222222;
+    }
+    .slider {
+        background-color: #FFFFFF;
+    }
 </style>
 
 <body>
 <div class='container'>
     <div class="box header">
-        <header class="bar bar-nav">
-            <a class="icon icon-left-nav pull-left back"></a>
-            <h1 class="title">Toeic Manager</h1>
+        <header class="bar bar-nav dark">
+            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
         </header>
     </div>
 
     <div class="box top">
-        <div class="word">
+        <div class="wordbox">
+            <div class="word-position">
+                <div class="word">
+                </div>
+                <div class="meaning">
+                </div>
+            </div>
 
+            <div class="img-position">
+                <img class="img" src="img/pt_1.jpg">
+            </div>
+
+            <div class="stc-position" >
+                <ul class="stc">
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <input class = "modBtn btn btn-negative btn-block" type="button" value="modify">
         </div>
     </div>
-
-
-
-    <!--<div class="box middle">
-        <div class="meaning">
-
-        </div>
-    </div>-->
-
-
 </div>
 </body>
 
@@ -112,13 +169,13 @@
 
         //단어 리스트를 가져오는 ajax 요청
         $.ajax({
-            url: "http://192.168.0.25:8080/vocabulary/"+vno+"/words/"+wno,
+            url: "http://192.168.0.19:8080/vocabulary/"+vno+"/words/"+wno,
             dataType: "json",
             type : 'get',
             success: function(result) {
                 console.log(result);
                 $(".word").append(result.word);
-                $(".word").append(result.meaning);
+                $(".meaning").append(result.meaning);
 
             }
         });
