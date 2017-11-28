@@ -144,6 +144,13 @@
             $(".img>img").attr("src", "img/" + result[1].type + ".png");
             $(".bottom>a").attr("href", result[1].type + ".html");
         });
+
+
+        //뒤로 가기 버튼
+        $(".back").on("click",function(){
+            window.location.href = "main.html";
+        });
+
     }
     checkExam();
 </script>

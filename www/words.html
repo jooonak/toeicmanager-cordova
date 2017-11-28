@@ -25,7 +25,6 @@
     <!-- Include the compiled Ratchet JS -->
     <!-- <script src="dist/js/ratchet.js"></script>-->
     <title>Title</title>
-    <title>Title</title>
 </head>
 <style>
     html, body {
@@ -59,7 +58,6 @@
         -ms-overflow-style: none;
         text-align: left ;
         background-color: white;
-        text-indent: 20%;
     }
 
     .dark {
@@ -89,6 +87,15 @@
         margin:0 ;
     }
 
+    .word{
+        float: left;
+        width: 65%;
+        text-indent: 15%;
+    }
+    .meaning{
+        float: right;
+        width: 35%;
+    }
 </style>
 <body>
 <div class='container'>
@@ -100,7 +107,7 @@
     </div>
 
     <div class="contents">
-       <!--<a href="view.html">word a</a>-->
+
 
         <div class = "table-view">
             <hr>
@@ -126,7 +133,7 @@
 
         //단어 리스트를 가져오는 ajax 요청
         $.ajax({
-            url: "http://192.168.0.19:8080/vocabulary/"+vno+"/words",
+            url: "http://192.168.0.25:8080/vocabulary/"+vno+"/words",
             dataType: "json",
             type : 'get',
             success: function(result) {
@@ -135,7 +142,7 @@
                 result.forEach(function(word){
                     //console.log(word.wno ,word.word, word.meaning);
                     $wordList.append("<div class='table-view-cell' data-vno="+word.vno+" data-wno="+word.wno+">"
-                        +word.word+""+word.meaning+"</a></div>");
+                        +"<div class='word' data-vno="+word.vno+" data-wno="+word.wno+">"+word.word+"</div><div class='meaning' data-vno="+word.vno+" data-wno="+word.wno+">"+word.meaning+"</div></div>");
                 })
             }
         });

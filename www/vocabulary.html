@@ -24,7 +24,10 @@
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <!-- <script src="dist/js/ratchet.js"></script>-->
+     <!--<script src="dist/js/ratchet.js"></script>-->
+
+
+
     <title>Title</title>
 </head>
 
@@ -105,6 +108,27 @@
         text-indent: 15%;
     }
 
+    .plusbtn{
+        background-color:#F44336;
+        width:60px;
+        height:60px;
+        border-radius:100%;
+        background:#F44336;
+        right:16px;
+        bottom:16px;
+        position:absolute;
+        margin-right:0;
+        margin-bottom:0;
+        padding:0;
+        border:none;
+        outline:none;
+        color:#FFF;
+        font-size:36px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        transition:.3s;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        pointer-events:all;
+    }
 
 </style>
 <body>
@@ -114,6 +138,7 @@
        <header class="bar bar-nav dark">
             <a class="icon icon-left-nav pull-left back" style="color: white"></a>
             <h1 class="title" style="color: white">Toeic Manager</h1>
+            <a class="icon icon-gear pull-right mod-active" style="color: white"></a>
         </header>
     </div>
 
@@ -123,22 +148,25 @@
 
             <hr>
             <h3 class='table-view-cell'>Toeic Voca</h3>
-            <ul class = "systemvocabulary-list">
+            <ul class = "systemvocabulary-list vocaList">
 
             </ul>
             <hr>
             <h3 class='table-view-cell '>My Voca</h3>
-            <ul class = "uservocabulary-list">
+            <ul class = "uservocabulary-list vocaList">
 
             </ul>
 
         </div>
 
-        <form action="add.html" method="get">
-            <input type="submit" value="make voca"/>
-        </form>
-
+        <div >
+            <button class="plusbtn" style="background-color:red; display: block">
+                <span class="" style="height: 60px; width: 60px; top: 22.4264px; left: -2.57361px;"></span>
+                <span style="">+</span>
+            </button>
+        </div>
     </div>
+
 
 
 </div>
@@ -147,6 +175,10 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
+
+<script src="sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+
 <script TYPE="application/javascript">
     $(document).ready(function () {
 
@@ -154,43 +186,172 @@
         var $uservocabularyLIst = $(".uservocabulary-list");
 
         //단어장 리스트를 가져오는 ajax 요청
-        $.ajax({
-            url: "http://192.168.0.19:8080/vocabulary/",
-            dataType: "json",
-            type : 'get',
-            success: function(data) {
-                //console.log(data);
-                data.forEach(function(voca){
-                    //console.log(voca.vno);
-                    //console.log(voca.vname);
-                    if(voca.owner === 'SYSTEM'){
-                        $systemvocabularyList.append("<li class='table-view-cell voca' data-vno="+voca.vno+">"+voca.vname+"" +
-                            "<button class=\"btn btn-negative\">수정</button></li>");
-                    }else{
-                        $uservocabularyLIst.append("<li class='table-view-cell voca' data-vno="+voca.vno+">"+voca.vname+"" +
-                            "<button class=\"btn btn-negative\">수정</button></a></li>");
-                    }
+        function getList() {
+            $.ajax({
+                url: "http://192.168.0.25:8080/vocabulary/",
+                dataType: "json",
+                type: 'get',
+                success: function (data) {
+                    //console.log(data);
+                    var toeicvoca="";
+                    var myvoca="";
 
-                })
-            }
-        });
+                    data.forEach(function (voca) {
+                        //console.log(voca.vno);
+                        //console.log(voca.vname);
+
+                        if (voca.owner === 'SYSTEM') {
+
+                            toeicvoca +="<li class='table-view-cell voca' data-vno= "+voca.vno+" >"+voca.vname +
+                                "<button style=\"display: none; right: 67px;\" class=\"btn btn-negative delBtn\" data-oper='delete'> 삭제 </button>" +
+                                "<button style=\"display: none;\" class=\"btn btn-positive modBtn\" data-oper='put'>수정</button></li>";
+
+                            $systemvocabularyList.html(toeicvoca);
+
+                        } else {
+
+                            myvoca +="<li class='table-view-cell voca' data-vno="+voca.vno+">"+voca.vname +
+                                "<button style='display: none; right: 67px;' class=\"btn btn-negative delBtn\" data-oper='delete'>삭제</button>" +
+                                "<button style='display: none; ' class=\"btn btn-positive modBtn\" data-oper='put'>수정</button></li>";
+
+                            $uservocabularyLIst.html(myvoca);
+                        }
+                    })
+                }
+            });
+        }
+        getList();
 
         //뒤로 가기 버튼
         $(".back").on("click",function(){
             window.location.href = "main.html";
         });
 
-        $systemvocabularyList.on("click",function (e) {
-            e.preventDefault();
+        //토익 단어장관련 단어페이지로 이동
+        $systemvocabularyList.on("click", function (e) {
             var vno = $(e.target).attr("data-vno");
             window.location.href = "words.html?mid=m1&vno="+vno;
         });
 
-        $uservocabularyLIst.on("click",function (e) {
-            e.preventDefault();
+        //내 단어장관련 단어페이지로 이동
+        $uservocabularyLIst.on("click", function (e) {
             var vno = $(e.target).attr("data-vno");
             window.location.href = "words.html?mid=m1&vno="+vno;
         });
+
+
+
+        //단어장 등록 모달
+        $(".plusbtn").on("click",function () {
+
+            swal({
+                title: 'input your vocabulary name.',
+                input: 'text',
+                showCancelButton: true,
+                inputValidator: (value) => {
+                return $.ajax({
+                    type : 'post',
+                    url: 'http://192.168.0.25:8080/vocabulary/'+value,
+                    success: function() {
+                        setTimeout(function () {
+                            swal({title: 'success',
+                                timer:2000
+                            })
+                        })
+                        getList();
+                    }
+                });
+                }
+            })
+        });
+
+        //단어장 수정 모달
+        $(".vocaList").on("click", "button", function (e) {
+            e.stopPropagation();
+
+            var oper = $(e.target).data('oper');
+
+            if(oper === 'put'){
+
+                var vno = $(this).parent().attr('data-vno');
+
+                swal({
+                    title: 'modify your vocabulary name.',
+                    input: 'text',
+                    showCancelButton: true,
+                    inputValidator: (value) => {
+                    return $.ajax({
+                        type : 'put',
+                        url: 'http://192.168.0.25:8080/vocabulary/'+vno,
+                        data:JSON.stringify({vno : vno , vname: value}),
+                        contentType:"application/json; charset=utf-8",
+                        success: function() {
+                            setTimeout(function () {
+                                swal({title: 'success',
+                                    timer:2000
+                                })
+                            })
+                            getList();
+                            $(".plusbtn").css("display","block");
+                        }
+                    });
+                    }
+                })
+            }
+        });
+
+       //단어장 삭제 모달
+        $(".vocaList").on("click", "button", function (e) {
+            e.stopPropagation();
+
+            var oper = $(e.target).data('oper');
+
+            if(oper === 'delete') {
+
+                var vno = $(this).parent().attr('data-vno');
+
+                swal({
+                    title: 'delete your vocabulary',
+                    showCancelButton: true
+                }).then((result) => {return
+                    $.ajax({
+                        type: 'delete',
+                        url: 'http://192.168.0.25:8080/vocabulary/' + vno,
+                        success: function () {
+                            setTimeout(function () {
+                                swal({
+                                    title: 'success',
+                                    timer: 2000
+                                })
+                            })
+                            getList();
+                            $(".plusbtn").css("display", "block");
+                        }
+                    });
+                });
+            }
+            });
+
+
+
+
+        //버튼 활성화
+        $(".mod-active").on("click",function () {
+            var $modBtn = $(".modBtn");
+            var $delBtn = $(".delBtn");
+            var $plusBtn = $(".plusbtn");
+
+            if($modBtn["0"].style.display==='none'){
+                $modBtn.css("display","block");
+                $delBtn.css("display","block");
+                $plusBtn.css("display","none");
+            }else{
+                $modBtn.css("display","none");
+                $delBtn.css("display","none");
+                $plusBtn.css("display","block");
+            }
+        });
+
     })
 
 </script>
