@@ -134,10 +134,15 @@
 
     function checkExam() {
         $.getJSON("http://192.168.0.26:8080/anmoexams/", function (result) {
-
-            $(".img>h3").html('TOTAL: ' + (result[0].total - result[0].result) + '개');
-
-            $(".bottom>a").attr("href", "learn.html?eno=" + result[0].eno);
+            console.log(result);
+//            if (result.length > 0) {
+//                    $(".img>h3").html('TOTAL: ' + (result[0].total - result[0].result) + '개');
+//
+//                    $(".bottom>a").attr("href", "learn.html?eno=" + result[0].eno);
+//            } else {
+                $(".btn").text('문제가 없습니다').attr("class", "btn btn-negative btn-block btn-outlined");
+                $(".bottom>a").attr("href", "main.html");
+//            }
         });
 
     }
