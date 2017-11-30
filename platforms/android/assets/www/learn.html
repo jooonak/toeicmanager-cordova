@@ -83,7 +83,7 @@
     }
 
     .question>img {
-        width: 80%;
+        width: 90%;
         height: 80%;
     }
 
@@ -235,7 +235,7 @@
 
     </div>
     <div class="box example">
-        <ul>
+        <ul class="exampleUl">
         </ul>
     </div>
 
@@ -264,14 +264,20 @@
                     .animate({
                         width: (time)*20 + '%'
                     }, 500)
-            })
+            });
+
         } else {
             var qNum = $('.header').html().split("/");
 
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: 0
+                    }, 500)
+            });
+
             if (qNum[0] === qNum[1]){
-                console.log(qNum[0]);
-                console.log(qNum[1]);
-                console.log(qNum[0] === qNum[1]);
                 dataTransfer();
             } else {
                 dataTransfer();
@@ -286,23 +292,23 @@
         console.log(list);
 
         $(".cnt>h1").html( (ord + 1) + "/" + 20);
-        $(".example").attr("data-total", list[ord].length);
+        $(".exampleUl").attr("data-total", list.length);
 
-        $('.question').html("<img src=http://192.168.0.25:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+        $('.question').html("<img src=http://192.168.0.28:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
         var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
 
-        str += "<li data-wno=" + list[ord].wno + " data-answer=true><button class='btn btn-primary btn-block btn-outlined' style='margin: 0'><span class='icon icon-check'></span></button></li>";
+        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
     }
 
-//        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
+        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
 
     function getList() {
         var obj = [];
-        $.getJSON("http://192.168.0.25:8080/exam/", function (result) {
+        $.getJSON("http://192.168.0.28:8080/exam/", function (result) {
 
             for (var i = 0; i < result.length; i++){
                 obj.push({vno : result[i].vno,
@@ -320,13 +326,18 @@
     getList();
 
 
-    document.querySelector("div>ul").addEventListener("click", dataTransfer);
+    document.querySelector(".exampleUl").addEventListener("click", dataTransfer);
 
     function dataTransfer(e) {
+
+
         var data = {};
         var uAnswer = e || null;
         var wno = $("div>ul>li").attr("data-wno");
 
+
+        console.log(uAnswer.target);
+        //ajax처리 시 추가 작업 필요
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){
                 data = {wno : wno, result : "know"};
@@ -338,20 +349,37 @@
             data = {wno : wno, result : "no"};
         }
 
-        $.ajax({
-            url : 'http://192.168.0.25:8080/exam/',
-            type: 'post',
-            data: JSON.stringify(data),
-            contentType: 'application/json;',
-            success : function() {
-                if (++ord < 20){
-                    time = 5;
-                    getList();
-                } else {
-                    window.location="testend.html?score=" + score;
-                }
-            }
-        });
+        console.log($(this));
+        console.log($(this).data('total'));
+
+        if (++ord < $(this).data('total')){
+            time = 5;
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: (time)*20 + '%'
+                    }, 500)
+            });
+            getList();
+        } else {
+            window.location="examend.html?score=" + score;
+        }
+
+//        $.ajax({
+//            url : 'http://192.168.0.25:8080/exam/',
+//            type: 'post',
+//            data: JSON.stringify(data),
+//            contentType: 'application/json;',
+//            success : function() {
+//                if (++ord < 20){
+//                    time = 5;
+//                    getList();
+//                } else {
+//                    window.location="testend.html?score=" + score;
+//                }
+//            }
+//        });
     }
 </script>
 </body>

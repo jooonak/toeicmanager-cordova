@@ -22,7 +22,7 @@
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <!--<script src="dist/js/ratchet.js"></script>-->
+    <!-- <script src="dist/js/ratchet.js"></script>-->
 
     <title>Main</title>
 </head>
@@ -42,7 +42,7 @@
                 'bottom bottom bottom'
                 'footer footer footer'
                 'button button button';
-        grid-auto-rows: 44px 56px 15% 15% 28.5% 15%;
+        grid-auto-rows: 1fr 56px 15% 15% 28.5% 15%;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
@@ -67,7 +67,7 @@
     .middle {
         grid-column: 1/4;
         grid-row: 3/4;
-        box-shadow:0 0 10px #999;
+        box-shadow:0 0  10px #999;
     }
 
     .bottom {
@@ -76,7 +76,6 @@
     }
 
     .footer {
-        background-color: tan;
         grid-column: 1/4;
         grid-row: 5/6;
     }
@@ -128,6 +127,73 @@
         margin-left: 10px;
         margin-right: 10px;
     }
+
+    .meter {
+        height: 13px;
+        background: #DCE0E3;
+        border-radius: 8px;
+    }
+    .meter > span {
+        display: block;
+        height: 100%;
+        -webkit-border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-radius-topright: 20px;
+        -moz-border-radius-bottomright: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-radius-topleft: 20px;
+        -moz-border-radius-bottomleft: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: darkorange;
+        position: relative;
+        overflow: hidden;
+    }
+    .meter > span:after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #f0bb4b), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, #f0bb4b), color-stop(.75, #f0bb4b), color-stop(.75, transparent), to(transparent));
+        background-image: -webkit-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        background-image: -moz-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        background-image: -ms-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        background-image: -o-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        z-index: 1;
+        -webkit-background-size: 20px 20px;
+        -moz-background-size:    20px 20px;
+        background-size:         20px 20px;
+        -webkit-animation: move 2s linear infinite;
+        -webkit-border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-radius-topright: 20px;
+        -moz-border-radius-bottomright: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-radius-topleft: 20px;
+        -moz-border-radius-bottomleft: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        overflow: hidden;
+    }
+
+    /* PROGRESS BAR - ANIMATION */
+    @-webkit-keyframes move {
+        0% {background-position: 0 0;}
+        100% {background-position: 30px 30px;}
+    }
+    @-moz-keyframes move {
+        0% {background-position: 0 0;}
+        100% {background-position: 30px 30px;}
+    }
+    .slider{
+        background-color: #1a9bcb;
+    }
+
 </style>
 
 <body>
@@ -157,41 +223,47 @@
     </div>
 
     <div class="box middle center">
-        <a href="vocabulary.html?id=123&time=1234">단어장리스트</a>
+        단어장리스트
     </div>
-<<<<<<< HEAD
 
     <div class="box bottom left right center">챗봇 및 명언</div>
 
     <div class="box footer left right center">
-            암기현황
+        <div class="slider footer" id="mySlider">
+            <div class="slide-group">
+                <div class="slide">
+                    <h6 >오늘 학습 목표량　</h6>
+                  <!--  <div class="meter" style="width: 75%;">
+                        <span style="width: 100%;"></span>
+                    </div>-->
+                </div>
+                <div class="slide">
+                    <h6 >오늘 시험 목표량</h6>
+                 <!--   <div class="meter" style="width: 75%;">
+                        <span style="width: 100%;"></span>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="box button left right center">
-        <a href="test.html" class="learnbtn btn btn-negative btn-block">학습
+        <a href="examstart.html" class="learnbtn btn btn-negative btn-block">학습
         </a>
-        <a href="test.html" class="reviewbtn btn btn-negative btn-block">시험
+        <a href="exam.html" class="reviewbtn btn btn-negative btn-block">시험
         </a>
     </div>
 
     <form id="formData" action="result.html?" method="get">
         <input type="hidden" >
     </form>
-=======
-    <div class="box middle left"><a href="examstart.html">middle a</a></div>
-    <div class="box middle mid">middle b</div>
-    <div class="box middle right"><a href="examend.html?score=20">middle c</a></div>
-    <div class="box bottom left right"><a href="learn.html">bottom a</a></div>
-    <div class="box footer left"></div>
-    <div class="box footer "></div>
-    <div class="box footer right"></div>
->>>>>>> origin/master
 </div>
-</body>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -263,6 +335,12 @@
             });
         });
 
+        //단어장 리스트 페이지 이동
+        $(".middle").on("click",function (e) {
+            window.location.href = "vocabulary.html?mid=m1";
+
+        });
+
         //암기현황 구역 클릭시 페이지 이동
         $(".footer").on("click",function (e) {
             e.preventDefault();
@@ -271,6 +349,12 @@
 
         });
     })
+
+
 </script>
+
+
+
+</body>
 
 </html>
