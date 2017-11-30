@@ -40,8 +40,8 @@
         display: grid;
         grid-template-areas:
                 'header header header'
-                'img img img'
                 'info info info'
+                'img img img'
                 'bottom bottom bottom'
                 'footer footer footer';
         grid-auto-rows:  1fr 10% 50% 20% 1fr;
@@ -70,6 +70,7 @@
         display: -webkit-flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     .info {
@@ -80,7 +81,6 @@
         display: -webkit-flex;
         justify-content: center;
         align-items: center;
-        flex-wrap: wrap;
     }
 
     .footer {
@@ -114,20 +114,45 @@
         </header>
     </div>
 
-        <div class="box img">
+        <div class="box info">
             <!--<h1>title</h1>-->
-            <h2 style="width: 100%; margin: 0;">EXAM</h2>
+            <h2 style="width: 100%; margin: 0;"></h2>
 
         </div>
-        <div class="box info">
-            <img src="img/exam.png" style="width: 80%; height: 80%">
+        <div class="box img">
+            <img src="#" style="width: 80%; height: 80%">
             <h3 style="margin: 0;">TOTAL: 50개</h3>
         </div>
-        <div class="box bottom btns">
-            <a style="width: 100%" href="exam.html"><button class="btn btn-primary btn-block btn-outlined" style="margin: 0">STARRRRRRRRRRRRRRRT</button></a>
+        <div class="box bottom">
+            <a style="width: 100%" href="#"><button class="btn btn-primary btn-block btn-outlined" style="margin: 0">STARRRRRRRRRRRRRRRT</button></a>
         </div>
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript">
+
+    function checkExam() {
+        $.getJSON("http://192.168.0.28:8080/exam/today", function (result) {
+            if (result[1].type === "learn") {
+                $(".info>h2").html('LEARNING PAGE');
+
+            } else if (result[1].type === "exam") {
+                $(".info>h2").html('EXAM PAGE');
+
+            }
+            $(".img>img").attr("src", "img/" + result[1].type + ".png");
+            $(".bottom>a").attr("href", result[1].type + ".html");
+        });
+
+
+        //뒤로 가기 버튼
+        $(".back").on("click",function(){
+            window.location.href = "main.html";
+        });
+
+    }
+    checkExam();
+</script>
 </body>
 </html>
