@@ -249,7 +249,12 @@
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
+
+    var eno = getUrlParams('eno');
+    console.log(eno);
+
     var time = 5;
     var ord = 0;
     var score = 0;
@@ -291,10 +296,10 @@
         console.log(ord);
         console.log(list);
 
-        $(".cnt>h1").html( (ord + 1) + "/" + 20);
+        $(".cnt>h1").html( (ord + 1) + "/" + list.length);
         $(".exampleUl").attr("data-total", list.length);
 
-        $('.question').html("<img src=http://192.168.0.28:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
         var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
 
@@ -308,10 +313,9 @@
 
     function getList() {
         var obj = [];
-        $.getJSON("http://192.168.0.28:8080/exam/", function (result) {
-
+        $.getJSON("http://192.168.0.26:8080/anmoexams/" + eno, function (result) {
             for (var i = 0; i < result.length; i++){
-                obj.push({vno : result[i].vno,
+                obj.push({
                     wno : result[i].wno,
                     word : result[i].word,
                     meaning : result[i].meaning,
@@ -328,31 +332,26 @@
 
     document.querySelector(".exampleUl").addEventListener("click", dataTransfer);
 
+    var data = [];
     function dataTransfer(e) {
 
-
-        var data = {};
         var uAnswer = e || null;
-        var wno = $("div>ul>li").attr("data-wno");
+        var wno = $("div>ul>li").data("wno");
+        var total = $(".exampleUl").data('total');
 
-
-        console.log(uAnswer.target);
         //ajax처리 시 추가 작업 필요
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){
-                data = {wno : wno, result : "know"};
+                data.push({wno: wno, result : "o"});
                 score++;
             } else {
-                data = {wno : wno, result : "no"};
+                data.push({wno: wno, result : "x"});
             }
         } else {
-            data = {wno : wno, result : "no"};
+            data.push({wno: wno, result : "x"});
         }
 
-        console.log($(this));
-        console.log($(this).data('total'));
-
-        if (++ord < $(this).data('total')){
+        if (++ord < $(".exampleUl").data('total')){
             time = 5;
             $(".meter>span").each(function () {
                 $(this)
@@ -361,25 +360,41 @@
                         width: (time)*20 + '%'
                     }, 500)
             });
+
+//            console.log(data.length === Math.ceil(total/2));
+//            if (data.length === Math.ceil(total/2)) {
+//
+//                $.ajax({
+//                    url : 'http://192.168.0.26:8080/anmoexams/middle/' + eno,
+//                    type: 'post',
+//                    data: JSON.stringify(data),
+//                    contentType: 'application/json;',
+//                    success : function(result) {
+//                        console.log(result);
+//                        if (result === "success") {
+//                            data = [];
+//                        } else {
+//
+//                        }
+//
+//                    }
+//                });
+//            }
+
             getList();
         } else {
-            window.location="examend.html?score=" + score;
+//            $.ajax({
+//                url : 'http://192.168.0.26:8080/anmoexams/finished/' + eno,
+//                type: 'post',
+//                data: JSON.stringify(data),
+//                contentType: 'application/json;',
+//                success : function() {
+                    window.location="examend.html?score=" + score;
+//                }
+//            });
         }
 
-//        $.ajax({
-//            url : 'http://192.168.0.25:8080/exam/',
-//            type: 'post',
-//            data: JSON.stringify(data),
-//            contentType: 'application/json;',
-//            success : function() {
-//                if (++ord < 20){
-//                    time = 5;
-//                    getList();
-//                } else {
-//                    window.location="testend.html?score=" + score;
-//                }
-//            }
-//        });
+
     }
 </script>
 </body>
