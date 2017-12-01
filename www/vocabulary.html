@@ -255,6 +255,7 @@
                     success: function() {
                         setTimeout(function () {
                             swal({title: 'success',
+                                type: 'success',
                                 timer:2000
                             })
                         })
@@ -288,6 +289,7 @@
                         success: function() {
                             setTimeout(function () {
                                 swal({title: 'success',
+                                    type: 'success',
                                     timer:2000
                                 })
                             })
@@ -305,15 +307,16 @@
             e.stopPropagation();
 
             var oper = $(e.target).data('oper');
+            var vno = $(this).parent().attr('data-vno');
 
             if(oper === 'delete') {
-
-                var vno = $(this).parent().attr('data-vno');
-
                 swal({
-                    title: 'delete your vocabulary',
-                    showCancelButton: true
-                }).then((result) => {return
+                    title: 'Delete your vocabulary?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Delete',
+                    confirmButtonColor: 'red'
+                }).then((result) => {
+                    if(result.value){
                     $.ajax({
                         type: 'delete',
                         url: 'http://192.168.0.25:8080/vocabulary/' + vno,
@@ -321,6 +324,7 @@
                             setTimeout(function () {
                                 swal({
                                     title: 'success',
+                                    type: 'success',
                                     timer: 2000
                                 })
                             })
@@ -328,9 +332,10 @@
                             $(".plusbtn").css("display", "block");
                         }
                     });
-                });
-            }
+                }
             });
+            }
+        });
 
 
 

@@ -124,7 +124,7 @@
         <h3 style="margin: 0;"></h3>
     </div>
     <div class="box bottom">
-        <a style="width: 100%" href="#"><button class="btn btn-primary btn-block btn-outlined" style="margin: 0">STARRRRRRRRRRRRRRRT</button></a>
+        <a style="width: 100%; margin: 0;" href="#" class="btn btn-primary btn-block btn-outlined">STARRRRRRRRRRRRRRRT</a>
     </div>
 </div>
 
@@ -132,17 +132,16 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
 
-    function checkExam() {
-        $.getJSON("http://192.168.0.26:8080/anmoexams/", function (result) {
+    function checkExam(type) {
+        $.getJSON("http://192.168.0.26:8080/" + type + "/", function (result) {
             console.log(result);
-//            if (result.length > 0) {
-//                    $(".img>h3").html('TOTAL: ' + (result[0].total - result[0].result) + '개');
-//
-//                    $(".bottom>a").attr("href", "learn.html?eno=" + result[0].eno);
-//            } else {
-                $(".btn").text('문제가 없습니다').attr("class", "btn btn-negative btn-block btn-outlined");
-                $(".bottom>a").attr("href", "main.html");
-//            }
+            if (result.length > 0) {
+                    $(".img>h3").html('TOTAL: ' + (result[0].total - result[0].result) + '개');
+
+                    $(".btn").attr("href", "learn.html?eno=" + result[0].eno);
+            } else {
+                $(".btn").text('문제가 없습니다').attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+            }
         });
 
     }
