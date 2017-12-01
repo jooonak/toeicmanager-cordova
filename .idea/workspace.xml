@@ -2,33 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c0231c1-264a-4680-91d9-912cacf4535c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/exam.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/exam.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/examstart.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/examstart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/learn.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/learn.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/main.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/result.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/vocabulary.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/vocabulary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/exam.html" afterPath="$PROJECT_DIR$/www/exam.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/examstart.html" afterPath="$PROJECT_DIR$/www/examstart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/learn.html" afterPath="$PROJECT_DIR$/www/learn.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/login.html" afterPath="$PROJECT_DIR$/www/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/result.html" afterPath="$PROJECT_DIR$/www/result.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/main.html" afterPath="$PROJECT_DIR$/www/main.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -92,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="learn.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="learn.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/learn.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5719">
-              <caret line="301" column="0" lean-forward="true" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="366" column="26" lean-forward="true" selection-start-line="366" selection-start-column="26" selection-end-line="366" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -104,21 +79,23 @@
                 <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1512108138169" expanded="true" signature="8966:8975" ph="..." />
+                <marker date="1512108138169" expanded="true" signature="9164:9173" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="93" column="11" lean-forward="true" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
+            <state relative-caret-position="148">
+              <caret line="260" column="18" lean-forward="true" selection-start-line="260" selection-start-column="18" selection-end-line="260" selection-end-column="18" />
               <folding>
-                <marker date="1512108230806" expanded="true" signature="12742:12772" ph="..." />
-                <marker date="1512108230806" expanded="true" signature="12886:12896" ph="..." />
-                <marker date="1512108230806" expanded="true" signature="13052:13082" ph="..." />
-                <marker date="1512108230806" expanded="true" signature="13217:13227" ph="..." />
+                <marker date="1512110230011" expanded="true" signature="12731:12761" ph="..." />
+                <marker date="1512110230011" expanded="true" signature="12875:12885" ph="..." />
+                <marker date="1512110230011" expanded="true" signature="13041:13071" ph="..." />
+                <marker date="1512110230011" expanded="true" signature="13206:13216" ph="..." />
               </folding>
             </state>
           </provider>
@@ -175,6 +152,7 @@
       <find>q</find>
       <find>img</find>
       <find>btn-block</find>
+      <find>center</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -204,10 +182,10 @@
         <option value="$PROJECT_DIR$/www/teststart.html" />
         <option value="$PROJECT_DIR$/www/test.html" />
         <option value="$PROJECT_DIR$/www/examend.html" />
-        <option value="$PROJECT_DIR$/www/main.html" />
         <option value="$PROJECT_DIR$/www/examstart.html" />
         <option value="$PROJECT_DIR$/www/learn.html" />
         <option value="$PROJECT_DIR$/www/exam.html" />
+        <option value="$PROJECT_DIR$/www/main.html" />
       </list>
     </option>
   </component>
@@ -354,7 +332,7 @@
       <workItem from="1511605727191" duration="14401000" />
       <workItem from="1511751807965" duration="546000" />
       <workItem from="1511776023638" duration="1757000" />
-      <workItem from="1512108274036" duration="7000" />
+      <workItem from="1512108274036" duration="1317000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html">
       <created>1511778365030</created>
@@ -370,11 +348,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511778375906</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html">
+      <created>1512108333938</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1512108333938</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156939000" />
+    <option name="totallyTimeSpent" value="158249000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -387,20 +372,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10695469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5021075" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39173013" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3857143" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="11" y="279" width="1344" height="169" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3852013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="11" y="279" width="1344" height="169" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24700762" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -459,7 +443,8 @@
     <MESSAGE value="1.view 페이지 템플릿 상단바 추가됨&#10;2.래쳇테스트 페이지 삭제&#10;3. 부트스트탭 적용 관련 css,js,html 삭제" />
     <MESSAGE value="1. 시험페이지, 학습페이지 분리&#10;2. 시험과 학습페이지에 시간제한 구현했으며 데이터 전송은 주석처리&#10;3. 시험의 보기는 spring서버에서 return받은 데이터들로 구성하는 로직 작성" />
     <MESSAGE value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -709,21 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/learn.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5719">
-          <caret line="301" column="0" lean-forward="true" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/examstart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1558">
@@ -770,13 +740,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="93" column="11" lean-forward="true" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
+        <state relative-caret-position="148">
+          <caret line="260" column="18" lean-forward="true" selection-start-line="260" selection-start-column="18" selection-end-line="260" selection-end-column="18" />
           <folding>
-            <marker date="1512108230806" expanded="true" signature="12742:12772" ph="..." />
-            <marker date="1512108230806" expanded="true" signature="12886:12896" ph="..." />
-            <marker date="1512108230806" expanded="true" signature="13052:13082" ph="..." />
-            <marker date="1512108230806" expanded="true" signature="13217:13227" ph="..." />
+            <marker date="1512110230011" expanded="true" signature="12731:12761" ph="..." />
+            <marker date="1512110230011" expanded="true" signature="12875:12885" ph="..." />
+            <marker date="1512110230011" expanded="true" signature="13041:13071" ph="..." />
+            <marker date="1512110230011" expanded="true" signature="13206:13216" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/learn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="366" column="26" lean-forward="true" selection-start-line="366" selection-start-column="26" selection-end-line="366" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1512108138169" expanded="true" signature="8966:8975" ph="..." />
+            <marker date="1512108138169" expanded="true" signature="9164:9173" ph="..." />
           </folding>
         </state>
       </provider>
