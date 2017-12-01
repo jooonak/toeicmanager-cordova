@@ -252,14 +252,12 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
 
-    var member = JSON.parse(localStorage.getItem("member"));
     var eno = getUrlParams('eno');
+    console.log(eno);
 
     var time = 5;
-    var ordMain = 0;
-    var ordSub = 0;
+    var ord = 0;
     var score = 0;
-    var total = 0;
 
     function timeLimit() {
         if (time > 1){
@@ -293,30 +291,29 @@
         }
     }
 
-    function makeQuiz(ordMain, ordSub, list) {
+    function makeQuiz(ord, list) {
 
-        total = total === 0 ? list.length : total;
-        $(".cnt>h1").html( (ordMain + 1) + "/" + total);
+        console.log(ord);
+        console.log(list);
+
+        $(".cnt>h1").html( (ord + 1) + "/" + list.length);
         $(".exampleUl").attr("data-total", list.length);
 
-        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ordSub].img + "><h1>" + list[ordSub].word + "</h1>");
+        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
-        var str = "<li data-wno=" + list[ordSub].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
+        var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
 
-        str += "<li data-wno=" + list[ordSub].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
+        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
     }
 
-//        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
+        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
 
     function getList() {
         var obj = [];
-        var exam = {eno : eno, mid : "m1"};
-
-        $.getJSON("http://192.168.0.26:8080/learn/"+eno, exam, function (result) {
-            console.log(result);
+        $.getJSON("http://192.168.0.26:8080/anmoexams/" + eno, function (result) {
             for (var i = 0; i < result.length; i++){
                 obj.push({
                     wno : result[i].wno,
@@ -326,7 +323,8 @@
                     sentence : result[i].sentence
                 });
             }
-            makeQuiz(ordMain, ordSub, obj);
+            makeQuiz(ord, obj);
+
         });
     }
     getList();
@@ -334,7 +332,7 @@
 
     document.querySelector(".exampleUl").addEventListener("click", dataTransfer);
 
-    var examList = [];
+    var data = [];
     function dataTransfer(e) {
 
         var uAnswer = e || null;
@@ -344,17 +342,16 @@
         //ajax처리 시 추가 작업 필요
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){
-                examList.push({wno: wno, result : "o"});
+                data.push({wno: wno, result : "o"});
                 score++;
             } else {
-                examList.push({wno: wno, result : "x"});
+                data.push({wno: wno, result : "x"});
             }
         } else {
-            examList.push({wno: wno, result : "x"});
+            data.push({wno: wno, result : "x"});
         }
-        ordSub++;
-        if (++ordMain < total){
 
+        if (++ord < $(".exampleUl").data('total')){
             time = 5;
             $(".meter>span").each(function () {
                 $(this)
@@ -364,53 +361,41 @@
                     }, 500)
             });
 
-            console.log("TOTAL "+total);
-            console.log("LENGTH "+examList.length);
+//            console.log(data.length === Math.ceil(total/2));
+//            if (data.length === Math.ceil(total/2)) {
+//
+//                $.ajax({
+//                    url : 'http://192.168.0.26:8080/anmoexams/middle/' + eno,
+//                    type: 'post',
+//                    data: JSON.stringify(data),
+//                    contentType: 'application/json;',
+//                    success : function(result) {
+//                        console.log(result);
+//                        if (result === "success") {
+//                            data = [];
+//                        } else {
+//
+//                        }
+//
+//                    }
+//                });
+//            }
 
-            if (examList.length === Math.ceil(total/2)) {
-                var data = {
-                    examList : examList,
-                    examPointer : member.exampointer,
-                    mid : member.mid,
-                    lstatus : member.lstatus
-                }
-
-                $.ajax({
-                    url : 'http://192.168.0.26:8080/learn/middle/' + eno,
-                    type: 'put',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json;',
-                    success : function() {
-                        examList = [];
-                        ordSub = 0;
-                    }
-                });
-            }
             getList();
-
-        } else if (ordSub === total) {
-            var data = {
-                examList : examList,
-                examPointer : member.exampointer,
-                mid : member.mid,
-                lstatus : member.lstatus
-            }
-
-            $.ajax({
-                url : 'http://192.168.0.26:8080/learn/finished/' + eno,
-                type: 'put',
-                data: JSON.stringify(data),
-                contentType: 'application/json;',
-                success : function() {
-                    window.location="endpage.html?score=" + score;
-                }
-            });
+        } else {
+//            $.ajax({
+//                url : 'http://192.168.0.26:8080/anmoexams/finished/' + eno,
+//                type: 'post',
+//                data: JSON.stringify(data),
+//                contentType: 'application/json;',
+//                success : function() {
+                    window.location="examend.html?score=" + score;
+//                }
+//            });
         }
-    }
 
-    $(".back").on("click",function(){
-        window.location.href = "startpage.html?type=learn";
-    });
+
+    }
 </script>
 </body>
 </html>

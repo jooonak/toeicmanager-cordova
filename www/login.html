@@ -110,6 +110,8 @@
 
         <button class="btn join">Join</button>
     </div>
+
+
 </div>
 
 
@@ -127,25 +129,27 @@
 <script type="application/javascript">
     $(document).ready(function(){
 
+
+        //로그인
         $(".login").on("click",function (e) {
             e.preventDefault();
 
-            var mid = $("#username").val();
-            var mpw = $("#password").val();
-            var data = {mid : mid , mpw : mpw};
+            var data = {username : $("#username").val(), password: $("#password").val()};
 
-            console.log(data);
             $.ajax({
                 type :'post',
                 url: 'http://192.168.0.25:8080/login/',
                 data: JSON.stringify(data),
-                //contentType: 'application/json;',
-                success: function(result) {
-                    console.log(result);
+                contentType: 'application/json;',
+                success: function() {
+
+                    localStorage.setItem("username", "m1");
+                    window.location.href="main.html";
                 }
-                })
+            })
         });
 
+        //회원가입 (아직 간략한 내용이고 추후에 수정해야함)
         $(".join").on("click",function () {
 
             swal({

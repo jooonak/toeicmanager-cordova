@@ -116,15 +116,15 @@
 
         <div class="box info">
             <!--<h1>title</h1>-->
-            <h2 style="width: 100%; margin: 0;"></h2>
+            <h2 style="width: 100%; margin: 0;">EXAM PAGE</h2>
 
         </div>
         <div class="box img">
-            <img src="#" style="width: 80%; height: 80%">
-            <h3 style="margin: 0;">TOTAL: 50개</h3>
+            <img src="img/exam.png" style="width: 80%; height: 80%">
+            <h3 style="margin: 0;"></h3>
         </div>
         <div class="box bottom">
-            <a style="width: 100%" href="#"><button class="btn btn-primary btn-block btn-outlined" style="margin: 0">STARRRRRRRRRRRRRRRT</button></a>
+            <a style="width: 100%" href="exam.html"><button class="btn btn-primary btn-block btn-outlined" style="margin: 0">STARRRRRRRRRRRRRRRT</button></a>
         </div>
 </div>
 
@@ -133,26 +133,19 @@
 <script type="text/javascript">
 
     function checkExam() {
-        $.getJSON("http://192.168.0.28:8080/exam/today", function (result) {
-            if (result[1].type === "learn") {
-                $(".info>h2").html('LEARNING PAGE');
+        $.getJSON("http://192.168.0.25:8080/exams/today", function (result) {
+            console.log(result);
+            $(".img>h3").html('TOTAL: ' + (result[0].total - result[0].result) + "개");
 
-            } else if (result[1].type === "exam") {
-                $(".info>h2").html('EXAM PAGE');
-
-            }
-            $(".img>img").attr("src", "img/" + result[1].type + ".png");
             $(".bottom>a").attr("href", result[1].type + ".html");
         });
-
-
-        //뒤로 가기 버튼
-        $(".back").on("click",function(){
-            window.location.href = "main.html";
-        });
-
     }
     checkExam();
+
+    //뒤로 가기 버튼
+    $(".back").on("click",function(){
+        window.location.href = "main.html";
+    });
 </script>
 </body>
 </html>
