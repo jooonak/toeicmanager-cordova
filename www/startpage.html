@@ -116,7 +116,7 @@
 
     <div class="box info">
         <!--<h1>title</h1>-->
-        <h2 style="width: 100%; margin: 0;">LEARNING PAGE</h2>
+        <h2 style="width: 100%; margin: 0;"></h2>
 
     </div>
     <div class="box img">
@@ -132,20 +132,28 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
 
+    var type = getUrlParams("type");
+
+    console.log(type);
     function checkExam(type) {
+        var str = type === "learn" ? "LEARNING PAGE" : type === "review" ? "REVIEW PAGE" : "EXAM PAGE";
+        $(".info>h2").text(str);
+
         $.getJSON("http://192.168.0.26:8080/" + type + "/", function (result) {
             console.log(result);
-            if (result.length > 0) {
-                    $(".img>h3").html('TOTAL: ' + (result[0].total - result[0].result) + '개');
+            if (result[0]) {
+                $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
-                    $(".btn").attr("href", "learn.html?eno=" + result[0].eno);
+                $(".btn").attr("href", type + ".html?eno=" + result[0].eno);
             } else {
-                $(".btn").text('문제가 없습니다').attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                $(".img>h3").html("더 풀 문제가 없습니다.");
+
+                $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
             }
         });
 
     }
-    checkExam();
+    checkExam(type);
 
     //뒤로 가기 버튼
     $(".back").on("click",function(){
