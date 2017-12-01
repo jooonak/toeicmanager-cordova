@@ -299,7 +299,7 @@
         $(".cnt>h1").html( (ord + 1) + "/" + list.length);
         $(".exampleUl").attr("data-total", list.length);
 
-        $('.question').html("<img src=http://192.168.0.25:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
         var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
 
@@ -313,7 +313,7 @@
 
     function getList() {
         var obj = [];
-        $.getJSON("http://192.168.0.25:8080/anmoexams/" + eno, function (result) {
+        $.getJSON("http://192.168.0.26:8080/anmoexams/" + eno, function (result) {
             for (var i = 0; i < result.length; i++){
                 obj.push({
                     wno : result[i].wno,
