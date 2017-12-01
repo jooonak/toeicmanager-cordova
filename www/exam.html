@@ -307,7 +307,7 @@
             }
 
         } else if (type === 2){
-            $('.question').html("<img width='100%' height='100%' src=http://192.168.0.26:8080/file/" + list[ord].img + ">");
+            $('.question').html("<img width='100%' height='100%' src=http://192.168.0.25:8080/file/" + list[ord].img + ">");
 
             examples.push(list[ord].word);
             arrayShuffle(examples);
@@ -358,7 +358,7 @@
 
     function getList() {
         var obj = [];
-        $.getJSON("http://192.168.0.26:8080/exams/", function (result) {
+        $.getJSON("http://192.168.0.25:8080/exams/", function (result) {
             for (var i = 0; i < result.length; i++){
                 obj.push({vno : result[i].vno,
                     wno : result[i].wno,

@@ -36,13 +36,13 @@
     .container {
         display: grid;
         grid-template-areas:
-                'header header header'
-                'top top top'
-                'middle middle middle'
-                'bottom bottom bottom'
+                'header header'
+                'top top '
+                'middle middle '
+                'bottom bottom '
                 'footer footer footer'
                 'button button button';
-        grid-auto-rows: 1fr 56px 15% 15% 28.5% 15%;
+        grid-auto-rows: 1fr 56px 15% 15% 28.5% 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
@@ -78,6 +78,7 @@
     .footer {
         grid-column: 1/4;
         grid-row: 5/6;
+        background-color: #2ac845;
     }
     .button{
         margin-bottom: 10px;
