@@ -39,13 +39,13 @@
     .container {
         display: grid;
         grid-template-areas:
-                'header header header'
-                'info info info'
-                'img img img'
-                'bottom bottom bottom'
-                'footer footer footer';
-        grid-auto-rows:  1fr 10% 50% 20% 1fr;
-        grid-column-gap: 10px;
+                'header'
+                'info'
+                'img'
+                'bottom'
+                'footer';
+        grid-auto-rows:  1fr 10% 55% 15% 1fr;
+        /*grid-column-gap: 10px;*/
         grid-row-gap: 10px;
         background-color: white;
         text-align: center;
@@ -132,26 +132,51 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
 
+    var member = JSON.parse(localStorage.getItem("member"));
     var type = getUrlParams("type");
 
-    console.log(type);
     function checkExam(type) {
         var str = type === "learn" ? "LEARNING PAGE" : type === "review" ? "REVIEW PAGE" : "EXAM PAGE";
         $(".info>h2").text(str);
 
-        $.getJSON("http://192.168.0.26:8080/" + type + "/", function (result) {
-            console.log(result);
-            if (result[0]) {
-                $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
+        if (type === "learn"){
+            $.getJSON("http://192.168.0.26:8080/" + type + "/", function (result) {
+                if (result[0]) {
+                    $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
-                $(".btn").attr("href", type + ".html?eno=" + result[0].eno);
-            } else {
-                $(".img>h3").html("더 풀 문제가 없습니다.");
+                    $(".btn").attr("href", type + ".html?eno=" + result[0].eno);
+                } else {
+                    $(".img>h3").html("더 외울 단어가 없습니다.");
 
-                $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
-            }
-        });
+                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                }
+            });
+        } else if (type === "review"){
+            var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.exampointer};
+            $.getJSON("http://192.168.0.26:8080/" + type + "/", param, function (result) {
+                if (result[0]) {
+                    $(".img>h3").html("TOTAL: " + (result.length) + "개");
 
+                    $(".btn").attr("href", type + ".html");
+                } else {
+                    $(".img>h3").html("더 풀 문제가 없습니다.");
+
+                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                }
+            });
+        } else {
+            $.getJSON("http://192.168.0.26:8080/" + type + "/today?mid=" + member.mid, function (result) {
+                if (result[0]) {
+                    $(".img>h3").html("TOTAL: " + (result.length) + "개");
+
+                    $(".btn").attr("href", type + ".html");
+                } else {
+                    $(".img>h3").html("더 풀 문제가 없습니다.");
+
+                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                }
+            });
+        }
     }
     checkExam(type);
 

@@ -235,56 +235,46 @@
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-    var time = 10;
+
+    var member = JSON.parse(localStorage.getItem("member"));
+
+    var time = 5;
     var ord = 0;
     var score = 0;
+    var total = 0;
+    var list = [];
+    var examList = [];
 
-    function timeLimit() {
-        if (time > 1){
-            time--;
-            $("#timeLeft").html(time);
-            $(".meter>span").each(function () {
-                $(this)
-                    .width($(this).width())
-                    .animate({
-                        width: (time)*10 + '%'
-                    }, 500)
-            });
-        } else {
-            var qNum = $('.header').html().split("/");
-
-            $(".meter>span").each(function () {
-                $(this)
-                    .width($(this).width())
-                    .animate({
-                        width: 0
-                    }, 500)
-            });
-
-            if (qNum[0] === qNum[1]){
-                dataTransfer();
-            } else {
-                dataTransfer();
-                getList();
-            }
+    $.ajax({
+        url : "http://192.168.0.26:8080/exam/today?mid=" + member.mid,
+        type: 'get',
+        async: false,
+        success : function(result) {
+            list = result;
         }
-    }
-    
-    function makeQuiz(type, ord, list) {
+    });
+
+    function getList() {
+
+        var examples = [];
+        var type = Math.ceil(Math.random() * 3);
+        total = list.length;
 
         $(".cnt>h1").html( (ord + 1) + "/" + list.length);
         $(".exampleUl").attr("data-total", list.length);
-        var total = list.length;
-
-        var examples = [];
 
         while (examples.length < 3) {
             var random = Math.floor(Math.random() * list.length);
 
             if (ord !== random) {
-                var example = list[random];
-                if (examples.length > 0 && examples.word !== example) {
-                    examples.push(example);
+                if (examples[0]) {
+                    for (var i = 0; i < examples.length; i++) {
+                        if (examples.indexOf(list[random]) === -1) {
+                            examples.push(list[random]);
+                        }
+                    }
+                } else {
+                    examples.push(list[random]);
                 }
             } else {
                 console.log("same");
@@ -343,8 +333,40 @@
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
     }
+    getList();
 
-//    window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
+    function timeLimit() {
+        if (time > 1){
+            time--;
+            $("#timeLeft").html(time);
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: (time)*10 + '%'
+                    }, 500)
+            });
+        } else {
+            var qNum = $('.header').html().split("/");
+
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: 0
+                    }, 500)
+            });
+
+            if (qNum[0] === qNum[1]){
+                dataTransfer();
+            } else {
+                dataTransfer();
+                getList();
+            }
+        }
+    }
+
+    //    window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
 
     function arrayShuffle(arr) {
         for (var i = arr.length - 1; i > 0; i--){
@@ -356,35 +378,25 @@
         return arr;
     }
 
-    function getList() {
-        var obj = [];
-        $.getJSON("http://192.168.0.25:8080/exams/", function (result) {
-            for (var i = 0; i < result.length; i++){
-                obj.push({vno : result[i].vno,
-                    wno : result[i].wno,
-                    word : result[i].word,
-                    meaning : result[i].meaning,
-                    img : result[i].img,
-                    sentence : result[i].sentence
-                });
-            }
-            var type = Math.ceil(Math.random() * 3);
-            makeQuiz(type, ord, obj);
-        });
-    }
-    getList();
-
     document.querySelector("div>ul").addEventListener("click", dataTransfer);
 
     function dataTransfer(e) {
         var data = {};
         var uAnswer = e || null;
         var wno = $("div>ul>li").attr("data-wno");
-        var total = $(".cnt>h1").html();
 
-        console.log(total);
+        if (uAnswer){
+            if (uAnswer.target.getAttribute("data-answer")){
+                examList.push({wno: wno, result : "o"});
+                score++;
+            } else {
+                examList.push({wno: wno, result : "x"});
+            }
+        } else {
+            examList.push({wno: wno, result : "x"});
+        }
 
-        if (++ord < 20){
+        if (++ord < total){
             time = 10;
             $(".meter>span").each(function () {
                 $(this)
@@ -393,37 +405,43 @@
                         width: (time)*10 + '%'
                     }, 500)
             });
-            getList();
-        } else {
-            window.location="examend.html?score=" + score;
-        }
 
-        //ajax처리 시 추가 작업 필요
-        if (uAnswer){
-            if (uAnswer.target.getAttribute("data-answer")){
-                data = {wno : wno, result : "know"};
-                score++;
-            } else {
-                data = {wno : wno, result : "no"};
+            if (examList.length === Math.ceil(total/2)) {
+                var data = {
+                    examList : examList,
+                    mid : member.mid,
+                }
+
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/exam/today/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function() {
+                        examList = [];
+                    }
+                });
             }
-        } else {
-            data = {wno : wno, result : "no"};
-        }
+            getList();
 
-//    $.ajax({
-//        url : 'http://192.168.0.25:8080/exam/',
-//        type: 'post',
-//        data: JSON.stringify(data),
-//        contentType: 'application/json;',
-//        success : function() {
-//            if (++ord < 20){
-//                time = 10;
-//                getList();
-//            } else {
-//                window.location="testend.html?score=" + score;
-//            }
-//        }
-//    });
+        } else if (ord === list.length) {
+
+            var data = {
+                examList : examList,
+                mid : member.mid,
+            }
+
+            $.ajax({
+                url : 'http://192.168.0.26:8080/exam/today/',
+                type: 'put',
+                data: JSON.stringify(data),
+                contentType: 'application/json;',
+                success : function() {
+
+                    window.location="endpage.html?score=" + score + "&status=end";
+                }
+            });
+        }
     }
 </script>
 </body>
