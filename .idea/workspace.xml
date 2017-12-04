@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9c0231c1-264a-4680-91d9-912cacf4535c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/main.html" afterPath="$PROJECT_DIR$/www/main.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -335,7 +334,7 @@
       <workItem from="1511751807965" duration="546000" />
       <workItem from="1511776023638" duration="1757000" />
       <workItem from="1512108274036" duration="1317000" />
-      <workItem from="1512113130574" duration="40643000" />
+      <workItem from="1512113130574" duration="40660000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html">
       <created>1511778365030</created>
@@ -379,11 +378,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512385005859</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="1. commit">
+      <created>1512387692054</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1512387692054</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198892000" />
+    <option name="totallyTimeSpent" value="198909000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -470,7 +476,8 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html" />
     <MESSAGE value="1. 시험 로직 작성 완료" />
     <MESSAGE value="1. 다음 시험이 존재할 때 NEXT버튼의 href를 startpage로 변경&#10;2. cycle에 대한 시험 중 문제가 적을 때의 보기 만드는 문제 발생..(추후 처리)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 다음 시험이 존재할 때 NEXT버튼의 href를 startpage로 변경&#10;2. cycle에 대한 시험 중 문제가 적을 때의 보기 만드는 문제 발생..(추후 처리)" />
+    <MESSAGE value="1. commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
