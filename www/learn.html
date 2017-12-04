@@ -253,13 +253,44 @@
 <script type="text/javascript">
 
     var member = JSON.parse(localStorage.getItem("member"));
+    console.log(member);
     var eno = getUrlParams('eno');
 
     var time = 5;
-    var ordMain = 0;
-    var ordSub = 0;
+    var ord = 0;
     var score = 0;
     var total = 0;
+    var list = [];
+    var examList = [];
+
+    $.ajax({
+        url : "http://192.168.0.26:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
+        type: 'get',
+        async: false,
+        success : function(result) {
+            list = result;
+        }
+    });
+    // 동기식 ajax호출을 통해 전역 변수로 리스트를 활용한다.
+
+    function getList() {
+
+            total = total === 0 ? list.length : total;
+            $(".cnt>h1").html( (ord + 1) + "/" + total);
+            $(".exampleUl").attr("data-total", list.length);
+
+            $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+
+            var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
+
+            str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
+
+            $("#timeLeft").html(time);
+            $(".example> ul").html(str);
+
+    }
+
+    getList();
 
     function timeLimit() {
         if (time > 1){
@@ -293,55 +324,15 @@
         }
     }
 
-    function makeQuiz(ordMain, ordSub, list) {
-
-        total = total === 0 ? list.length : total;
-        $(".cnt>h1").html( (ordMain + 1) + "/" + total);
-        $(".exampleUl").attr("data-total", list.length);
-
-        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ordSub].img + "><h1>" + list[ordSub].word + "</h1>");
-
-        var str = "<li data-wno=" + list[ordSub].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
-
-        str += "<li data-wno=" + list[ordSub].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
-
-        $("#timeLeft").html(time);
-        $(".example> ul").html(str);
-    }
-
     //        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
 
-    function getList() {
-        var obj = [];
-        var exam = {eno : eno, mid : "m1"};
+    document.querySelector(".exampleUl").addEventListener("touchend", dataTransfer);
 
-        $.getJSON("http://192.168.0.26:8080/learn/"+eno, exam, function (result) {
-            console.log(result);
-            for (var i = 0; i < result.length; i++){
-                obj.push({
-                    wno : result[i].wno,
-                    word : result[i].word,
-                    meaning : result[i].meaning,
-                    img : result[i].img,
-                    sentence : result[i].sentence
-                });
-            }
-            makeQuiz(ordMain, ordSub, obj);
-        });
-    }
-    getList();
-
-
-    document.querySelector(".exampleUl").addEventListener("click", dataTransfer);
-
-    var examList = [];
     function dataTransfer(e) {
 
         var uAnswer = e || null;
         var wno = $("div>ul>li").data("wno");
-        var total = $(".exampleUl").data('total');
 
-        //ajax처리 시 추가 작업 필요
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){
                 examList.push({wno: wno, result : "o"});
@@ -352,8 +343,7 @@
         } else {
             examList.push({wno: wno, result : "x"});
         }
-        ordSub++;
-        if (++ordMain < total){
+        if (++ord < total){
 
             time = 5;
             $(".meter>span").each(function () {
@@ -363,9 +353,6 @@
                         width: (time)*20 + '%'
                     }, 500)
             });
-
-            console.log("TOTAL "+total);
-            console.log("LENGTH "+examList.length);
 
             if (examList.length === Math.ceil(total/2)) {
                 var data = {
@@ -382,13 +369,12 @@
                     contentType: 'application/json;',
                     success : function() {
                         examList = [];
-                        ordSub = 0;
                     }
                 });
             }
             getList();
 
-        } else if (ordSub === total) {
+        } else if (ord === list.length) {
             var data = {
                 examList : examList,
                 examPointer : member.exampointer,
@@ -401,8 +387,16 @@
                 type: 'put',
                 data: JSON.stringify(data),
                 contentType: 'application/json;',
-                success : function() {
-                    window.location="endpage.html?score=" + score;
+                success : function(result) {
+
+                    if(result === "review" || result === "learn") {
+                        // localStorage.member 의 lstaus값을 return 값으로 바꿔준다.
+                        var member = JSON.parse(localStorage.member);
+                        member.lstatus = result;
+                        localStorage.member = JSON.stringify(member);
+                    }
+
+                    window.location="endpage.html?score=" + score + "&status=" + result;
                 }
             });
         }

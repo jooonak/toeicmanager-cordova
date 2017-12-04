@@ -253,7 +253,6 @@
 <script type="text/javascript">
 
     var member = JSON.parse(localStorage.getItem("member"));
-    var eno = getUrlParams('eno');
 
     var time = 5;
     var ordMain = 0;
@@ -313,9 +312,8 @@
 
     function getList() {
         var obj = [];
-        var exam = {eno : eno, mid : "m1"};
-
-        $.getJSON("http://192.168.0.26:8080/learn/"+eno, exam, function (result) {
+        var param = {mid : member.mid, lstatus : member.lstatus, exampointer : member.exampointer};
+        $.getJSON("http://192.168.0.26:8080/review/", param, function (result) {
             for (var i = 0; i < result.length; i++){
                 obj.push({
                     wno : result[i].wno,
@@ -349,6 +347,7 @@
         } else {
             examList.push({wno: wno, result : "x"});
         }
+
         ordSub++;
         if (++ordMain < total){
 
@@ -370,7 +369,7 @@
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/learn/middle/' + eno,
+                    url : 'http://192.168.0.26:8080/review/middle/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -390,18 +389,29 @@
                 lstatus : member.lstatus
             }
 
-            $.ajax({
-                url : 'http://192.168.0.26:8080/learn/finished/' + eno,
-                type: 'put',
-                data: JSON.stringify(data),
-                contentType: 'application/json;',
-                success : function(result) {
-                    if (result === "next" || result === "end") {
-                        window.location="endpage.html?score=" + score + "&next=" + result;
+            if (member.lstatus === "review") {
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/review/finished/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function(result) {
+                        localStorage.getItem("member").lstatus = result;
+                        window.location="endpage.html?score=" + score;
                     }
-                    window.location="endpage.html?score=" + score;
-                }
-            });
+                });
+            } else {
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/review/middle/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function() {
+                        window.location="endpage.html?score=" + score;
+                    }
+                });
+            }
+
         }
     }
 

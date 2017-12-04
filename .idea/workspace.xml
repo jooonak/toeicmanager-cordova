@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c0231c1-264a-4680-91d9-912cacf4535c" name="Default" comment="">
+    <list default="true" id="9c0231c1-264a-4680-91d9-912cacf4535c" name="Default" comment="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/login.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/review.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/android/assets/www/startpage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/review.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/assets/www/examend.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/assets/www/examstart.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/www/examstart.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/endpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/learn.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/learn.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/main.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/result.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/result.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/endpage.html" afterPath="$PROJECT_DIR$/www/endpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/exam.html" afterPath="$PROJECT_DIR$/www/exam.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/learn.html" afterPath="$PROJECT_DIR$/www/learn.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/main.html" afterPath="$PROJECT_DIR$/www/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/startpage.html" afterPath="$PROJECT_DIR$/www/startpage.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,26 +42,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="vocabulary.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/vocabulary.html">
+      <file leaf-file-name="endpage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/endpage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
-              <caret line="48" column="4" lean-forward="false" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+            <state relative-caret-position="2774">
+              <caret line="146" column="41" lean-forward="false" selection-start-line="146" selection-start-column="41" selection-end-line="146" selection-end-column="41" />
               <folding>
-                <marker date="1512012063198" expanded="true" signature="5775:5802" ph="..." />
-                <marker date="1512012063198" expanded="true" signature="5924:5938" ph="..." />
-                <marker date="1512012063198" expanded="true" signature="6269:6296" ph="..." />
-                <marker date="1512012063198" expanded="true" signature="6414:6429" ph="..." />
+                <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1512365851837" expanded="true" signature="4121:4164" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exam.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="exam.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/exam.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5681">
-              <caret line="299" column="25" lean-forward="false" selection-start-line="299" selection-start-column="25" selection-end-line="299" selection-end-column="25" />
+            <state relative-caret-position="1041">
+              <caret line="283" column="9" lean-forward="false" selection-start-line="283" selection-start-column="9" selection-end-line="283" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -49,29 +72,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="examstart.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/examstart.html">
+      <file leaf-file-name="review.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/review.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1558">
-              <caret line="82" column="28" lean-forward="false" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
+            <state relative-caret-position="48">
+              <caret line="377" column="12" lean-forward="true" selection-start-line="377" selection-start-column="12" selection-end-line="377" selection-end-column="12" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h3#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#a#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1512367624147" expanded="true" signature="8497:8506" ph="..." />
+                <marker date="1512367624147" expanded="true" signature="8695:8704" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="learn.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="learn.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/learn.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1826">
-              <caret line="405" column="17" lean-forward="true" selection-start-line="405" selection-start-column="17" selection-end-line="405" selection-end-column="17" />
+            <state relative-caret-position="359">
+              <caret line="389" column="44" lean-forward="true" selection-start-line="389" selection-start-column="44" selection-end-line="389" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -79,19 +103,9 @@
                 <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1512113157845" expanded="true" signature="9064:9073" ph="..." />
-                <marker date="1512113157845" expanded="true" signature="9265:9274" ph="..." />
+                <marker date="1512367727972" expanded="true" signature="8537:8546" ph="..." />
+                <marker date="1512367727972" expanded="true" signature="8739:8748" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="startpage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/startpage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1949">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -99,24 +113,14 @@
       <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="271" column="0" lean-forward="true" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
+            <state relative-caret-position="471">
+              <caret line="309" column="72" lean-forward="true" selection-start-line="309" selection-start-column="72" selection-end-line="309" selection-end-column="72" />
               <folding>
-                <marker date="1512113127793" expanded="true" signature="12731:12761" ph="..." />
-                <marker date="1512113127793" expanded="true" signature="12875:12885" ph="..." />
-                <marker date="1512113127793" expanded="true" signature="13041:13071" ph="..." />
-                <marker date="1512113127793" expanded="true" signature="13206:13216" ph="..." />
+                <marker date="1512365553488" expanded="true" signature="12732:12762" ph="..." />
+                <marker date="1512365553488" expanded="true" signature="12876:12886" ph="..." />
+                <marker date="1512365553488" expanded="true" signature="13042:13072" ph="..." />
+                <marker date="1512365553488" expanded="true" signature="13207:13217" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fileUpload.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/fileUpload.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1805">
-              <caret line="95" column="7" lean-forward="false" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -133,7 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>target.split('(API level ')[1].replace(')', '');</find>
       <find>single</find>
       <find>href</find>
       <find>search</find>
@@ -163,6 +166,7 @@
       <find>img</find>
       <find>btn-block</find>
       <find>center</find>
+      <find>finished</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,9 +197,12 @@
         <option value="$PROJECT_DIR$/www/test.html" />
         <option value="$PROJECT_DIR$/www/examend.html" />
         <option value="$PROJECT_DIR$/www/examstart.html" />
-        <option value="$PROJECT_DIR$/www/exam.html" />
         <option value="$PROJECT_DIR$/www/main.html" />
+        <option value="$PROJECT_DIR$/www/endpage.html" />
+        <option value="$PROJECT_DIR$/www/review.html" />
         <option value="$PROJECT_DIR$/www/learn.html" />
+        <option value="$PROJECT_DIR$/www/startpage.html" />
+        <option value="$PROJECT_DIR$/www/exam.html" />
       </list>
     </option>
   </component>
@@ -343,7 +350,7 @@
       <workItem from="1511751807965" duration="546000" />
       <workItem from="1511776023638" duration="1757000" />
       <workItem from="1512108274036" duration="1317000" />
-      <workItem from="1512113130574" duration="68000" />
+      <workItem from="1512113130574" duration="34116000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html">
       <created>1511778365030</created>
@@ -366,11 +373,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512108333938</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html">
+      <created>1512113205346</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1512113205346</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158317000" />
+    <option name="totallyTimeSpent" value="192365000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -384,18 +398,18 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10695469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10695469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5021075" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39173013" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10772579" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3852013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="11" y="279" width="1344" height="169" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3852013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="11" y="279" width="1344" height="169" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24700762" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -458,24 +472,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/platforms/platforms.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/fileUpload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/cordova_plugins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -690,33 +692,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/examend.html" />
     <entry file="file://$PROJECT_DIR$/www/asd.html" />
-    <entry file="file://$PROJECT_DIR$/www/fileUpload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="95" column="7" lean-forward="false" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/examstart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="82" column="28" lean-forward="false" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#a#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="154">
+          <caret line="65" column="25" lean-forward="true" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/vocabulary.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
+        <state relative-caret-position="0">
           <caret line="48" column="4" lean-forward="false" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
           <folding>
             <marker date="1512012063198" expanded="true" signature="5775:5802" ph="..." />
@@ -727,46 +713,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/exam.html">
+    <entry file="file://$PROJECT_DIR$/www/fileUpload.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5681">
-          <caret line="299" column="25" lean-forward="false" selection-start-line="299" selection-start-column="25" selection-end-line="299" selection-end-column="25" />
+        <state relative-caret-position="732">
+          <caret line="95" column="7" lean-forward="false" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/endpage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2774">
+          <caret line="146" column="41" lean-forward="false" selection-start-line="146" selection-start-column="41" selection-end-line="146" selection-end-column="41" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1512365851837" expanded="true" signature="4121:4164" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/startpage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1949">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="371">
+          <caret line="161" column="55" lean-forward="true" selection-start-line="161" selection-start-column="55" selection-end-line="161" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="271" column="0" lean-forward="true" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
+        <state relative-caret-position="471">
+          <caret line="309" column="72" lean-forward="true" selection-start-line="309" selection-start-column="72" selection-end-line="309" selection-end-column="72" />
           <folding>
-            <marker date="1512113127793" expanded="true" signature="12731:12761" ph="..." />
-            <marker date="1512113127793" expanded="true" signature="12875:12885" ph="..." />
-            <marker date="1512113127793" expanded="true" signature="13041:13071" ph="..." />
-            <marker date="1512113127793" expanded="true" signature="13206:13216" ph="..." />
+            <marker date="1512365553488" expanded="true" signature="12732:12762" ph="..." />
+            <marker date="1512365553488" expanded="true" signature="12876:12886" ph="..." />
+            <marker date="1512365553488" expanded="true" signature="13042:13072" ph="..." />
+            <marker date="1512365553488" expanded="true" signature="13207:13217" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/learn.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1826">
-          <caret line="405" column="17" lean-forward="true" selection-start-line="405" selection-start-column="17" selection-end-line="405" selection-end-column="17" />
+        <state relative-caret-position="359">
+          <caret line="389" column="44" lean-forward="true" selection-start-line="389" selection-start-column="44" selection-end-line="389" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -774,8 +764,40 @@
             <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1512113157845" expanded="true" signature="9064:9073" ph="..." />
-            <marker date="1512113157845" expanded="true" signature="9265:9274" ph="..." />
+            <marker date="1512367727972" expanded="true" signature="8537:8546" ph="..." />
+            <marker date="1512367727972" expanded="true" signature="8739:8748" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/review.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="377" column="12" lean-forward="true" selection-start-line="377" selection-start-column="12" selection-end-line="377" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1512367624147" expanded="true" signature="8497:8506" ph="..." />
+            <marker date="1512367624147" expanded="true" signature="8695:8704" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/exam.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1041">
+          <caret line="283" column="9" lean-forward="false" selection-start-line="283" selection-start-column="9" selection-end-line="283" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

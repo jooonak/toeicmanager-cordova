@@ -7,8 +7,11 @@
    style-src  'self' 'unsafe-inline' *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -35,13 +38,7 @@
 
     .container {
         display: grid;
-        grid-template-areas:
-                'header header header'
-                'top top top'
-                'middle middle middle'
-                'bottom bottom bottom'
-                'footer footer footer'
-                'button button button';
+        grid-template-areas: 'header header header' 'top top top' 'middle middle middle' 'bottom bottom bottom' 'footer footer footer' 'button button button';
         grid-auto-rows: 1fr 56px 15% 15% 28.5% 15%;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
@@ -67,7 +64,7 @@
     .middle {
         grid-column: 1/4;
         grid-row: 3/4;
-        box-shadow:0 0  10px #999;
+        box-shadow: 0 0 10px #999;
     }
 
     .bottom {
@@ -79,16 +76,18 @@
         grid-column: 1/4;
         grid-row: 5/6;
     }
-    .button{
+
+    .button {
         margin-bottom: 10px;
         grid-column: 1/4;
         grid-row: 6/7;
     }
+
     .left {
         margin-left: 10px;
     }
 
-    .right{
+    .right {
         margin-right: 10px;
     }
 
@@ -96,25 +95,25 @@
         background: #222222;
     }
 
-    .camera{
+    .camera {
         margin: 10px 10px 10px 20px;
         float: left;
         width: 36px;
         height: 36px;
     }
 
-    .img{
+    .img {
         width: 100%;
         height: 100%;
     }
 
-    .searchPostion{
+    .searchPostion {
         width: 79%;
         margin: 9.25px;
-        float:left;
-        }
+        float: left;
+    }
 
-    .center{
+    .center {
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -123,7 +122,7 @@
         align-items: center;
     }
 
-    .btn{
+    .btn {
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -133,6 +132,7 @@
         background: #DCE0E3;
         border-radius: 8px;
     }
+
     .meter > span {
         display: block;
         height: 100%;
@@ -152,10 +152,14 @@
         position: relative;
         overflow: hidden;
     }
+
     .meter > span:after {
         content: "";
         position: absolute;
-        top: 0; left: 0; bottom: 0; right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
         background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #f0bb4b), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, #f0bb4b), color-stop(.75, #f0bb4b), color-stop(.75, transparent), to(transparent));
         background-image: -webkit-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
         background-image: -moz-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
@@ -163,8 +167,8 @@
         background-image: -o-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
         z-index: 1;
         -webkit-background-size: 20px 20px;
-        -moz-background-size:    20px 20px;
-        background-size:         20px 20px;
+        -moz-background-size: 20px 20px;
+        background-size: 20px 20px;
         -webkit-animation: move 2s linear infinite;
         -webkit-border-top-right-radius: 20px;
         -webkit-border-bottom-right-radius: 20px;
@@ -183,14 +187,24 @@
 
     /* PROGRESS BAR - ANIMATION */
     @-webkit-keyframes move {
-        0% {background-position: 0 0;}
-        100% {background-position: 30px 30px;}
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 30px 30px;
+        }
     }
+
     @-moz-keyframes move {
-        0% {background-position: 0 0;}
-        100% {background-position: 30px 30px;}
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 30px 30px;
+        }
     }
-    .slider{
+
+    .slider {
         background-color: #1a9bcb;
     }
 
@@ -209,14 +223,15 @@
 
     <div class="box top">
         <div class="camera">
-            <a  href="camera.html" >
+            <a href="camera.html">
                 <img class="img" src="img/camera.jpg">
             </a>
         </div>
 
         <div class="box searchPostion">
             <form id="olform" method="GET" action="search.html">
-                <input style="width: 79%; margin:0px" id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
+                <input style="width: 79%; margin:0px" id="olinput" type="text" name="words" size="15" value=""
+                       class="ui-autocomplete-input" autocomplete="off">
                 <button style=" margin:0px" class="btn icon icon-search searchBtn"></button>
             </form>
         </div>
@@ -232,31 +247,31 @@
         <div class="slider footer" id="mySlider">
             <div class="slide-group">
                 <div class="slide">
-                    <h6 >오늘 학습 목표량　</h6>
-                  <!--  <div class="meter" style="width: 75%;">
-                        <span style="width: 100%;"></span>
-                    </div>-->
+                    <h6>오늘 학습 목표량　</h6>
+                    <!--  <div class="meter" style="width: 75%;">
+                          <span style="width: 100%;"></span>
+                      </div>-->
                 </div>
                 <div class="slide">
-                    <h6 >오늘 시험 목표량</h6>
-                 <!--   <div class="meter" style="width: 75%;">
-                        <span style="width: 100%;"></span>
-                    </div>-->
+                    <h6>오늘 시험 목표량</h6>
+                    <!--   <div class="meter" style="width: 75%;">
+                           <span style="width: 100%;"></span>
+                       </div>-->
                 </div>
             </div>
         </div>
 
     </div>
 
-    <div class="box button left right center">
-        <a href="learnstart.html" class="learnbtn btn btn-negative btn-block">학습
+    <div class="box button center">
+        <a href="#" class="btn btn-negative btn-block">학습
         </a>
-        <a href="examstart.html" class="reviewbtn btn btn-negative btn-block">시험
+        <a href="#" class="btn btn-negative btn-block" data-offer="exam">시험
         </a>
     </div>
 
     <form id="formData" action="result.html?" method="get">
-        <input type="hidden" >
+        <input type="hidden">
     </form>
 </div>
 
@@ -264,17 +279,21 @@
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
+<script src="sweetalert2/sweetalert2.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
 
+        var member = {mid : "m1", mpw : "m1", name : "m1", goal : 500, extra : 500, lstatus : "learn", lcnt : 1, startpoint : 70, todayanmocnt : 50, exampointer : 1};
+        localStorage.setItem("member", JSON.stringify(member));
+
         //자동 완성 기능에 대한 이벤트 등록
-        $(function() {
+        $(function () {
             last_req = "";
-            $( "#olinput" ).autocomplete({
+            $("#olinput").autocomplete({
                 minLength: 2,
                 delay: 10,
-                open: function(event, ui) {
+                open: function (event, ui) {
                     //$.off() 메서드는 해당 엘리먼트에 연결된 이벤트(핸들러)를 제거한다. 여기서 'menufocus, hover, mouseenter'가 해당된다.
                     $('.ui-autocomplete').off('menufocus hover mouseenter mouseover');
                 },
@@ -289,21 +308,23 @@
                     $( "#olform" ).submit();
                 },*/
                 //관련 단어를 가져오는 코드이다. https://jqueryui.com/autocomplete/ 사이트의 view source를 확인하면 쉽게 이해가능하다.
-                source: function( request, response ) {
+                source: function (request, response) {
                     var res = request.term.split(":");
                     var url;
                     //Datamuse API에 text창에 입력한 문자에 해당하는 글자를 가져오는 url이다. 우리에게 필요한 쿼리가 작성되어 있으므로 쿼리에 대한 설명은 생략한다
                     if (res.length > 1) {
                         url = '//api.datamuse.com/words?v=ol_gte3&max=10&k=ol_clue&sp=' + encodeURIComponent(res[0]) + '&ml=' + encodeURIComponent(res[1]);
                     } else {
-                        url = '//api.datamuse.com/sug?v=ol_gte3&k=ol_home&s=' + encodeURIComponent(request.term.replace(/[:].*/,''));
+                        url = '//api.datamuse.com/sug?v=ol_gte3&k=ol_home&s=' + encodeURIComponent(request.term.replace(/[:].*/, ''));
                     }
                     $.ajax({
                         dataType: "json",
-                        type : 'Get',
+                        type: 'Get',
                         url: url,
-                        success: function(data) {
-                            response( $.map( data, function(item) { return item["word"]; }))
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item["word"];
+                            }))
                         },
                     });
                     last_req = request.term;
@@ -312,23 +333,27 @@
         });
 
         //검색 버튼에 대한 이벤트 동작
-        $(".searchBtn").on("click", function(e){
+        $(".searchBtn").on("click", function (e) {
             e.preventDefault();
-            var data = {key: 'AIzaSyDevHG0cXl0LY6Q0czkfOvnzYuXXcx6B-0' ,q : $("#olinput").val(), cx : '005071159500739572678:momm98irnz4'};
+            var data = {
+                key: 'AIzaSyDevHG0cXl0LY6Q0czkfOvnzYuXXcx6B-0',
+                q: $("#olinput").val(),
+                cx: '005071159500739572678:momm98irnz4'
+            };
             $.ajax({
                 url: "https://www.googleapis.com/customsearch/v1",
                 method: "get",
                 data: data,
-                success: function(result){
-                    if(result.spelling){
+                success: function (result) {
+                    if (result.spelling) {
                         //아래 구문은 모달창에서 할 예정, 임시로 넣어놓음
                         $("#olinput").val(result.spelling.correctedQuery);
                         $(".correct-word").html(result.spelling);
                         $(".correct-word").append("<input class = 'correct' type='button' value='confirm'>");
-                        $('.correct').on("click", function(){
+                        $('.correct').on("click", function () {
                             $("#olform").submit();
                         });
-                    }else {
+                    } else {
                         $("#olform").submit();
                     }
                 }
@@ -336,23 +361,39 @@
         });
 
         //단어장 리스트 페이지 이동
-        $(".middle").on("click",function (e) {
+        $(".middle").on("click", function (e) {
             window.location.href = "vocabulary.html?mid=m1";
 
         });
 
         //암기현황 구역 클릭시 페이지 이동
-        $(".footer").on("click",function (e) {
+        $(".footer").on("click", function (e) {
             e.preventDefault();
             $("#formData").submit();
+        });
 
+        $(".btn").on("click", function (e) {
+//            e.preventDefault();
+            if ($(e.target).data("offer")){
+                $(this).attr("href", "startpage.html?type=" + $(this).data("offer"));
+            } else {
+                swal({
+                    title: '',
+                    html:
+                    member.lstatus === "review" ?
+                        "<a style='margin: 0; margin-bottom: 5px;' href='#' class='btn btn-block btn-negative btn-outlined'>새로운 단어가 없습니다</a>" +
+                        "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>"
+                    :
+                        "<a style='margin: 0; margin-bottom: 5px;' href='startpage.html?type=learn' class='btn btn-block btn-positive btn-outlined'>새로운 단어 학습</a>" +
+                        "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>",
+                        showConfirmButton: false,
+                        showCancelButton: true
+                });
+            }
 
         });
-    })
-
-
+    });
 </script>
-
 
 
 </body>

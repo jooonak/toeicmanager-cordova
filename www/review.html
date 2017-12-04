@@ -256,10 +256,39 @@
     var eno = getUrlParams('eno');
 
     var time = 5;
-    var ordMain = 0;
-    var ordSub = 0;
+    var ord = 0;
     var score = 0;
     var total = 0;
+    var list = [];
+    var examList = [];
+
+    $.ajax({
+        url : "http://192.168.0.26:8080/review/?mid=" + member.mid + "&lstatus=" + member.lstatus + "&exampointer=" + member.exampointer,
+        type: 'get',
+        async: false,
+        success : function(result) {
+            list = result;
+        }
+    });
+
+    function getList() {
+
+        total = total === 0 ? list.length : total;
+        $(".cnt>h1").html( (ord + 1) + "/" + total);
+        $(".exampleUl").attr("data-total", list.length);
+
+        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+
+        var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
+
+        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
+
+        $("#timeLeft").html(time);
+        $(".example> ul").html(str);
+
+    }
+
+    getList();
 
     function timeLimit() {
         if (time > 1){
@@ -293,46 +322,10 @@
         }
     }
 
-    function makeQuiz(ordMain, ordSub, list) {
-
-        total = total === 0 ? list.length : total;
-        $(".cnt>h1").html( (ordMain + 1) + "/" + total);
-        $(".exampleUl").attr("data-total", list.length);
-
-        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ordSub].img + "><h1>" + list[ordSub].word + "</h1>");
-
-        var str = "<li data-wno=" + list[ordSub].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
-
-        str += "<li data-wno=" + list[ordSub].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
-
-        $("#timeLeft").html(time);
-        $(".example> ul").html(str);
-    }
-
     //        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
-
-    function getList() {
-        var obj = [];
-        var exam = {eno : eno, mid : "m1"};
-
-        $.getJSON("http://192.168.0.26:8080/learn/"+eno, exam, function (result) {
-            for (var i = 0; i < result.length; i++){
-                obj.push({
-                    wno : result[i].wno,
-                    word : result[i].word,
-                    meaning : result[i].meaning,
-                    img : result[i].img,
-                    sentence : result[i].sentence
-                });
-            }
-            makeQuiz(ordMain, ordSub, obj);
-        });
-    }
-    getList();
 
     document.querySelector(".exampleUl").addEventListener("touchend", dataTransfer);
 
-    var examList = [];
     function dataTransfer(e) {
 
         var uAnswer = e || null;
@@ -349,8 +342,8 @@
         } else {
             examList.push({wno: wno, result : "x"});
         }
-        ordSub++;
-        if (++ordMain < total){
+
+        if (++ord < total){
 
             time = 5;
             $(".meter>span").each(function () {
@@ -370,19 +363,18 @@
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/learn/middle/' + eno,
+                    url : 'http://192.168.0.26:8080/review/middle/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
                     success : function() {
                         examList = [];
-                        ordSub = 0;
                     }
                 });
             }
             getList();
 
-        } else if (ordSub === dataTotal) {
+        } else if (ord === list.length) {
             var data = {
                 examList : examList,
                 examPointer : member.exampointer,
@@ -390,18 +382,35 @@
                 lstatus : member.lstatus
             }
 
-            $.ajax({
-                url : 'http://192.168.0.26:8080/learn/finished/' + eno,
-                type: 'put',
-                data: JSON.stringify(data),
-                contentType: 'application/json;',
-                success : function(result) {
-                    if (result === "next" || result === "end") {
-                        window.location="endpage.html?score=" + score + "&next=" + result;
+            if (member.lstatus === "review") {
+                // review/finished에는 member의 status가 review일 때만 전송하고(현재 학습자의 학습 상태가 review인경우) 나머지는 middle로 데이터 전송
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/review/finished/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function(result) {
+
+                        // localStorage.member 의 lstaus값을 learn으로 바꿔준다.
+                        var member = JSON.parse(localStorage.member);
+                        member.lstatus = result;
+                        localStorage.member = JSON.stringify(member);
+
+                        window.location="endpage.html?score=" + score + "&status=" + result;
                     }
-                    window.location="endpage.html?score=" + score;
-                }
-            });
+                });
+            } else {
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/review/middle/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function() {
+                        window.location="endpage.html?score=" + score + "&status=end";
+                    }
+                });
+            }
+
         }
     }
 
