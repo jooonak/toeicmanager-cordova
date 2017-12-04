@@ -334,7 +334,7 @@
       <workItem from="1511751807965" duration="546000" />
       <workItem from="1511776023638" duration="1757000" />
       <workItem from="1512108274036" duration="1317000" />
-      <workItem from="1512113130574" duration="40660000" />
+      <workItem from="1512113130574" duration="40667000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html">
       <created>1511778365030</created>
@@ -385,11 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512387692054</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="1. commit">
+      <created>1512387701545</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1512387701545</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198909000" />
+    <option name="totallyTimeSpent" value="198916000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
