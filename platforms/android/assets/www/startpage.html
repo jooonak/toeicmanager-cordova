@@ -151,9 +151,21 @@
                     $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
                 }
             });
-        } else {
-            var param = type === "review" ? {mid : member.mid, lstatus : member.lstatus, exampointer : member.exampointer} : null;
+        } else if (type === "review"){
+            var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.exampointer};
             $.getJSON("http://192.168.0.26:8080/" + type + "/", param, function (result) {
+                if (result[0]) {
+                    $(".img>h3").html("TOTAL: " + (result.length) + "개");
+
+                    $(".btn").attr("href", type + ".html");
+                } else {
+                    $(".img>h3").html("더 풀 문제가 없습니다.");
+
+                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                }
+            });
+        } else {
+            $.getJSON("http://192.168.0.26:8080/" + type + "/today?mid=" + member.mid, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
 

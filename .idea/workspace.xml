@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9c0231c1-264a-4680-91d9-912cacf4535c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/endpage.html" afterPath="$PROJECT_DIR$/www/endpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/exam.html" afterPath="$PROJECT_DIR$/www/exam.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/main.html" afterPath="$PROJECT_DIR$/www/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/review.html" afterPath="$PROJECT_DIR$/www/review.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/startpage.html" afterPath="$PROJECT_DIR$/www/startpage.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -68,8 +73,8 @@
       <file leaf-file-name="learn.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/learn.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="834">
-              <caret line="300" column="43" lean-forward="true" selection-start-line="300" selection-start-column="43" selection-end-line="300" selection-end-column="43" />
+            <state relative-caret-position="359">
+              <caret line="389" column="44" lean-forward="true" selection-start-line="389" selection-start-column="44" selection-end-line="389" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -84,7 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="startpage.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="startpage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/startpage.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
@@ -94,16 +99,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="379" column="22" lean-forward="true" selection-start-line="379" selection-start-column="22" selection-end-line="379" selection-end-column="22" />
+            <state relative-caret-position="224">
+              <caret line="299" column="53" lean-forward="true" selection-start-line="299" selection-start-column="53" selection-end-line="299" selection-end-column="53" />
               <folding>
-                <marker date="1512387359872" expanded="true" signature="12737:12767" ph="..." />
-                <marker date="1512387359872" expanded="true" signature="12881:12891" ph="..." />
-                <marker date="1512387359872" expanded="true" signature="13047:13077" ph="..." />
-                <marker date="1512387359872" expanded="true" signature="13212:13222" ph="..." />
+                <marker date="1512381962098" expanded="true" signature="12731:12761" ph="..." />
+                <marker date="1512381962098" expanded="true" signature="12875:12885" ph="..." />
+                <marker date="1512381962098" expanded="true" signature="13041:13071" ph="..." />
+                <marker date="1512381962098" expanded="true" signature="13206:13216" ph="..." />
               </folding>
             </state>
           </provider>
@@ -149,8 +154,8 @@
       <find>img</find>
       <find>btn-block</find>
       <find>center</find>
-      <find>debu</find>
       <find>finished</find>
+      <find>debu</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,9 +189,9 @@
         <option value="$PROJECT_DIR$/www/learn.html" />
         <option value="$PROJECT_DIR$/www/startpage.html" />
         <option value="$PROJECT_DIR$/www/review.html" />
+        <option value="$PROJECT_DIR$/www/main.html" />
         <option value="$PROJECT_DIR$/www/exam.html" />
         <option value="$PROJECT_DIR$/www/endpage.html" />
-        <option value="$PROJECT_DIR$/www/main.html" />
       </list>
     </option>
   </component>
@@ -334,7 +339,7 @@
       <workItem from="1511751807965" duration="546000" />
       <workItem from="1511776023638" duration="1757000" />
       <workItem from="1512108274036" duration="1317000" />
-      <workItem from="1512113130574" duration="40667000" />
+      <workItem from="1512113130574" duration="38410000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html">
       <created>1511778365030</created>
@@ -371,32 +376,11 @@
       <option name="project" value="LOCAL" />
       <updated>1512379335797</updated>
     </task>
-    <task id="LOCAL-00006" summary="1. 다음 시험이 존재할 때 NEXT버튼의 href를 startpage로 변경&#10;2. cycle에 대한 시험 중 문제가 적을 때의 보기 만드는 문제 발생..(추후 처리)">
-      <created>1512385005859</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1512385005859</updated>
-    </task>
-    <task id="LOCAL-00007" summary="1. commit">
-      <created>1512387692054</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1512387692054</updated>
-    </task>
-    <task id="LOCAL-00008" summary="1. commit">
-      <created>1512387701545</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1512387701545</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198916000" />
+    <option name="totallyTimeSpent" value="196659000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -410,7 +394,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13435195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10695469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5021075" order="10" side_tool="true" content_ui="tabs" />
@@ -482,9 +466,7 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin&#10;#&#9;platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin&#10;#&#9;platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock&#10;#&#9;platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties&#10;#&#9;platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar&#10;#&#9;platforms/android/assets/www/single.html&#10;#&#9;www/ratchetTest.html&#10;#&#9;www/single.html" />
     <MESSAGE value="Merge branch 'master' of https://github.com/thdnthdn2/toeicmanager-cordova&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;www/learn.html&#10;#&#9;www/main.html&#10;#&#9;www/startpage.html" />
     <MESSAGE value="1. 시험 로직 작성 완료" />
-    <MESSAGE value="1. 다음 시험이 존재할 때 NEXT버튼의 href를 startpage로 변경&#10;2. cycle에 대한 시험 중 문제가 적을 때의 보기 만드는 문제 발생..(추후 처리)" />
-    <MESSAGE value="1. commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 시험 로직 작성 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -736,6 +718,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/learn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="389" column="44" lean-forward="true" selection-start-line="389" selection-start-column="44" selection-end-line="389" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1512367727972" expanded="true" signature="8537:8546" ph="..." />
+            <marker date="1512367727972" expanded="true" signature="8739:8748" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/review.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
@@ -768,6 +767,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="299" column="53" lean-forward="true" selection-start-line="299" selection-start-column="53" selection-end-line="299" selection-end-column="53" />
+          <folding>
+            <marker date="1512381962098" expanded="true" signature="12731:12761" ph="..." />
+            <marker date="1512381962098" expanded="true" signature="12875:12885" ph="..." />
+            <marker date="1512381962098" expanded="true" signature="13041:13071" ph="..." />
+            <marker date="1512381962098" expanded="true" signature="13206:13216" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/endpage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
@@ -784,36 +796,6 @@
         <state relative-caret-position="352">
           <caret line="151" column="17" lean-forward="true" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/learn.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="834">
-          <caret line="300" column="43" lean-forward="true" selection-start-line="300" selection-start-column="43" selection-end-line="300" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#header#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h6#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1512367727972" expanded="true" signature="8537:8546" ph="..." />
-            <marker date="1512367727972" expanded="true" signature="8739:8748" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="379" column="22" lean-forward="true" selection-start-line="379" selection-start-column="22" selection-end-line="379" selection-end-column="22" />
-          <folding>
-            <marker date="1512387359872" expanded="true" signature="12737:12767" ph="..." />
-            <marker date="1512387359872" expanded="true" signature="12881:12891" ph="..." />
-            <marker date="1512387359872" expanded="true" signature="13047:13077" ph="..." />
-            <marker date="1512387359872" expanded="true" signature="13212:13222" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>

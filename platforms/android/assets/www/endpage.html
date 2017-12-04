@@ -130,8 +130,7 @@
         <img src="img/result.png" style="width: 100%; height: 100%">
     </div>
     <div class="bottom box">
-    <a href="main.html" style="width: 40%; height: 50px; margin-right: 5%;"><button class="btn btn-block btn-outlined" style="width: 100%; height: 100%;">MAIN</button></a>
-    <a href="main.html" style="width: 40%; height: 50px;"><button class="btn btn-primary btn-block btn-outlined" style="width: 100%; height: 100%;"><span class="icon icon-play"></span>NEXT</button></a>
+    <a href="main.html" style="width: 100%; height: 50px; margin-bottom: 0;" class="btn btn-block btn-outlined">GO MAIN</a>
     </div>
 
     </div>
@@ -140,9 +139,14 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
     var score = getUrlParams('score');
+    var status = getUrlParams('status');
 
-    console.log(score);
     $(".txt").append("<h3>점수는 " + score + "점 입니다</h3>");
+
+    if (status === "next") {
+        $(".btn-block").width('40%').css('margin-right', '5%');
+        $(".bottom").append("<a href='startpage.html?type=learn' style='width: 40%; height: 50px; margin-bottom: 0;' class='btn btn-primary btn-block btn-outlined'><span class='icon icon-play'></span>NEXT</a>");
+    }
 </script>
 </body>
 </html>
