@@ -38,10 +38,14 @@
         grid-template-areas:
                 'header header'
                 'contents contents'
-                'footer footer ';
-        grid-auto-rows: 1fr 85% 1fr;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
+                'chatbot chatbot'
+                'result1 result2'
+                'progress progress'
+                'button button'
+                'footer footer';
+        grid-auto-rows: 1fr 24.5% 13% 20% 10% 5% 1fr;
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
         background-color: white;
         text-align: center;
         height: 100%;
@@ -49,8 +53,9 @@
 
     .box {
         font-size: 150%;
-        margin-right: 10px;
-        margin-left: 10px;
+        margin-right: 15px;
+        margin-left: 15px;
+        //background-color: #a5dc86;
     }
 
     .header {
@@ -60,32 +65,47 @@
 
     .contents {
         grid-column: 1/3;
-        grid-row: 2/4;
+        grid-row: 2/3;
+    }
+
+    .chatbot{
+        grid-column: 1/3;
+        grid-row: 3/4;
+        box-shadow: 0 0 10px #999;
+    }
+
+    .result1 {
+        grid-column: 1/2;
+        grid-row: 4/5;
+        box-shadow: 0 0 10px #999;
+        margin-left: 15px;
+        font-size: 150%;
+    }
+
+    .result2 {
+        grid-column: 2/3;
+        grid-row: 4/5;
+        box-shadow: 0 0 10px #999;
+        margin-right: 15px;
+        font-size: 150%;
+    }
+    .progress{
+        grid-column: 1/3;
+        grid-row: 5/6;
+        box-shadow: 0 0 10px #999;
+    }
+    .button{
+        grid-column: 1/3;
+        grid-row: 6/8;
     }
 
     .searchPosition{
-        min-height: 10%;
+        min-height: 20%;
     }
 
     .wordListPosition {
-        font-size: 150%;
         box-shadow: 0 0 10px #999;
-        min-height: 17%;
-    }
-
-    .chatbotPosition {
-        //background-color: #9b9b9b;
-        min-height: 18%;
-    }
-
-    .sliderPosition {
-        background-color: #4B946A;
-        min-height: 40%;
-    }
-
-    .buttonPosition {
-        background-color: yellow;
-        min-height: 15%;
+        min-height: 60%;
     }
 
     .dark {
@@ -93,10 +113,10 @@
     }
 
     .camera {
-        margin: 10px 10px 10px 20px;
+        margin: 7px 7px 7px 7px;
         float: left;
-        width: 36px;
-        height: 36px;
+        width: 39px;
+        height: 39px;
     }
 
     .img {
@@ -105,41 +125,16 @@
     }
 
     .search {
-        width: 79%;
+        width: 80%;
         margin: 9.25px;
         float: left;
     }
 
-    .dayPosition{
-        background-color: yellow;
-        height: 80%;
-        width: 100%;
-    }
-    .dayLeft{
+    .dayLeft>h5, .dayRight>h5{
         float: left;
-        width: 50%;
-        min-height: 100%;
-        background-color: #a5dc86;
+        text-indent: 10px;
     }
 
-    .dayRight{
-        float: right;
-        width: 50%;
-        min-height: 100%
-        background-color: palevioletred;
-    }
-
-    .barPosition{
-        background-color: #1a9bcb;
-        width: 100%;
-        min-height: 20%;
-
-    }
-    .slide-group{
-
-        height: 20%;
-        background-color: #535353;
-    }
 
     .center {
         display: -webkit-box;
@@ -159,6 +154,7 @@
         height: 13px;
         background: #DCE0E3;
         border-radius: 8px;
+
     }
 
     .meter > span {
@@ -245,19 +241,19 @@
         </header>
     </div>
 
-    <div class="contents">
-        <div class="box center searchPosition" >
+    <div class="contents box" >
+       <div class="searchPosition center" >
 
-            <div class="camera">
+            <div  class="camera center">
                 <a  href="camera.html" >
                     <img class="img" src="img/camera.jpg">
                 </a>
             </div>
 
-            <div class="box search">
+            <div class=" search" >
                 <form id="olform" method="GET" action="search.html">
-                    <input style="width: 79%; margin:0px" id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
-                    <button style=" margin:0px" class="btn icon icon-search searchBtn"></button>
+                    <input style="width: 79%; margin:0px; height: 39px" id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
+                    <button style=" margin:0px; " class="btn icon icon-search searchBtn"></button>
                 </form>
             </div>
         </div>
@@ -265,40 +261,51 @@
         <div class=" wordListPosition center">
             단어장리스트
         </div>
-
-        <div class="box chatbotPosition center">챗봇 및 명언</div>
-
-        <div class="box sliderPosition ">
-            <div class="dayPosition center">
-               <div class="dayLeft">
-                   sfsdf
-
-                </div>
-                <div class="dayRight">
-
-
-                </div>
-            </div>
-            <div class="barPosition center">
-                <h6 >오늘 학습 목표량　</h6>
-                <div class="meter" style="width: 75%;">
-                    <span style="width: 100%;"></span>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="box buttonPosition left right center">
-            <a href="learnstart.html" class="learnbtn btn btn-negative btn-block">학습
-            </a>
-            <a href="examstart.html" class="reviewbtn btn btn-negative btn-block">시험
-            </a>
-        </div>
-
-         <form id="formData" action="result.html?" method="get">
-             <input type="hidden" >
-         </form>
     </div>
+
+    <div class="chatbot box center">
+            챗봇 및 명언
+    </div>
+
+
+    <div class=" result1 result">
+        <div style="min-height: 20%;">
+            <h5>학습 목표량</h5>
+        </div>
+        <div class="center dayLearn">
+
+        </div>
+    </div>
+
+    <div class=" result2 result">
+        <div style="min-height: 20%;">
+            <h5>시험 목표량</h5>
+        </div>
+        <h1 class="center">
+            50/50
+        </h1>
+    </div>
+
+
+    <div class="progress center box result">
+        <h6 style="margin-bottom: 20px">달성률　</h6>
+        <div class="meter" style="width: 75%;">
+            <span style="width: 100%;"></span>
+        </div>
+    </div>
+
+
+    <div class="button center box">
+       <a href="learnstart.html" class="learnbtn btn btn-negative btn-outlined btn-block">학습
+        </a>
+        <a href="examstart.html" class="reviewbtn btn btn-negative btn-outlined btn-block">시험
+        </a>
+
+        <form id="formData" action="result.html?" method="get">
+            <input type="hidden" >
+        </form>
+    </div>
+
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -309,6 +316,60 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        //학습 및 시험 목표량 정보를 가져오는 함수
+        function getList() {
+            var obj = [];
+            var cycleObj = [];
+            $.getJSON("http://192.168.0.25:8080/learn/", function (result) {
+
+                for (var i = 0; i < result.length; i++){
+                    obj.push({eno : result[i].eno,
+                        result : result[i].result,
+                        total : result[i].total
+                    });
+                }
+
+                var str="";
+                var sum = 0;
+                if(result.length === 1){
+
+                    sum = obj[0].total-obj[0].result;
+                    str = "<h1> "+sum+"</h1>";
+
+                }else{
+
+                    for(var i=0; i < result.length; i++){
+                        sum +=  obj[i].total-obj[i].result;
+                    }
+                    str += "<h1 style='color: red'> "+sum+"</h1>";
+                }
+                $(".dayLearn").html(str);
+            });
+
+            $.getJSON("http://192.168.0.25:8080/exams/all", function (result) {
+
+                var date = new Date();
+                var currentdate = date.getTime();
+
+                for (var i = 0; i < result.length; i++){
+                    cycleObj.push({nextCycle: result[i].nextCycle});
+                }
+
+
+
+                console.log(currentdate);
+                var datetime =  currentdate.getFullYear()+"/"
+                    + (currentdate.getMonth()+1)  + "/"
+                    + (currentdate.getDate()+1) +"-"+
+                + "2";
+
+                console.log(datetime);
+            });
+
+
+        }
+        getList();
 
         var member = {mid : "m1", mpw : "m1", name : "m1", goal : 500, extra : 500, lstatus : "learn", lcnt : 1, startpoint : 70, todayanmocnt : 50, exampointer : 1};
         localStorage.setItem("member", JSON.stringify(member));
@@ -393,7 +454,7 @@
         });
 
         //암기현황 구역 클릭시 페이지 이동
-        $(".footer").on("click", function (e) {
+        $(".result").on("click", function (e) {
             e.preventDefault();
             $("#formData").submit();
         });
