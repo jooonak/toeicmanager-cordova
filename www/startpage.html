@@ -152,7 +152,7 @@
                 }
             });
         } else if (type === "review"){
-            var param = {mid : member.mid, lstatus : member.lstatus, exampointer : member.exampointer};
+            var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.exampointer};
             $.getJSON("http://192.168.0.26:8080/" + type + "/", param, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
@@ -165,7 +165,7 @@
                 }
             });
         } else {
-            $.getJSON("http://192.168.0.26:8080/" + type + "/all?mid=" + member.mid, function (result) {
+            $.getJSON("http://192.168.0.26:8080/" + type + "/today?mid=" + member.mid, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
 
