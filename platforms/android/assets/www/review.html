@@ -42,7 +42,7 @@
                 'question question'
                 'example example'
                 'bottom bottom';
-        grid-auto-rows:  1fr 15% 30% 30% 1fr;
+        grid-auto-rows:  1fr 10% 50% 20% 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
@@ -79,6 +79,12 @@
         display: -webkit-flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .question>img {
+        width: 90%;
+        height: 80%;
     }
 
     .example {
@@ -118,9 +124,15 @@
         margin: 0;
         padding: 0;
         width: 100%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    ul li{
+    ul>li{
         margin-left: 0;
         text-align: center;
         list-style: none;
@@ -141,9 +153,11 @@
         background: #DCE0E3;
         border-radius: 8px;
     }
+
     .dark {
         background: #222222;
     }
+
     .meter > span {
         display: block;
         height: 100%;
@@ -163,6 +177,7 @@
         position: relative;
         overflow: hidden;
     }
+
     .meter > span:after {
         content: "";
         position: absolute;
@@ -216,13 +231,13 @@
     <div class="box cnt">
         <h1 style="margin: 0"></h1>
     </div>
-        <div class="box question">
+    <div class="box question">
 
-        </div>
-        <div class="box example">
-            <ul class="exampleUl">
-            </ul>
-        </div>
+    </div>
+    <div class="box example">
+        <ul class="exampleUl">
+        </ul>
+    </div>
 
     <div class="box bottom dark">
         <h6 style="color: white">남은시간:　</h6>
@@ -234,9 +249,11 @@
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
 
     var member = JSON.parse(localStorage.getItem("member"));
+    var eno = getUrlParams('eno');
 
     var time = 5;
     var ord = 0;
@@ -246,7 +263,7 @@
     var examList = [];
 
     $.ajax({
-        url : "http://192.168.0.26:8080/exam/today?mid=" + member.mid,
+        url : "http://192.168.0.26:8080/review/?mid=" + member.mid + "&lstatus=" + member.lstatus + "&examPointer=" + member.exampointer,
         type: 'get',
         async: false,
         success : function(result) {
@@ -256,83 +273,21 @@
 
     function getList() {
 
-        var examples = [];
-        var type = Math.ceil(Math.random() * 3);
-        total = list.length;
-
-        $(".cnt>h1").html( (ord + 1) + "/" + list.length);
+        total = total === 0 ? list.length : total;
+        $(".cnt>h1").html( (ord + 1) + "/" + total);
         $(".exampleUl").attr("data-total", list.length);
 
-        while (examples.length < 3) {
-            var random = Math.floor(Math.random() * list.length);
+        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
-            if (ord !== random) {
-                if (examples[0]) {
-                    for (var i = 0; i < examples.length; i++) {
-                        if (examples.indexOf(list[random]) === -1) {
-                            examples.push(list[random]);
-                        }
-                    }
-                } else {
-                    examples.push(list[random]);
-                }
-            } else {
-                console.log("same");
-            }
-        }
+        var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
 
-        if (type === 1){
-            $('.question').html("<h1>" + list[ord].word + "</h1>");
-
-            examples.push(list[ord].meaning);
-            arrayShuffle(examples);
-
-            var str = "";
-            for (var i = 0; i < examples.length; i++){
-                if (examples[i] === list[ord].meaning){
-                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
-                } else {
-                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i].meaning + "</li>";
-                }
-            }
-
-        } else if (type === 2){
-            $('.question').html("<img width='100%' height='100%' src=http://192.168.0.25:8080/file/" + list[ord].img + ">");
-
-            examples.push(list[ord].word);
-            arrayShuffle(examples);
-
-            var str = "";
-            for (var i = 0; i < examples.length; i++){
-                if (examples[i] === list[ord].word){
-                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
-                } else {
-                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i].word + "</li>";
-                }
-            }
-
-        } else if (type === 3) {
-
-            var q = list[ord].sentence.split(list[ord].word);
-
-            $('.question').html("<h3>" + q[0] + Array(list[ord].word.length + 1).join("_") + q[1] + "</h3>");
-
-            examples.push(list[ord].word);
-            arrayShuffle(examples);
-            var str = "";
-            for (var i = 0; i < examples.length; i++){
-                if (examples[i] === list[ord].word){
-                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
-                } else {
-                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i].word + "</li>";
-                }
-            }
-        }
-        str += "<li data-wno=" + list[ord].wno + " style= margin-left:25%>모르냐</li>";
+        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
+
     }
+
     getList();
 
     function timeLimit() {
@@ -343,9 +298,10 @@
                 $(this)
                     .width($(this).width())
                     .animate({
-                        width: (time)*10 + '%'
+                        width: (time)*20 + '%'
                     }, 500)
             });
+
         } else {
             var qNum = $('.header').html().split("/");
 
@@ -366,24 +322,15 @@
         }
     }
 
-    //    window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
+    //        window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
 
-    function arrayShuffle(arr) {
-        for (var i = arr.length - 1; i > 0; i--){
-            var random = Math.floor(Math.random() * (i + 1));
-            var temp = arr[i];
-            arr[i] = arr[random];
-            arr[random] = temp;
-        }
-        return arr;
-    }
-
-    document.querySelector("div>ul").addEventListener("click", dataTransfer);
+    document.querySelector(".exampleUl").addEventListener("touchend", dataTransfer);
 
     function dataTransfer(e) {
-        var data = {};
+
         var uAnswer = e || null;
-        var wno = $("div>ul>li").attr("data-wno");
+        var wno = $("div>ul>li").data("wno");
+        var dataTotal = parseInt($(".exampleUl").attr("data-total"));
 
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){
@@ -397,23 +344,26 @@
         }
 
         if (++ord < total){
-            time = 10;
+
+            time = 5;
             $(".meter>span").each(function () {
                 $(this)
                     .width($(this).width())
                     .animate({
-                        width: (time)*10 + '%'
+                        width: (time)*20 + '%'
                     }, 500)
             });
 
             if (examList.length === Math.ceil(total/2)) {
                 var data = {
                     examList : examList,
+                    examPointer : member.exampointer,
                     mid : member.mid,
+                    lstatus : member.lstatus
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/exam/today/',
+                    url : 'http://192.168.0.26:8080/review/middle/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -425,24 +375,48 @@
             getList();
 
         } else if (ord === list.length) {
-
             var data = {
                 examList : examList,
+                examPointer : member.exampointer,
                 mid : member.mid,
+                lstatus : member.lstatus
             }
 
-            $.ajax({
-                url : 'http://192.168.0.26:8080/exam/today/',
-                type: 'put',
-                data: JSON.stringify(data),
-                contentType: 'application/json;',
-                success : function() {
+            if (member.lstatus === "review") {
+                // review/finished에는 member의 status가 review일 때만 전송하고(현재 학습자의 학습 상태가 review인경우) 나머지는 middle로 데이터 전송
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/review/finished/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function(result) {
 
-                    window.location="endpage.html?score=" + score + "&status=end";
-                }
-            });
+                        // localStorage.member 의 lstaus값을 learn으로 바꿔준다.
+                        var member = JSON.parse(localStorage.member);
+                        member.lstatus = result;
+                        localStorage.member = JSON.stringify(member);
+
+                        window.location="endpage.html?score=" + score + "&status=" + result;
+                    }
+                });
+            } else {
+                $.ajax({
+                    url : 'http://192.168.0.26:8080/review/middle/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function() {
+                        window.location="endpage.html?score=" + score + "&status=end";
+                    }
+                });
+            }
+
         }
     }
+
+    $(".back").on("click",function(){
+        window.location.href = "startpage.html?type=learn";
+    });
 </script>
 </body>
 </html>
