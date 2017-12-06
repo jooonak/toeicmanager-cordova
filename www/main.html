@@ -7,11 +7,9 @@
    style-src  'self' 'unsafe-inline' *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-
-    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -159,7 +157,6 @@
         border-radius: 8px;
 
     }
-
     .meter > span {
         display: block;
         height: 100%;
@@ -285,8 +282,8 @@
         <div style="min-height: 20%;">
             <h5>시험 목표량</h5>
         </div>
-        <h1 class="center">
-            50/50
+        <h1 class="center dayExam">
+
         </h1>
     </div>
 
@@ -294,7 +291,7 @@
     <div class="progress center box result">
         <h6 style="margin-bottom: 20px">달성률　</h6>
         <div class="meter" style="width: 75%;">
-            <span style="width: 100%;"></span>
+
         </div>
     </div>
 
@@ -318,6 +315,7 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
 <script src="sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -326,22 +324,27 @@
         function getList() {
             var obj = [];
             var cycleObj = [];
-            $.getJSON("http://192.168.0.25:8080/learn/", function (result) {
+            var learnObj =[];
+            var examObj =[];
+
+            $.getJSON("http://192.168.0.25:8080/result/mainlearn", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     obj.push({eno : result[i].eno,
                         result : result[i].result,
-                        total : result[i].total
-                    });
+                        total : result[i].total});
                 }
 
                 var str="";
                 var sum = 0;
+
                 if(result.length === 1){
 
                     sum = obj[0].total-obj[0].result;
                     str = "<h1> "+sum+"</h1>";
 
+                }else if(result.length ===0){
+                    str = "<h1> "+0+"</h1>";
                 }else{
 
                     for(var i=0; i < result.length; i++){
@@ -349,30 +352,48 @@
                     }
                     str += "<h1 style='color: red'> "+sum+"</h1>";
                 }
+
                 $(".dayLearn").html(str);
+
             });
 
-            $.getJSON("http://192.168.0.25:8080/exams/all", function (result) {
-
-                var date = new Date();
-                var currentdate = date.getTime();
+            $.getJSON("http://192.168.0.25:8080/result/mainexam", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     cycleObj.push({nextCycle: result[i].nextCycle});
                 }
 
-
-
-                console.log(currentdate);
-                var datetime =  currentdate.getFullYear()+"/"
-                    + (currentdate.getMonth()+1)  + "/"
-                    + (currentdate.getDate()+1) +"-"+
-                + "2";
-
-                console.log(datetime);
+                $(".dayExam").html(result.length);
             });
 
+            $.getJSON("http://192.168.0.25:8080/result/mainbar", function (result) {
 
+                var resultSum = 0;
+                var totalSum = 0;
+                var date = new Date().getTime();
+                var today = ((date+"").slice(0,6)+"0000000");
+
+                for (var i = 0; i < result.learn.length; i++){
+                    learnObj.push({result : result.learn[i].result,
+                        total : result.learn[i].total});
+
+                    resultSum +=  learnObj[i].result;
+                    totalSum += learnObj[i].total;
+                }
+
+                 for (var i = 0; i < result.exam.length; i++){
+                    examObj.push({nextCycle : result.exam[i].nextCycle});
+
+                    if(today >= examObj[i].nextCycle){
+                        totalSum += 1;
+                    }
+                }
+
+                var str ="<span style='width: "+resultSum/totalSum*100+"%;'></span>";
+
+                $(".meter").html(str);
+
+            });
         }
         getList();
 
@@ -427,6 +448,16 @@
         //검색 버튼에 대한 이벤트 동작
         $(".searchBtn").on("click", function (e) {
             e.preventDefault();
+            if($("#olinput").val() === ""){
+                swal({
+                    title: 'input word',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    showCancelButton: false,
+                })
+                return;
+            }
+
             var data = {
                 key: 'AIzaSyDevHG0cXl0LY6Q0czkfOvnzYuXXcx6B-0',
                 q: $("#olinput").val(),
@@ -440,10 +471,18 @@
                     if (result.spelling) {
                         //아래 구문은 모달창에서 할 예정, 임시로 넣어놓음
                         $("#olinput").val(result.spelling.correctedQuery);
-                        $(".correct-word").html(result.spelling);
-                        $(".correct-word").append("<input class = 'correct' type='button' value='confirm'>");
-                        $('.correct').on("click", function () {
-                            $("#olform").submit();
+                        swal({
+                            title: 'Did you find this?',
+                            text: 'corrected word: '+result.spelling.correctedQuery,
+                            showConfirmButton: true,
+                            confirmButtonText: 'right',
+                            showCancelButton: true,
+                        }).then((result) => {
+                            if(result.value){
+                                $("#olform").submit();
+                            }else {
+                            $("#olinput").val('');
+                            }
                         });
                     } else {
                         $("#olform").submit();
@@ -464,6 +503,7 @@
             $("#formData").submit();
         });
 
+        //btn에 event를 먹이면 검색 부분도 같이 먹여져서 btn-block으로 바꿈
         $(".btn-block").on("click", function (e) {
 //            e.preventDefault();
             if ($(e.target).data("offer")){
