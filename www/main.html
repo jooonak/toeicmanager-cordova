@@ -7,11 +7,9 @@
    style-src  'self' 'unsafe-inline' *">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-
-    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -159,7 +157,6 @@
         border-radius: 8px;
 
     }
-
     .meter > span {
         display: block;
         height: 100%;
@@ -318,6 +315,7 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
 <script src="sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -450,6 +448,16 @@
         //검색 버튼에 대한 이벤트 동작
         $(".searchBtn").on("click", function (e) {
             e.preventDefault();
+            if($("#olinput").val() === ""){
+                swal({
+                    title: 'input word',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    showCancelButton: false,
+                })
+                return;
+            }
+
             var data = {
                 key: 'AIzaSyDevHG0cXl0LY6Q0czkfOvnzYuXXcx6B-0',
                 q: $("#olinput").val(),
@@ -463,10 +471,18 @@
                     if (result.spelling) {
                         //아래 구문은 모달창에서 할 예정, 임시로 넣어놓음
                         $("#olinput").val(result.spelling.correctedQuery);
-                        $(".correct-word").html(result.spelling);
-                        $(".correct-word").append("<input class = 'correct' type='button' value='confirm'>");
-                        $('.correct').on("click", function () {
-                            $("#olform").submit();
+                        swal({
+                            title: 'Did you find this?',
+                            text: 'corrected word: '+result.spelling.correctedQuery,
+                            showConfirmButton: true,
+                            confirmButtonText: 'right',
+                            showCancelButton: true,
+                        }).then((result) => {
+                            if(result.value){
+                                $("#olform").submit();
+                            }else {
+                            $("#olinput").val('');
+                            }
                         });
                     } else {
                         $("#olform").submit();
@@ -487,6 +503,7 @@
             $("#formData").submit();
         });
 
+        //btn에 event를 먹이면 검색 부분도 같이 먹여져서 btn-block으로 바꿈
         $(".btn-block").on("click", function (e) {
 //            e.preventDefault();
             if ($(e.target).data("offer")){
