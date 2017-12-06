@@ -300,9 +300,9 @@
 
 
     <div class="button center box">
-       <a href="learnstart.html" class="learnbtn btn btn-negative btn-outlined btn-block">학습
+       <a href="#" class="learnbtn btn btn-negative btn-outlined btn-block">학습
         </a>
-        <a href="examstart.html" class="reviewbtn btn btn-negative btn-outlined btn-block">시험
+        <a href="#" class="reviewbtn btn btn-negative btn-outlined btn-block" data-offer="exam">시험
         </a>
     </div>
 
@@ -464,7 +464,7 @@
             $("#formData").submit();
         });
 
-        $(".btn").on("click", function (e) {
+        $(".btn-block").on("click", function (e) {
 //            e.preventDefault();
             if ($(e.target).data("offer")){
                 $(this).attr("href", "startpage.html?type=" + $(this).data("offer"));
