@@ -31,45 +31,71 @@
 
         function drawChart() {
 
-          /*  $.ajax({
-                url: "http://192.168.0.25:8080/chart/day,
-                dataType: "json",
-                type : 'get',
-                success: function(result) {
 
-                    $(".word").append(result.word);
-                    $(".meaning").append(result.meaning);
 
+            var obj = [];
+            $.getJSON("http://192.168.0.25:8080/result/mainexam", function (result) {
+
+                var data = google.visualization.arrayToDataTable([]);
+
+                var first = 0;
+                var second = 0;
+                var third = 0;
+                var fourth = 0;
+                var fifth = 0;
+                var  etc= 0;
+
+                for (var i = 0; i < result.length; i++){
+                    obj.push({score : result[i].score});
+
+                    if(obj[i].score >80){
+                        first += 1;
+                    }else if (obj[i].score >60){
+                        second += 1;
+                    }else if (obj[i].score >40){
+                        third += 1;
+                    }else if (obj[i].score >30){
+                        fourth += 1;
+                    }else if (obj[i].score >20){
+                        fifth += 1;
+                    }else{
+                        etc += 1;
+                    }
                 }
-            });*/
 
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work',     11],
-                ['Eat',      2],
-                ['Commute',  2],
-                ['Watch TV', 2],
-                ['Sleep',    7]
-            ]);
+                var data = google.visualization.arrayToDataTable([
+                    ['Translation rate', 'point'],
+                    ['perfect',first],
+                    ['great',second],
+                    ['good',third],
+                    ['bad', fourth],
+                    ['miss',fifth],
+                    ['아직 못외움...', etc]
+                ]);
 
-            var options = {
-                title: 'day',
-                pieHole: 0.4,
-                chartArea:{left : 20, top : 50, width : '90%', height : '100%'},
-                //colors:['red','#004411','#7e8c1a']
-                fontSize: 15,
-                legend:{
-                    position: 'top',
-                    maxLines: 5,
-                    textStyle: {color: 'black', fontSize: 15},
-                    alignment:'start',
+                console.log(data);
+
+                var options = {
+                    title: '암기현황!!!!!',
+                    pieHole: 0.4,
+                    chartArea:{left : 20, top : 50, width : '90%', height : '100%'},
+                    //colors:['red','#004411','#7e8c1a']
+                    fontSize: 15,
+                    legend:{
+                        position: 'top',
+                        maxLines: 5,
+                        textStyle: {color: 'black', fontSize: 15},
+                        alignment:'start',
 
                     },
-                titleTextStyle:{color: 'black', fontSize: 25},
-            };
+                    titleTextStyle:{color: 'black', fontSize: 25},
+                };
 
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+
+            });
+
         }
     </script>
 

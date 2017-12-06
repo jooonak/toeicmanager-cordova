@@ -285,8 +285,8 @@
         <div style="min-height: 20%;">
             <h5>시험 목표량</h5>
         </div>
-        <h1 class="center">
-            20
+        <h1 class="center dayExam">
+
         </h1>
     </div>
 
@@ -294,7 +294,7 @@
     <div class="progress center box result">
         <h6 style="margin-bottom: 20px">달성률　</h6>
         <div class="meter" style="width: 75%;">
-            <span style="width: 50%;"></span>
+
         </div>
     </div>
 
@@ -326,8 +326,10 @@
         function getList() {
             var obj = [];
             var cycleObj = [];
+            var learnObj =[];
+            var examObj =[];
 
-            $.getJSON("http://192.168.0.25:8080/learn/", function (result) {
+            $.getJSON("http://192.168.0.25:8080/result/mainlearn", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     obj.push({eno : result[i].eno,
@@ -343,6 +345,8 @@
                     sum = obj[0].total-obj[0].result;
                     str = "<h1> "+sum+"</h1>";
 
+                }else if(result.length ===0){
+                    str = "<h1> "+0+"</h1>";
                 }else{
 
                     for(var i=0; i < result.length; i++){
@@ -353,44 +357,47 @@
 
                 $(".dayLearn").html(str);
 
-                /*var totalSum=0;
-                var resultSum=0;
-                var bar = resultSum/totalSum;
-
-                for(var i = 0; i < result.length; i++){
-                    totalSum += result[i].total;
-                    resultSum += result[i].result;
-                }
-
-                console.log(bar);*/
             });
 
-          /*  $.getJSON("http://192.168.0.25:8080/exams/all", function (result) {
-
-                var date = new Date();
-                var currentdate = date.getTime();
+            $.getJSON("http://192.168.0.25:8080/result/mainexam", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     cycleObj.push({nextCycle: result[i].nextCycle});
                 }
 
-
-
-                console.log(currentdate);
-                var datetime =  currentdate.getFullYear()+"/"
-                    + (currentdate.getMonth()+1)  + "/"
-                    + (currentdate.getDate()+1) +"-"+
-                + "2";
-
-                console.log(datetime);
+                $(".dayExam").html(result.length);
             });
-*/
 
+            $.getJSON("http://192.168.0.25:8080/result/mainbar", function (result) {
+
+                var resultSum = 0;
+                var totalSum = 0;
+                var date = new Date().getTime();
+                var today = ((date+"").slice(0,6)+"0000000");
+
+                for (var i = 0; i < result.learn.length; i++){
+                    learnObj.push({result : result.learn[i].result,
+                        total : result.learn[i].total});
+
+                    resultSum +=  learnObj[i].result;
+                    totalSum += learnObj[i].total;
+                }
+
+                 for (var i = 0; i < result.exam.length; i++){
+                    examObj.push({nextCycle : result.exam[i].nextCycle});
+
+                    if(today >= examObj[i].nextCycle){
+                        totalSum += 1;
+                    }
+                }
+
+                var str ="<span style='width: "+resultSum/totalSum*100+"%;'></span>";
+
+                $(".meter").html(str);
+
+            });
         }
         getList();
-
-
-
 
         var member = {mid : "m1", mpw : "m1", name : "m1", goal : 500, extra : 500, lstatus : "learn", lcnt : 1, startpoint : 70, todayanmocnt : 50, exampointer : 1};
         localStorage.setItem("member", JSON.stringify(member));
