@@ -30,5 +30,13 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "com.telerik.plugins.nativepagetransitions": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

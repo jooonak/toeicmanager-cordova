@@ -9,7 +9,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -56,7 +56,7 @@
         font-size: 150%;
         margin-right: 15px;
         margin-left: 15px;
-        //background-color: #a5dc86;
+    //background-color: #a5dc86;
     }
 
     .header {
@@ -242,12 +242,12 @@
     </div>
 
     <div class="contents box" >
-       <div class="searchPosition center" >
+        <div class="searchPosition center" >
 
             <div  class="camera center">
-                <a  href="camera.html" >
+                <div id="cameraTakePicture">
                     <img class="img" src="img/camera.jpg">
-                </a>
+                </div>
             </div>
 
             <div class=" search" >
@@ -264,7 +264,7 @@
     </div>
 
     <div class="chatbot box center">
-            챗봇 및 명언
+        <a href="http://mindmap.ai:8000/v1/webchat/59fbe0fb65d44027b9456104">챗봇 및 명언</a>
     </div>
 
 
@@ -297,16 +297,16 @@
 
 
     <div class="button center box">
-       <a href="#" class="learnbtn btn btn-negative btn-outlined btn-block">학습
+        <a href="#" class="learnbtn btn btn-negative btn-outlined btn-block">학습
         </a>
         <a href="#" class="reviewbtn btn btn-negative btn-outlined btn-block" data-offer="exam">시험
         </a>
     </div>
 
-        <form id="formData" action="result.html?" method="get">
-            <input type="hidden" >
-        </form>
-    </div>
+    <form id="formData" action="result.html?" method="get">
+        <input type="hidden" >
+    </form>
+</div>
 
 </div>
 
@@ -315,10 +315,80 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
 <script src="sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        $(function(){
+            $("#cameraTakePicture").on('click', function(){ // 카메라 버튼 터치시 이벤트 작동
+                takePicture(Camera.PictureSourceType.CAMERA); // takePicture() 함수 작동할 때 CAMERA로 사진 찍음(PictureSourceType을 CAMERA로 지정)
+            });
+        });
+
+        function takePicture(source) { // 위에 버튼 터치시 작동하는 takePicture 함수. Source는 위 코드에 PictureSourceType을 가리킨다. CAMERA나 PHOTOLIBRARY.
+
+            navigator.camera.getPicture( // navigator.camera는 api가 제공하는 global object이다
+
+                function onSuccess(imageData){// getPicture가 성공할 경우에 imageData에 사진의 경로가 담겨서 전달이 된다
+
+                    swal({
+                        title: 'please wait..',
+                        onOpen: () => {swal.showLoading()},
+                        allowOutsideClick: false
+                     });
+                    function getFileEntry(imageData) { // FileEntry라는 객체에 사진을 담아서 스프링 서버로 보내려고 한다
+                        window.resolveLocalFileSystemURL(imageData, function success(fileEntry) { // imageData를 받고 그걸 fileEntry라는 객체에다 넣는다
+                            console.log("fileEntry: " + fileEntry); // fileEntry: [object Object]
+                            console.log("fileEntry.toURL: " + fileEntry.toURL()); // fileEntry.toURL: file:///storage/emulated/0/Android/data/io.cordova.hellocordova/cache/1511838393149.jpg
+                            var imageURI = fileEntry.toURL(); // 위에 콘솔에 찍힌 것처럼 사진 파일의 경로를 나타낸다
+                            function uploadPhoto(imageURI){// 사진 파일의 경로를 받아 업로드 해주는 함수
+                                var options = new FileUploadOptions(); // 파일 업로드 옵션 설정
+                                options.chunkedMode = false;
+                                options.fileKey = "file"; // 서버에서 받을 때 사용할 키 값
+                                options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+                                options.mimeType = "image/jpeg";
+                                var fileTransfer = new FileTransfer();
+                                fileTransfer.upload(imageURI, encodeURI("http://192.168.0.22:3000/ocr"), win, fail, options); // 마지막으로 서버에 파일 전송을 담당하는 함수.
+                            }
+                            var win = function (r) { // 얘는 왜 있는건지 아직 사실 잘 모르겠음. Success해도 찍히지 않으니 나중에 누가 알게되면 추가 부탁.
+                                window.location.href = "cameraresult.html?text="+r.response;
+
+                            }
+
+                            var fail = function (error) {
+                                alert("An error has occurred: Code = " + error.code);
+                                console.log("upload error source " + error.source);
+                                console.log("upload error target " + error.target);
+
+                            }
+
+                            uploadPhoto(imageURI); //
+
+                        });
+                    }
+                    getFileEntry(imageData); // getFileEntry 함수 실행
+                },
+
+                function onFail(message) {
+                    alert('Failed because: ' + message);
+                },
+
+                { // 카메라의 option 설정
+                    destinationType: Camera.DestinationType.FILE_URI, // FILE_URI로 받아오면 사진의 저장경로를 받아온다.
+                    encodingType: Camera.EncodingType.JPEG, // JPEG로 저장.
+                    quality: 50, // 100이 가장 높은 해상도, 1이 가장 낮은 해상도. Default값이 50.
+                    sourceType: Camera.PictureSourceType.CAMERA, // 위에 takePicture 함수에서 parameter로 받아온 것에 따라 다르다. PictureSourceType이 CAMERA나 PHOTOLIBRARY일 수 있다.
+                    correctOrientation: true, // 이게 없으면 사진이 90도 돌아서 나온다. 똑바로 나올 수 있게 설정.
+//                    saveToPhotoAlbum: true, // 코르도바 앱을 통해 카메라로 사진을 찍을 경우 바로 갤러리에 사진이 저장되게 설정
+                    mediaType: Camera.MediaType.PICTURE // 카메라 사용시 사진만 찍을 수 있게 함 (영상금지).
+                }
+            );
+        }
+
+
+
 
         //학습 및 시험 목표량 정보를 가져오는 함수
         function getList() {
@@ -362,12 +432,12 @@
 
 
                 console.log(currentdate);
-                var datetime =  currentdate.getFullYear()+"/"
-                    + (currentdate.getMonth()+1)  + "/"
-                    + (currentdate.getDate()+1) +"-"+
-                + "2";
+                /*               var datetime =  currentdate.getFullYear()+"/"
+                                    + (currentdate.getMonth()+1)  + "/"
+                                    + (currentdate.getDate()+1) +"-"+
+                                + "2";
 
-                console.log(datetime);
+                                console.log(datetime);*/
             });
 
 
@@ -397,6 +467,7 @@
                     $( "#olinput" ).val(ui.item.value);
                     $( "#olform" ).submit();
                 },*/
+
                 //관련 단어를 가져오는 코드이다. https://jqueryui.com/autocomplete/ 사이트의 view source를 확인하면 쉽게 이해가능하다.
                 source: function (request, response) {
                     var res = request.term.split(":");
@@ -456,11 +527,11 @@
                             showCancelButton: true,
                         }).then((result) => {
                             if(result.value){
-                                $("#olform").submit();
-                            }else {
+                            $("#olform").submit();
+                        }else {
                             $("#olinput").val('');
-                            }
-                        });
+                        }
+                    });
                     } else {
                         $("#olform").submit();
                     }
@@ -489,19 +560,23 @@
                 swal({
                     title: '',
                     html:
-                    member.lstatus === "review" ?
-                        "<a style='margin: 0; margin-bottom: 5px;' href='#' class='btn btn-block btn-negative btn-outlined'>새로운 단어가 없습니다</a>" +
-                        "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>"
-                    :
-                        "<a style='margin: 0; margin-bottom: 5px;' href='startpage.html?type=learn' class='btn btn-block btn-positive btn-outlined'>새로운 단어 학습</a>" +
-                        "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>",
-                        showConfirmButton: false,
-                        showCancelButton: true
+                        member.lstatus === "review" ?
+                            "<a style='margin: 0; margin-bottom: 5px;' href='#' class='btn btn-block btn-negative btn-outlined'>새로운 단어가 없습니다</a>" +
+                            "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>"
+                            :
+                            "<a style='margin: 0; margin-bottom: 5px;' href='startpage.html?type=learn' class='btn btn-block btn-positive btn-outlined'>새로운 단어 학습</a>" +
+                            "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>",
+                    showConfirmButton: false,
+                    showCancelButton: true
                 });
             }
 
         });
+
+
     });
+
+
 </script>
 
 
