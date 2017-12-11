@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <!-- <script src="dist/js/ratchet.js"></script>-->
+
+    <title>Search</title>
+</head>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+
+    }
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top';
+        grid-auto-rows:  44px 90%;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 100%;
+    }
+
+    .box {
+        font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header {
+        grid-column: 1/4;
+        grid-row: 1/2;
+    }
+
+    .top {
+        grid-column: 1/4;
+        grid-row: 2/3;
+    }
+
+    .wordbox{
+        border-width: 1px;
+        border-style: solid ;
+        border-color: #999;
+        border-radius: 15px;
+        margin:50px 10px 20px ;
+        min-height: 80%;
+        box-shadow:0 0 10px #999;
+    }
+
+    .word-position{
+        margin-top: 5%;
+        min-height: 80%;
+    }
+
+    .word{
+        margin-bottom:10px;
+        font-size: 25px;
+    }
+
+    .meaning{
+        margin-bottom:10px;
+        font-size: 20px;
+
+    }
+
+    .img-position{
+        margin: 0px auto;
+
+        width: 280px;
+        height: 200px;
+        border-radius: 5px;
+        box-shadow:0 0 10px #999;
+
+    }
+    .img{
+        /*        width: 100%;
+                height: 100%;*/
+        background-size: cover;
+    }
+
+    .stc-position{
+        height: 150px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        overflow: scroll;
+        -ms-overflow-style: none;
+
+    }
+
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    .dark {
+        background: #222222;
+    }
+    .slider {
+        background-color: #FFFFFF;
+        width: 100%;
+        height: 100%;
+    }
+    .slide-group {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    select body {
+        margin: 10px;
+        font-size: 14px;
+    }
+    .where {
+        display: block;
+        margin: 25px 15px;
+        font-size: 11px;
+        color: #000;
+        text-decoration: none;
+        font-family: verdana;
+        font-style: italic;
+    }
+
+    select {
+        width: 200px;
+        padding: .8em .5em;
+        font-family: inherit;
+        background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid #999;
+        border-radius: 0px;
+    }
+
+    select::-ms-expand { /* for IE 11 */
+        display: none;
+    }
+
+
+
+    /*문장 선택창의 radio box 설정*/
+    .radio-container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .radio-container input {
+        position: absolute;
+        opacity: 0;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .radio-container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .radio-container input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .radio-container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .radio-container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+</style>
+
+
+<body>
+<div class='container'>
+    <div class="box header">
+        <header class="bar bar-nav dark">
+            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
+        </header>
+        <header class="bar bar-nav" style="margin-top: 45px">
+            <a href="#popover">
+                <h1 class="title selected-voca-name">
+                    Select Voca
+                    <span class="icon icon-caret"></span>
+                </h1>
+
+            </a>
+        </header>
+    </div>
+
+
+    <div class="box top">
+
+        <div class="wordbox">
+            <div class="word-position">
+                <div class="word">
+                </div>
+                <div class="meaning">
+                </div>
+            </div>
+
+            <div class="img-position">
+                <div class="slider" id="mySlider">
+                    <div class="slide-group">
+                        <div class="slide">
+                            <img data-imgNum = 0 src="img/pt_1.jpg" value = "pt_1.jpg">
+                        </div>
+                        <div class="slide">
+                            <img data-imgNum = 1 src="img/pt_2.jpg" value = "pt_2.jpg">
+                        </div>
+                        <div class="slide">
+                            <img data-imgNum = 2 src="img/pt_3.jpg" value = "pt_3.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stc-position" >
+                <ul class="stc" style="padding: 0; margin-left: 0px; margin-right: 0px">
+                    <li class="table-view-cell" style="padding: 0; margin-left: 10px; margin-right: 10px">
+                        <label class="radio-container"style="font-size:15px; text-align: left">
+                            <div class = "sentence">Think like a man of action and act like man of thought.</div>
+                            <input type="radio" checked="checked" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
+                        <label class="radio-container"  style="font-size:15px; text-align: left">
+                            <div class = "sentence">Courage is very important. Like a muscle, it is strengthened by use.</div>
+                            <input type="radio" checked="checked" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
+                        <label class="radio-container"  style="font-size:15px; text-align: left">
+                            <div class = "sentence">Courage is very important. Like a muscle, it is strengthened by use.</div>
+                            <input type="radio" checked="checked" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <input style="width:70%; display: inline" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="popover" class="popover" style="margin-top: 50px">
+    <header class="bar bar-nav">
+        <h1 class="title">VOCA LIST</h1>
+    </header>
+    <ul class="table-view vocaOpt">
+    </ul>
+</div>
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/popovers.js"></script>
+<script src="sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+<script TYPE="application/javascript">
+    var words = getUrlParams('words');
+    var meaning = "";
+    var sentence = "";
+    var selectedImg = "pt_1.jpg";   //테스트용, 추 후 이미지를 크롤링하여 가져오는 경우 첫번째 이미지를 selectedImg에 넣는다.
+    var vno = 0;
+    console.log(words[1]);
+
+    $("document").ready(function(){
+        $(".word").html(words);
+
+        //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
+        $.ajax({
+            dataType: "json",
+            type : 'get',
+            url: 'http://192.168.0.22:3000/dic',
+            data: {'words':words},
+            success: function(data) {
+                $(".meaning").append(data);
+                meaning = data;
+            }
+        });
+
+        //단어장 리스트를 가져오는 ajax 요청
+        $.ajax({
+            dataType: "json",
+            type : 'get',
+            url: 'http://192.168.0.22:8080/vocabulary/',
+            success: function(data) {
+                data.forEach(function(voca){
+                    $(".vocaOpt").append("<li class= 'table-view-cell vocabulary' value="+voca.vno+">"+voca.vname+"</li>");
+                    console.log(voca);
+                });
+                //가져온 단어장 리스트에 event 처리(클릭시 header부분 변경 및 regist 용 input 데이터 삽입)
+                $(".vocabulary").on("click", function(e){
+                    vno = $(e.target)[0].getAttribute('value');
+                    $(".selected-voca-name").html($(e.target).html()+"<span class='icon icon-caret'></span>");
+                });
+            }
+        });
+
+        //vocabulary로 이동하는 back 버튼에 대한 이벤트 처리
+        $(".back").on("click",function(){
+            window.location.href = "vocabulary.html";
+        });
+
+        //register 버튼에 대한 이벤트 처리
+        $(".regBtn").on("click",function(){
+            //var vno = $(".vocaOpt").val();
+/*            console.log(vno);
+            if (vno === 0) {
+                swal({
+                    title: 'Please select your vocabulary',
+                    confirmButtonText: 'ok'
+                })
+                return;
+            }*/
+
+            window.plugins.nativepagetransitions.slide({ href: "main.html" });
+
+/*            var data = {word:words, vno: vno,sentence: sentence, meaning:meaning, img:selectedImg };
+            console.log(data);
+            $.ajax({
+                type : 'post',
+                data : JSON.stringify(data),
+                contentType:"application/json; charset=UTF-8",
+                url: 'http://192.168.0.22:8080/vocabulary/'+vno+"/words",
+                success: function() {
+                    alert("등록 성공");
+                    window.location.href = "words.html?vno="+vno;
+                }
+            });*/
+        });
+
+
+        document.querySelector('#mySlider').addEventListener('slide', function(e){
+            selectedImg = $("img[data-imgnum = '"+e.detail.slideNumber+"']")[0].getAttribute('value');
+        });
+
+        //event가 두번 발생하는 문제가 있음 해결필요.
+        $(".radio-container").on("click", function(e){
+            e.stopPropagation();
+            sentence = $(e.currentTarget).find(".sentence").html();
+        });
+    });
+</script>
+</html>
