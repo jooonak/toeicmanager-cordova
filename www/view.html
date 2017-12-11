@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <!--<script src="dist/js/ratchet.js"></script>-->
+
+    <title>Views</title>
+</head>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header'
+                'top top top';
+        grid-auto-rows:  44px 90%;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 100%;
+    }
+
+    .box {
+        font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header {
+        grid-column: 1/4;
+        grid-row: 1/2;
+    }
+
+    .top {
+        grid-column: 1/4;
+        grid-row: 2/3;
+    }
+
+    .wordbox{
+        border-width: 1px;
+        border-style: solid ;
+        border-color: #999;
+        border-radius: 15px;
+        margin:10px 10px 20px 10px;
+        min-height: 80%;
+        box-shadow:0 0 10px #999;
+    }
+
+    .word-position{
+        margin-top: 10%;
+        min-height: 80%;
+    }
+
+    .word{
+        margin:15px;
+        font-size: 40px;
+    }
+
+    .meaning{
+        margin:15px;
+        font-size: 30px;
+
+    }
+
+    .img-position{
+        margin: 10px auto;
+        width: 240px;
+        height: 130px;
+        border-radius: 5px;
+        box-shadow:0 0 10px #999;
+    }
+
+    .img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .stc-position{
+        height: 6em;
+        margin:15px 5%;
+        overflow: scroll;
+        -ms-overflow-style: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    .dark {
+        background: #222222;
+    }
+    .slider {
+        background-color: #FFFFFF;
+    }
+</style>
+
+<body>
+<div class='container'>
+    <div class="box header">
+        <header class="bar bar-nav dark">
+            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
+        </header>
+    </div>
+
+    <div class="box top">
+        <div class="wordbox">
+            <div class="word-position">
+                <div class="word">
+                </div>
+                <div class="meaning">
+                </div>
+            </div>
+
+            <div class="img-position">
+                <img class="img" src="img/pt_1.jpg">
+            </div>
+
+            <div class="stc-position" >
+                <ul class="stc">
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                    <li class="table-view-cell">1111</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <input class = "modBtn btn btn-negative btn-block" type="button" value="modify">
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+
+<script TYPE="application/javascript">
+    $(document).ready(function(){
+        var vno = getUrlParams('vno');
+        var wno = getUrlParams('wno');
+
+        //단어 리스트를 가져오는 ajax 요청
+        $.ajax({
+            url: "http://192.168.0.25:8080/vocabulary/"+vno+"/words/"+wno,
+            dataType: "json",
+            type : 'get',
+            success: function(result) {
+                console.log(result);
+                $(".word").append(result.word);
+                $(".meaning").append(result.meaning);
+
+            }
+        });
+
+        //뒤로 가기 버튼
+        $(".back").on("click",function(){
+            window.location.href = "words.html?vno="+vno;
+        });
+
+
+    });
+</script>
+</html>
