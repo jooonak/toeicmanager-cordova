@@ -140,7 +140,7 @@
         $(".info>h2").text(str);
 
         if (type === "learn"){
-            $.getJSON("http://192.168.0.26:8080/" + type + "/", function (result) {
+            $.getJSON("http://192.168.0.26:8080/" + type + "/?mid=" + member.mid, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
