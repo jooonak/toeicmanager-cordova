@@ -337,7 +337,7 @@
             var learnObj =[];
             var examObj =[];
 
-            $.getJSON("http://192.168.0.25:8080/result/mainlearn", function (result) {
+            $.getJSON("http://192.168.0.32:8080/result/mainlearn", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     obj.push({eno : result[i].eno,
@@ -367,7 +367,7 @@
 
             });
 
-            $.getJSON("http://192.168.0.25:8080/result/mainexam", function (result) {
+            $.getJSON("http://192.168.0.32:8080/result/mainexam", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     cycleObj.push({nextCycle: result[i].nextCycle});
@@ -376,7 +376,7 @@
                 $(".dayExam").html(result.length);
             });
 
-            $.getJSON("http://192.168.0.25:8080/result/mainbar", function (result) {
+            $.getJSON("http://192.168.0.32:8080/result/mainbar", function (result) {
 
                 var resultSum = 0;
                 var totalSum = 0;

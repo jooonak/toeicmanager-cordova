@@ -32,7 +32,22 @@
         margin: 0;
         padding: 0;
         height: 100%;
-        background: url('img/login.png') fixed;
+        /*background: url('img/login.png') fixed;*/
+
+    }
+
+    body:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.6;
+        background-image: url('img/login.png');
+        background-repeat: no-repeat;
         background-size: cover;
     }
 
@@ -48,6 +63,7 @@
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         height: 100%;
+
     }
 
     .box {
@@ -107,10 +123,8 @@
 <body>
 <div class='container'>
 
-    <div class="box header">
-            <h1 class="title" style="color: white; font-size: 35px;">Toeic Manager</h1>
-    </div>
-    <div class="box top"></div>
+    <div class="box header"></div>
+    <div class="box top"><h1 class="title" style="color: white; font-size: 35px;">Toeic Manager</h1></div>
     <div class="box contents">
         <div class="input">
 
@@ -124,8 +138,7 @@
             </p>
 
             <p>
-                <input type="checkbox" id="remember-me" name="remember-me">
-                <label style="color: white; font-size: 15px;">Remember-Me?</label>
+                <a href="#" style="color: #f2f2f2;" class="join">join</a>
             </p>
 
         </div>
@@ -133,10 +146,8 @@
     <div class="box bottom"></div>
     <div class="box footer">
         <nav class="bar bar-tab" style="border-radius: 5px;height: 9%">
-            <a style="border-right:1px solid gray;" class="tab-item active join" href="#">
-                Sign up
-            </a>
-            <a class="tab-item login" href="#">
+
+            <a class="tab-item active login" href="#">
                 Sign in
             </a>
         </nav>
@@ -169,7 +180,7 @@
 
                 $.ajax({
                     type :'post',
-                    url: 'http://192.168.0.26:8080/login/',
+                    url: 'http://192.168.0.24:8080/login/',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
                     success: function(result) {
