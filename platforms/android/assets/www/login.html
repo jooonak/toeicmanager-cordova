@@ -31,19 +31,22 @@
     html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
+        background: url('img/login.png') fixed;
+        background-size: cover;
     }
 
     .container {
         display: grid;
         grid-template-areas:
                 'header header'
-                'contents contents';
+                'top top'
+                'contents contents'
+                'bottom bottom'
                 'footer footer';
-        grid-auto-rows:  1fr 85% 1fr;
+        grid-auto-rows:  1fr 15% 45% 15% 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
-        background-color: white;
-        text-align: center;
         height: 100%;
     }
 
@@ -55,26 +58,44 @@
 
     .header {
         grid-column: 1/3;
-        grid-row: 1/2;
-    }
-
-    .contents {
-        grid-column: 1/3;
-        grid-row: 2/4;
-
-    }
-
-    .dark {
-        background: #222222;
-    }
-
-    .center{
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
         display: -webkit-flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .top {
+        grid-column: 1/3;
+    }
+
+    .bottom {
+        grid-column: 1/3;
+    }
+
+    .footer {
+        grid-column: 1/3;
+    }
+
+    .dark {
+        background: #222222;
+    }
+
+    .contents{
+        text-align: center;
+        grid-column: 1/3;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .input {
+
     }
 
     ::-webkit-scrollbar {
@@ -86,37 +107,41 @@
 <body>
 <div class='container'>
 
-    <div class=" header">
-        <header class="bar bar-nav dark">
-            <h1 class="title" style="color: white">Toeic Manager</h1>
-        </header>
+    <div class="box header">
+            <h1 class="title" style="color: white; font-size: 35px;">Toeic Manager</h1>
     </div>
-
+    <div class="box top"></div>
     <div class="box contents">
-        <p>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"  />
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"  />
-        </p>
+        <div class="input">
 
-        <p>
-            <label >Remember-Me</label>
-            <input type="checkbox" id="remember-me" name="remember-me" />
-        </p>
-        <button class="btn login">Log in</button>
+            <p>
+                <label style="color: white; font-size: 18px;" for="mid">Username</label>
+                <input type="text" id="mid" name="mid" required>
+            </p>
+            <p>
+                <label style="color: white; font-size: 18px;" for="mpw">Password</label>
+                <input type="password" id="mpw" name="mpw" required>
+            </p>
 
-        <button class="btn join">Join</button>
+            <p>
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label style="color: white; font-size: 15px;">Remember-Me?</label>
+            </p>
+
+        </div>
     </div>
-
-
+    <div class="box bottom"></div>
+    <div class="box footer">
+        <nav class="bar bar-tab" style="border-radius: 5px;height: 9%">
+            <a style="border-right:1px solid gray;" class="tab-item active join" href="#">
+                Sign up
+            </a>
+            <a class="tab-item login" href="#">
+                Sign in
+            </a>
+        </nav>
+    </div>
 </div>
-
-
-
-
 </body>
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -127,26 +152,48 @@
 <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 
 <script type="application/javascript">
+
+    if (localStorage.member) {
+        window.location = 'main.html';
+    }
+
     $(document).ready(function(){
-
-
         //로그인
         $(".login").on("click",function (e) {
             e.preventDefault();
+            var mid = $("#mid").val();
+            var mpw = $("#mpw").val();
 
-            var data = {username : $("#username").val(), password: $("#password").val()};
+            if (mid && mpw) {
+                var data = {mid : mid, mpw : mpw};
 
-            $.ajax({
-                type :'post',
-                url: 'http://192.168.0.25:8080/login/',
-                data: JSON.stringify(data),
-                contentType: 'application/json;',
-                success: function() {
+                $.ajax({
+                    type :'post',
+                    url: 'http://192.168.0.24:8080/login/',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success: function(result) {
 
-                    localStorage.setItem("username", "m1");
-                    window.location.href="main.html";
-                }
-            })
+                        console.log(result);
+                        if (result.mid) {
+                            localStorage.member = JSON.stringify(result);
+                            window.location.href="main.html";
+                        } else {
+                            swal({
+                                title: 'ID 또는 PW 확인',
+                                type: 'error'
+                            });
+                        }
+
+                    }
+                });
+            } else {
+                swal({
+                    title: '빈 칸을 입력해 주세요',
+                    type: 'error'
+                });
+            }
+
         });
 
         //회원가입 (아직 간략한 내용이고 추후에 수정해야함)
@@ -162,10 +209,11 @@
                 preConfirm: () => {
                 return $.ajax({
                     type: 'post',
-                    url: 'http://192.168.0.25:8080/login/join' ,
+                    url: 'http://192.168.0.24:8080/login/join' ,
                     contentType: 'application/json;',
-                    data :JSON.stringify({mid : $('#swal-input1').val(),
-                        mpw:$('#swal-input2').val(),
+                    data :JSON.stringify(
+                        {mid : $('#swal-input1').val(),
+                        mpw : $('#swal-input2').val(),
                         name : $('#swal-input3').val()}),
                     success: function () {
                         setTimeout(function () {
@@ -173,33 +221,13 @@
                                 title: '등록되었습니다.',
                                 type: 'success',
                                 timer: 2000
-                            })
-                        })
+                            });
+                        });
                     }
-                });
-
-            }
-
-            /*var data = {mid : $('#swal-input1').val(),mpw:$('#swal-input2').val()};
-                inputValidator: (value) => {
-                return $.ajax({
-                    type: 'post',
-                    url: 'http://192.168.0.25:8080/login/' + value,
-                    success: function () {
-                        setTimeout(function () {
-                            swal({
-                                title: '등록되었습니다.',
-                                type: 'success',
-                                timer: 2000
-                            })
-                        })
-                    }
-                });
-                }*/
-
-             });
+                    });
+                }
+            });
         });
-
     });
 </script>
 </html>

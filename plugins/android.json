@@ -7,12 +7,25 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
     "com.telerik.plugins.nativepagetransitions": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "io.cordova.toeicmanager"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "io.cordova.toeicmanager"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "io.cordova.toeicmanager"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.cordova.toeicmanager"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-fcm": {
+      "PACKAGE_NAME": "io.cordova.toeicmanager"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "io.cordova.toeicmanager"
+    }
+  }
 }

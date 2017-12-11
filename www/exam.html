@@ -120,13 +120,14 @@
         width: 100%;
     }
 
-    ul li{
+    ul button{
+        font-size: 13px;
         margin-left: 0;
         text-align: center;
         list-style: none;
         float: left;
         width: 50%;
-        height: 20%;
+        height: 32%;
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -263,7 +264,7 @@
         $(".cnt>h1").html( (ord + 1) + "/" + list.length);
         $(".exampleUl").attr("data-total", list.length);
 
-        while (examples.length < 3) {
+        while (examples.length < 2) {
             var random = Math.floor(Math.random() * list.length);
 
             if (ord !== random) {
@@ -290,9 +291,9 @@
             var str = "";
             for (var i = 0; i < examples.length; i++){
                 if (examples[i] === list[ord].meaning){
-                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
+                    str += "<button class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
                 } else {
-                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i].meaning + "</li>";
+                    str += "<button class='btn' data-wno=" + list[ord].wno + ">" + examples[i].meaning + "</button>";
                 }
             }
 
@@ -305,9 +306,9 @@
             var str = "";
             for (var i = 0; i < examples.length; i++){
                 if (examples[i] === list[ord].word){
-                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
+                    str += "<button class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
                 } else {
-                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i].word + "</li>";
+                    str += "<button class='btn' data-wno=" + list[ord].wno + ">" + examples[i].word + "</button>";
                 }
             }
 
@@ -322,13 +323,13 @@
             var str = "";
             for (var i = 0; i < examples.length; i++){
                 if (examples[i] === list[ord].word){
-                    str += "<li data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</li>";
+                    str += "<button class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
                 } else {
-                    str += "<li data-wno=" + list[ord].wno + ">" + examples[i].word + "</li>";
+                    str += "<button class='btn' data-wno=" + list[ord].wno + ">" + examples[i].word + "</button>";
                 }
             }
         }
-        str += "<li data-wno=" + list[ord].wno + " style= margin-left:25%>모르냐</li>";
+        str += "<button class='btn' data-wno=" + list[ord].wno + ">모르냐</button>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
@@ -383,7 +384,7 @@
     function dataTransfer(e) {
         var data = {};
         var uAnswer = e || null;
-        var wno = $("div>ul>li").attr("data-wno");
+        var wno = $("div>ul>button").attr("data-wno");
 
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){

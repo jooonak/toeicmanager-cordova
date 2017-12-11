@@ -9,7 +9,8 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--jquery ui 못잡아서 일단 막아놓음 -->
+  <!--  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -353,7 +354,7 @@
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://192.168.0.22:8080/vocabulary/',
+            url: 'http://192.168.0.24:8080/vocabulary/',
             success: function(data) {
                 data.forEach(function(voca){
                     $(".vocaOpt").append("<li class= 'table-view-cell vocabulary' value="+voca.vno+">"+voca.vname+"</li>");
@@ -386,7 +387,7 @@
                 type : 'post',
                 data : JSON.stringify(data),
                 contentType:"application/json; charset=UTF-8",
-                url: 'http://192.168.0.22:8080/vocabulary/'+vno+"/words",
+                url: 'http://192.168.0.24:8080/vocabulary/'+vno+"/words",
                 success: function() {
                     alert("등록 성공");
                     if(word === wordList){

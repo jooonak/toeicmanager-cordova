@@ -348,7 +348,7 @@
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://192.168.0.22:8080/vocabulary/',
+            url: 'http://192.168.0.24:8080/vocabulary/',
             success: function(data) {
                 data.forEach(function(voca){
                     $(".vocaOpt").append("<li class= 'table-view-cell vocabulary' value="+voca.vno+">"+voca.vname+"</li>");
@@ -385,7 +385,7 @@
                 type : 'post',
                 data : JSON.stringify(data),
                 contentType:"application/json; charset=UTF-8",
-                url: 'http://192.168.0.22:8080/vocabulary/'+vno+"/words",
+                url: 'http://192.168.0.24:8080/vocabulary/'+vno+"/words",
                 success: function() {
                     alert("등록 성공");
                     window.location.href = "words.html?vno="+vno;
