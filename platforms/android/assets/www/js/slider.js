@@ -98,7 +98,9 @@
 
         offsetX = (deltaX / resistance) + getScroll();
 
-        e.preventDefault();
+
+        //preventDefault()를 설정할 경우 warning이 발생하여 임의로 막아놓았다.
+        //e.preventDefault();
 
         resistance = slideNumber === 0         && deltaX > 0 ? (pageX / sliderWidth) + 1.25 :
             slideNumber === lastSlide && deltaX < 0 ? (Math.abs(pageX) / sliderWidth) + 1.25 : 1;
