@@ -264,7 +264,7 @@
         $(".cnt>h1").html( (ord + 1) + "/" + list.length);
         $(".exampleUl").attr("data-total", list.length);
 
-        while (examples.length < 3) {
+        while (examples.length < 2) {
             var random = Math.floor(Math.random() * list.length);
 
             if (ord !== random) {
@@ -329,7 +329,7 @@
                 }
             }
         }
-        str += "<button class='btn' data-wno=" + list[ord].wno + " style= margin-left:25%>모르냐</button>";
+        str += "<button class='btn' data-wno=" + list[ord].wno + ">모르냐</button>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);

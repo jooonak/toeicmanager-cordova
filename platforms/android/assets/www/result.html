@@ -31,10 +31,8 @@
 
         function drawChart() {
 
-
-
             var obj = [];
-            $.getJSON("http://192.168.0.25:8080/result/mainexam", function (result) {
+            $.getJSON("http://192.168.0.25:8080/result/", function (result) {
 
                 var data = google.visualization.arrayToDataTable([]);
 
@@ -43,7 +41,7 @@
                 var third = 0;
                 var fourth = 0;
                 var fifth = 0;
-                var  etc= 0;
+                var etc= 0;
 
                 for (var i = 0; i < result.length; i++){
                     obj.push({score : result[i].score});
@@ -72,8 +70,6 @@
                     ['miss',fifth],
                     ['아직 못외움...', etc]
                 ]);
-
-                console.log(data);
 
                 var options = {
                     title: '암기현황!!!!!',

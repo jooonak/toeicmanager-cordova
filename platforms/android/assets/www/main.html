@@ -306,9 +306,8 @@
         <form id="formData" action="result.html?" method="get">
             <input type="hidden" >
         </form>
-    </div>
-
 </div>
+
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
@@ -322,16 +321,13 @@
 
 
     var member = (function (){
-        if (localStorage.member !== null){
-            return {mid : "m1", mpw : "m1", name : "m1", goal : 500, extra : 500, lstatus : "learn", lcnt : 1, startpoint : 70, todayanmocnt : 50, exampointer : 1};
-//            JSON.parse(localStorage.member);
+        if (localStorage.member === undefined){
+            window.location = 'login.html';
         } else {
-            $.getJSON("springURL", function (result) {
-                console.log(result);
-//                localStorage.member = JSON.parse(result);
-            });
+            return JSON.parse(localStorage.member);
         }
     })();
+
     $(document).ready(function () {
 
         //학습 및 시험 목표량 정보를 가져오는 함수

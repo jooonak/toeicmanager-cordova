@@ -140,7 +140,7 @@
         $(".info>h2").text(str);
 
         if (type === "learn"){
-            $.getJSON("http://192.168.0.26:8080/" + type + "/", function (result) {
+            $.getJSON("http://192.168.0.26:8080/" + type + "/?mid=" + member.mid, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
@@ -177,8 +177,27 @@
                 }
             });
         }
+
+        $(".btn-primary").on("click",function(){
+
+            var data = {mid : member.mid};
+
+            $.ajax({
+                url: "http://192.168.0.25:8080/exams/timecheck",
+                method: "post",
+                data: data,
+                success: function (result) {
+
+
+                }
+            });
+        })
+
+
+
     }
     checkExam(type);
+
 
     //뒤로 가기 버튼
     $(".back").on("click",function(){
