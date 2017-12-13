@@ -30,9 +30,20 @@ var app = {
         FCMPlugin.getToken(
             function(token){
                 console.log("token :"+ token);
-                var member = JSON.parse(localStorage.member);
-                member.token = token;
-                localStorage.member = JSON.stringify(member);
+
+                if (localStorage.member) {
+                    var member = JSON.parse(localStorage.member);
+                    if (member.pushToken === token) {
+
+                    } else {
+                        member.pushToken = token;
+                        // ajax -> DB의 member.pushToken값 변경
+                    }
+                } else {
+                    localStorage.token = token;
+                    //회원가입 할 때 업데이트
+                }
+
             },
             function(err){
                 console.log('error retrieving token: ' + err);
@@ -55,6 +66,10 @@ var app = {
                 console.log('Error registering onNotification callback: ' + err);
             }
         );
+
+        FCMPlugin.onTokenRefresh(function(token){
+            alert( token );
+        });
     },
 
     // Update DOM on a Received Event

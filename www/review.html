@@ -252,7 +252,7 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
 
-    var member = JSON.parse(localStorage.getItem("member"));
+    var member = JSON.parse(localStorage.member);
     var eno = getUrlParams('eno');
 
     var time = 5;
@@ -263,7 +263,7 @@
     var examList = [];
 
     $.ajax({
-        url : "http://192.168.0.26:8080/review/?mid=" + member.mid + "&lstatus=" + member.lstatus + "&examPointer=" + member.exampointer,
+        url : "http://192.168.0.24:8080/review/?mid=" + member.mid + "&lstatus=" + member.lstatus + "&examPointer=" + member.examPointer,
         type: 'get',
         async: false,
         success : function(result) {
@@ -277,7 +277,7 @@
         $(".cnt>h1").html( (ord + 1) + "/" + total);
         $(".exampleUl").attr("data-total", list.length);
 
-        $('.question').html("<img src=http://192.168.0.26:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+        $('.question').html("<img src=http://192.168.0.24:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
         var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
 
@@ -363,7 +363,7 @@
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/review/middle/',
+                    url : 'http://192.168.0.24:8080/review/middle/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -385,7 +385,7 @@
             if (member.lstatus === "review") {
                 // review/finished에는 member의 status가 review일 때만 전송하고(현재 학습자의 학습 상태가 review인경우) 나머지는 middle로 데이터 전송
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/review/finished/',
+                    url : 'http://192.168.0.24:8080/review/finished/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -401,7 +401,7 @@
                 });
             } else {
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/review/middle/',
+                    url : 'http://192.168.0.24:8080/review/middle/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
