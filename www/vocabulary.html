@@ -188,7 +188,7 @@
         //단어장 리스트를 가져오는 ajax 요청
         function getList() {
             $.ajax({
-                url: "http://192.168.0.25:8080/vocabulary/",
+                url: "http://192.168.0.24:8080/vocabulary/",
                 dataType: "json",
                 type: 'get',
                 success: function (data) {
@@ -251,7 +251,7 @@
                 inputValidator: (value) => {
                 return $.ajax({
                     type : 'post',
-                    url: 'http://192.168.0.25:8080/vocabulary/'+value,
+                    url: 'http://192.168.0.24:8080/vocabulary/'+value,
                     success: function() {
                         setTimeout(function () {
                             swal({title: 'success',
@@ -283,7 +283,7 @@
                     inputValidator: (value) => {
                     return $.ajax({
                         type : 'put',
-                        url: 'http://192.168.0.25:8080/vocabulary/'+vno,
+                        url: 'http://192.168.0.24:8080/vocabulary/'+vno,
                         data:JSON.stringify({vno : vno , vname: value}),
                         contentType:"application/json; charset=utf-8",
                         success: function() {
@@ -319,7 +319,7 @@
                     if(result.value){
                     $.ajax({
                         type: 'delete',
-                        url: 'http://192.168.0.25:8080/vocabulary/' + vno,
+                        url: 'http://192.168.0.24:8080/vocabulary/' + vno,
                         success: function () {
                             setTimeout(function () {
                                 swal({

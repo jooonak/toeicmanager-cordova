@@ -9,7 +9,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Include the compiled Ratchet CSS -->
-    <link href="dist/css/ratchet.css" rel="stylesheet">
+    <link href="dist/css/ratchet.css?ver=2" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
     <!-- <script src="dist/js/ratchet.js"></script>-->
@@ -32,6 +32,10 @@
     html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
+        background-image: url('img/back.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .container {
@@ -47,7 +51,6 @@
         grid-auto-rows: 1fr 24.5% 13% 20% 10% 5% 1fr;
         grid-column-gap: 15px;
         grid-row-gap: 15px;
-        background-color: white;
         text-align: center;
         height: 100%;
     }
@@ -56,7 +59,7 @@
         font-size: 150%;
         margin-right: 15px;
         margin-left: 15px;
-    //background-color: #a5dc86;
+
     }
 
     .header {
@@ -67,12 +70,16 @@
     .contents {
         grid-column: 1/3;
         grid-row: 2/3;
+        background-color: white;
+        opacity: .8;
     }
 
     .chatbot{
         grid-column: 1/3;
         grid-row: 3/4;
         box-shadow: 0 0 10px #999;
+        background-color: white;
+        opacity: .8;
     }
 
     .result1 {
@@ -81,6 +88,8 @@
         box-shadow: 0 0 10px #999;
         margin-left: 15px;
         font-size: 150%;
+        background-color: white;
+        opacity: .8;
     }
 
     .result2 {
@@ -89,6 +98,8 @@
         box-shadow: 0 0 10px #999;
         margin-right: 15px;
         font-size: 150%;
+        background-color: white;
+        opacity: .8;
     }
     .progress{
         grid-column: 1/3;
@@ -127,7 +138,7 @@
 
     .search {
         width: 80%;
-        margin: 9.25px;
+        margin: 7px;
         float: left;
     }
 
@@ -228,6 +239,12 @@
         }
     }
 
+    #olinput {
+        margin-top: 7px;
+        margin-bottom: 0px;
+        width: 80%;
+        height: 39px;
+    }
 </style>
 
 <body>
@@ -242,18 +259,18 @@
     </div>
 
     <div class="contents box" >
-        <div class="searchPosition center" >
+       <div class="searchPosition center" >
 
             <div  class="camera center">
                 <div id="cameraTakePicture">
-                    <img class="img" src="img/camera.jpg">
+                    <img class="img" src="img/camera.png">
                 </div>
             </div>
 
             <div class=" search" >
                 <form id="olform" method="GET" action="search.html">
-                    <input style="width: 79%; margin:0px; height: 39px" id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
-                    <button style=" margin:0px; " class="btn icon icon-search searchBtn"></button>
+                    <input id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
+                    <img class="searchBtn" style="float: right; margin: 7px 7px 7px 7px;" src="img/serach.png">
                 </form>
             </div>
         </div>
@@ -311,13 +328,13 @@
 </div>
 
 
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
 <script src="sweetalert2/sweetalert2.min.js"></script>
-<script type="text/javascript" src="cordova.js"></script>
 <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script type="text/javascript">
 
@@ -584,11 +601,7 @@
             }
 
         });
-
-
     });
-
-
 </script>
 
 
