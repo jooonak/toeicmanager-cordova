@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Include the compiled Ratchet CSS -->
     <link href="dist/css/ratchet.css" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 
     <!-- Include the compiled Ratchet JS -->
     <script src="dist/js/ratchet.js"></script>
@@ -67,7 +68,6 @@
         display: -ms-flexbox;
         display: -webkit-flex;
         justify-content: center;
-        align-items: center;
     }
 
     .question {
@@ -213,12 +213,13 @@
     }
 
     .result {
-        width: 85%;
+        width: 65%;
         height: auto;
         position: absolute;
         z-index: 100;
         display: none;
-        transform: translate(8.5%,50%);
+        transform: translate(27%,75%);
+        opacity: .9;
     }
 
 </style>
@@ -229,7 +230,7 @@
     <div class="box header">
         <header class="bar bar-nav dark">
             <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
-            <h1 class="title" style="color: white">EXAM PAGE</h1>
+            <!--<h1 class="title" style="color: white">EXAM PAGE</h1>-->
             <img style="height: 100%; margin-left: -22%; position: absolute; width: 154px" src="img/main_image.png">
         </header>
     </div>
@@ -254,6 +255,7 @@
 
 </div>
 
+<script src="sweetalert2/sweetalert2.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -472,6 +474,22 @@
             });
         }
     }
+
+    $(".back").on("click",function(){
+        swal({
+            title: 'Are you sure?',
+            html: $('<div>')
+                .css('color', 'red')
+                .text('If you leave, it will not be saved'),
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.value) {
+            window.location = 'main.html';
+            }
+        });
+    });
 </script>
 </body>
 </html>
