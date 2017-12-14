@@ -224,6 +224,9 @@
         border-radius: 50%;
         background: white;
     }
+    .material-icons {
+        margin-top: 0px;
+    }
 </style>
 
 
@@ -238,7 +241,7 @@
                 <a href="#popover">
                     <h1 class="title selected-voca-name">
                         Select Voca
-                        <span class="icon icon-caret"></span>
+                        <i class="material-icons">keyboard_arrow_down</i>
                     </h1>
 
                 </a>
@@ -268,35 +271,27 @@
                             <div class="slide">
                                 <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "pt_3.jpg">
                             </div>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="stc-position" >
-                    <ul class="stc" style="padding: 0; margin-left: 0px; margin-right: 0px">
-                        <li class="table-view-cell" style="padding: 0; margin-left: 10px; margin-right: 10px">
-                            <label class="radio-container"style="font-size:15px; text-align: left">
-                                <div class = "sentence"><!--Think like a man of action and act like man of thought.--></div>
-                                <input type="radio" checked="checked" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
-                            <label class="radio-container"  style="font-size:15px; text-align: left">
-                                <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
-                            <label class="radio-container"  style="font-size:15px; text-align: left">
-                                <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                    </ul>
+                <hr style="width: 280px;">
+                <h3 style="font-size: 0.7em; margin-top: 5px">
+                    sentence example
+                </h3>
+                <a href="#myModalexample" >
+                <div style="margin-left: 19px; margin-right:19px; min-height: 60px; box-shadow: 1px 1px #888888;">
+                        <h3 style="font-size: 0.6em; margin: 10px; text-align: left; vertical-align: 20%; ">
+                            one of the greatest wits of all time
+                        </h3>
+                    <i class="material-icons">keyboard_arrow_down</i>
                 </div>
+                </a>
+
+
+
+
 
                 <input style="width:70%; display: inline" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
             </div>
@@ -304,7 +299,40 @@
         </div>
 
     </div>
+    <div id="myModalexample" class="modal">
+        <header class="bar bar-nav">
+            <a class="icon icon-close pull-right" href="#myModalexample"></a>
+            <h1 class="title">Modal</h1>
+        </header>
 
+        <div class="content">
+            <div class="stc-position" >
+                <ul class="stc" style="padding: 0; margin-left: 0px; margin-right: 0px">
+                    <li class="table-view-cell" style="padding: 0; margin-left: 10px; margin-right: 10px">
+                        <label class="radio-container"style="font-size:15px; text-align: left">
+                            <div class = "sentence"><!--Think like a man of action and act like man of thought.--></div>
+                            <input type="radio" checked="checked" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
+                        <label class="radio-container"  style="font-size:15px; text-align: left">
+                            <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
+                            <input type="radio" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
+                        <label class="radio-container"  style="font-size:15px; text-align: left">
+                            <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
+                            <input type="radio" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <div id="popover" class="popover" style="margin-top: 50px">
         <header class="bar bar-nav">
@@ -321,6 +349,7 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
 <script type="text/javascript" src="js/popovers.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
 <script src="sweetalert2/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script TYPE="application/javascript">
