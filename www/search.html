@@ -260,13 +260,13 @@
                     <div class="slider" id="mySlider">
                         <div class="slide-group">
                             <div class="slide">
-                                <img data-imgNum = 0 src="img/pt_1.jpg" value = "pt_1.jpg">
+                                <img style="width: 100%; height: 100%;" class="img" data-imgNum = 0 src="" value = "pt_1.jpg">
                             </div>
                             <div class="slide">
-                                <img data-imgNum = 1 src="img/pt_2.jpg" value = "pt_2.jpg">
+                                <img style="width: 100%; height: 100%;" class="img" data-imgNum = 1 src="" value = "pt_2.jpg">
                             </div>
                             <div class="slide">
-                                <img data-imgNum = 2 src="img/pt_3.jpg" value = "pt_3.jpg">
+                                <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "pt_3.jpg">
                             </div>
                         </div>
                     </div>
@@ -276,22 +276,22 @@
                     <ul class="stc" style="padding: 0; margin-left: 0px; margin-right: 0px">
                         <li class="table-view-cell" style="padding: 0; margin-left: 10px; margin-right: 10px">
                             <label class="radio-container"style="font-size:15px; text-align: left">
-                                <div class = "sentence">Think like a man of action and act like man of thought.</div>
+                                <div class = "sentence"><!--Think like a man of action and act like man of thought.--></div>
                                 <input type="radio" checked="checked" name="radio">
                                 <span class="checkmark"></span>
                             </label>
                         </li>
                         <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
                             <label class="radio-container"  style="font-size:15px; text-align: left">
-                                <div class = "sentence">Courage is very important. Like a muscle, it is strengthened by use.</div>
-                                <input type="radio" checked="checked" name="radio">
+                                <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
+                                <input type="radio" name="radio">
                                 <span class="checkmark"></span>
                             </label>
                         </li>
                         <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
                             <label class="radio-container"  style="font-size:15px; text-align: left">
-                                <div class = "sentence">Courage is very important. Like a muscle, it is strengthened by use.</div>
-                                <input type="radio" checked="checked" name="radio">
+                                <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
+                                <input type="radio" name="radio">
                                 <span class="checkmark"></span>
                             </label>
                         </li>
@@ -329,21 +329,20 @@
     var selectedImg = "pt_1.jpg";   //테스트용, 추 후 이미지를 크롤링하여 가져오는 경우 첫번째 이미지를 selectedImg에 넣는다.
     var vno = 0;
 
-        $("document").ready(function(){
-            $(".word").html(words);
-            console.log($(".sentence")[0]);
+    $("document").ready(function(){
+        $(".word").html(words);
 
-            //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
-            $.ajax({
-                dataType: "json",
-                type : 'get',
-                url: 'http://192.168.0.22:3000/dic',
-                data: {'words':words},
-                success: function(data) {
-                    $(".meaning").append(data);
-                    meaning = data;
-                }
-            });
+        //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
+        $.ajax({
+            dataType: "json",
+            type : 'get',
+            url: 'http://192.168.0.24:3000/dic',
+            data: {'words':words},
+            success: function(data) {
+                $(".meaning").append(data);
+                meaning = data;
+            }
+        });
 
         //단어장 리스트를 가져오는 ajax 요청
         $.ajax({
@@ -404,6 +403,27 @@
             e.stopPropagation();
             sentence = $(e.currentTarget).find(".sentence").html();
         });
+        
+        function getSentences(word) {
+            $.getJSON('http://192.168.0.24:3000/crawling/sentences?words='+word, function (result) {
+                for (var i = 0; i < result.sentences.length; i++) {
+                    $('.sentence')[i].innerHTML = result.sentences[i];
+                }
+            });
+        }
+        
+        function getImgs(word) {
+            $.getJSON('http://192.168.0.24:3000/crawling/imgs?words='+word, function (result) {
+                console.log(result);
+                for (var i = 0; i < result.imgs.length; i++) {
+                    $('.img')[i].setAttribute('src', result.imgs[i]);
+                    console.log(result.imgs[i]);
+                }
+            });
+        }
+
+        getSentences(words);
+        getImgs(words);
     });
 </script>
 </html>

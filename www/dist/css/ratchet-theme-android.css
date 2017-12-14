@@ -8,8 +8,11 @@
  * =====================================================
  */
 
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* { font-family: 'Noto Sans KR', sans-serif !important; }
+
 body {
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   line-height: 22px;
   color: #222;
