@@ -129,14 +129,14 @@
 <script TYPE="application/javascript">
     var selectedWords =[];
     $(document).ready(function(){
-        var text = getUrlParams('text');
+        var result = getUrlParams('text');
         var $wordList = $(".word-list");
-        console.log(text);
-        var result = ["hi","my","name","is","soobok","hi","my","name","is","soobok","hi","my","name","is","soobok","hi","my","name","is","soobok"];
-
         console.log(result);
+        //var result = ["hi","my","name","is","soobok","hi","my","name","is","soobok","hi","my","name","is","soobok","hi","my","name","is","soobok"];
+        JSON.parse(result);
+        console.log(JSON.parse(result));
 
-        result.forEach(function(word){
+        JSON.parse(result).forEach(function(word){
             $wordList.append(
                 "<div class='table-view-cell'>"+
                 "<div class='word' >"+word+ "</div>" +
