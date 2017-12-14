@@ -20,6 +20,8 @@
 
     <!-- Include the compiled Ratchet CSS -->
     <link href="dist/css/ratchet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 
     <!-- Include the compiled Ratchet JS -->
     <script src="dist/js/ratchet.js"></script>
@@ -217,13 +219,31 @@
         100% {background-position: 30px 30px;}
     }
 
+
+    @keyframes shake {
+        from, to {
+            transform: translate3d(0, 0, 0);
+        }
+
+        10%, 30%, 50%, 70%, 90% {
+            transform: translate3d(-10px, 0, 0);
+        }
+
+        20%, 40%, 60%, 80% {
+            transform: translate3d(10px, 0, 0);
+        }
+    }
+
+    .shake {
+        animation-name: shake;
+    }
 </style>
 <body>
 <div class='container'>
 
     <div class="box header">
         <header class="bar bar-nav dark">
-            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
             <h1 class="title" style="color: white">Toeic Manager</h1>
         </header>
     </div>
@@ -248,6 +268,7 @@
 
 </div>
 
+<script src="sweetalert2/sweetalert2.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
@@ -279,9 +300,9 @@
 
         $('.question').html("<img src=http://192.168.0.24:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
-        var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><span class='icon icon-close'></span></button></li>";
+        var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><i class='material-icons dp48'>clear</i></button></li>";
 
-        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><span class='icon icon-check' data-answer='true'></span></button></li>";
+        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><i class='material-icons dp48' data-answer='true'>done</i></button></li>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
@@ -415,7 +436,20 @@
     }
 
     $(".back").on("click",function(){
-        window.location.href = "startpage.html?type=learn";
+        swal({
+            title: 'Are you sure?',
+            html: $('<div>')
+                .css('color', 'red')
+                .text('If you leave, it will not be saved'),
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.value) {
+                window.location = 'main.html';
+        }
+        });
+
     });
 </script>
 </body>
