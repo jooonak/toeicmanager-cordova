@@ -248,6 +248,7 @@
 
 </div>
 
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
@@ -264,7 +265,7 @@
     var examList = [];
 
     $.ajax({
-        url : "http://192.168.0.26:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
+        url : "http://192.168.0.24:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
         type: 'get',
         async: false,
         success : function(result) {
@@ -363,7 +364,7 @@
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/learn/middle/' + eno,
+                    url : 'http://192.168.0.24:8080/learn/middle/' + eno,
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -383,7 +384,7 @@
             }
 
             $.ajax({
-                url : 'http://192.168.0.26:8080/learn/finished/' + eno,
+                url : 'http://192.168.0.24:8080/learn/finished/' + eno,
                 type: 'put',
                 data: JSON.stringify(data),
                 contentType: 'application/json;',

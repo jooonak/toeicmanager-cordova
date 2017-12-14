@@ -263,8 +263,8 @@
 
     <div class=" header ">
         <header class="bar bar-nav dark">
-            <button class="btn btn-link btn-nav pull-right"><img style="margin-top: 6px;" class="img" src="img/profile.png"></button>
-            <h1 class="title" style="color: white">Toeic Manager</h1>
+            <button class="btn btn-link btn-nav pull-right"><i class="large material-icons mod-active" style="color: white; float: left; margin: 10px 5px;">settings</i></button>
+            <img style="height: 100%; margin-left: -14%; position: absolute; width: 154px" src="img/main_image.png">
         </header>
     </div>
 
@@ -578,17 +578,17 @@
 
         //단어장 리스트 페이지 이동
         $(".wordListPosition").on("click", function (e) {
-            window.plugins.nativepagetransitions.slide({ href: "vocabulary.html?mid=m1"});
+            window.plugins.nativepagetransitions.slide({ href: "vocabulary.html?mid=" + member.mid});
         });
 
         //암기현황 구역 클릭시 페이지 이동
         $(".result").on("click", function (e) {
-            window.plugins.nativepagetransitions.slide({ href: "result.html?mid=m1"});
+            window.plugins.nativepagetransitions.slide({ href: "result.html?mid=" + member.mid});
         });
 
         //챗봇 구역 클릭시 페이지 이동
         $(".chatbot").on("click", function (e) {
-            window.plugins.nativepagetransitions.slide({ href: "chatbot.html?mid=m1"});
+            window.plugins.nativepagetransitions.slide({ href: "chatbot.html?mid=" + member.mid});
         });
 
         //btn에 event를 먹이면 검색 부분도 같이 먹여져서 btn-block으로 바꿈

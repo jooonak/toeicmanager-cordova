@@ -118,16 +118,16 @@
         margin: 0;
         padding: 0;
         width: 100%;
+        height: 100%;
     }
 
-    ul button{
-        font-size: 13px;
+    ul > button{
         margin-left: 0;
         text-align: center;
         list-style: none;
         float: left;
-        width: 50%;
-        height: 32%;
+        width: 48.5%;
+        height: 47.5%;
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -135,6 +135,15 @@
         justify-content: center;
         align-items: center;
         padding: 1em;
+        background-color: white;
+    }
+
+    ul > button:nth-child(odd){
+        margin-right: 3%;
+    }
+
+    ul > button:nth-child(-n+2){
+        margin-bottom: 3%;
     }
 
     .meter {
@@ -203,14 +212,25 @@
         100% {background-position: 30px 30px;}
     }
 
+    .result {
+        width: 85%;
+        height: auto;
+        position: absolute;
+        z-index: 100;
+        display: none;
+        transform: translate(8.5%,50%);
+    }
+
 </style>
 <body>
 <div class='container'>
-
+    <img class="result correct" src="img/success.png">
+    <img class="result wrong" src="img/wrong.png">
     <div class="box header">
         <header class="bar bar-nav dark">
             <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
-            <h1 class="title" style="color: white">Toeic Manager</h1>
+            <h1 class="title" style="color: white">EXAM PAGE</h1>
+            <img style="height: 100%; margin-left: -22%; position: absolute; width: 154px" src="img/main_image.png">
         </header>
     </div>
 
@@ -234,6 +254,7 @@
 
 </div>
 
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 
@@ -247,7 +268,7 @@
     var examList = [];
 
     $.ajax({
-        url : "http://192.168.0.26:8080/exam/today?mid=" + member.mid,
+        url : "http://192.168.0.24:8080/exam/today?mid=" + member.mid,
         type: 'get',
         async: false,
         success : function(result) {
@@ -298,7 +319,7 @@
             }
 
         } else if (type === 2){
-            $('.question').html("<img width='100%' height='100%' src=http://192.168.0.25:8080/file/" + list[ord].img + ">");
+            $('.question').html("<img width='100%' height='100%' src=http://192.168.0.24:8080/file/" + list[ord].img + ">");
 
             examples.push(list[ord].word);
             arrayShuffle(examples);
@@ -382,19 +403,26 @@
     document.querySelector("div>ul").addEventListener("click", dataTransfer);
 
     function dataTransfer(e) {
+        var $correct = $(".correct");
+        var $wrong = $(".wrong");
         var data = {};
         var uAnswer = e || null;
         var wno = $("div>ul>button").attr("data-wno");
 
         if (uAnswer){
             if (uAnswer.target.getAttribute("data-answer")){
+                $correct.show();
                 examList.push({wno: wno, result : "o"});
                 score++;
+                setTimeout(function () { $correct.hide() }, 800);
             } else {
+                $wrong.show();
                 examList.push({wno: wno, result : "x"});
+                setTimeout(function () { $wrong.hide() }, 800);
             }
         } else {
             examList.push({wno: wno, result : "x"});
+            setTimeout(function () { $wrong.hide() }, 800);
         }
 
         if (++ord < total){
@@ -414,7 +442,7 @@
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/exam/today/',
+                    url : 'http://192.168.0.24:8080/exam/today/',
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -433,7 +461,7 @@
             }
 
             $.ajax({
-                url : 'http://192.168.0.26:8080/exam/today/',
+                url : 'http://192.168.0.24:8080/exam/today/',
                 type: 'put',
                 data: JSON.stringify(data),
                 contentType: 'application/json;',

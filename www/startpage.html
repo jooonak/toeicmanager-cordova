@@ -128,6 +128,7 @@
     </div>
 </div>
 
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
@@ -188,7 +189,7 @@
         var data = {mid : member.mid};
 
         $.ajax({
-            url: "http://192.168.0.24:8080/exams/timecheck",
+            url: "http://192.168.0.24:8080/exam/timecheck",
             method: "post",
             data: data,
             success: function (result) {
@@ -200,7 +201,8 @@
 
     //뒤로 가기 버튼
     $(".back").on("click",function(){
-        window.location.href = "main.html";
+        window.plugins.nativepagetransitions.slide({ href: "main.html"});
+//        window.location.href = "main.html";
     });
 </script>
 </body>
