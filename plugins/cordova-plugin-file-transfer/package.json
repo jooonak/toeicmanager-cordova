@@ -1,25 +1,11 @@
 {
-<<<<<<< HEAD
-  "_from": "cordova-plugin-file-transfer",
-=======
   "_from": "cordova-plugin-file-transfer@^1.7.0",
->>>>>>> origin/master
   "_id": "cordova-plugin-file-transfer@1.7.0",
   "_inBundle": false,
   "_integrity": "sha1-5iLBiomShlhQ0lvcMMxLcd5R2HQ=",
   "_location": "/cordova-plugin-file-transfer",
   "_phantomChildren": {},
   "_requested": {
-<<<<<<< HEAD
-    "type": "tag",
-    "registry": true,
-    "raw": "cordova-plugin-file-transfer",
-    "name": "cordova-plugin-file-transfer",
-    "escapedName": "cordova-plugin-file-transfer",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-=======
     "type": "range",
     "registry": true,
     "raw": "cordova-plugin-file-transfer@^1.7.0",
@@ -28,7 +14,6 @@
     "rawSpec": "^1.7.0",
     "saveSpec": null,
     "fetchSpec": "^1.7.0"
->>>>>>> origin/master
   },
   "_requiredBy": [
     "#USER",
@@ -36,11 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-file-transfer/-/cordova-plugin-file-transfer-1.7.0.tgz",
   "_shasum": "e622c18a8992865850d25bdc30cc4b71de51d874",
-<<<<<<< HEAD
-  "_spec": "cordova-plugin-file-transfer",
-=======
   "_spec": "cordova-plugin-file-transfer@^1.7.0",
->>>>>>> origin/master
   "_where": "C:\\cordova",
   "author": {
     "name": "Apache Software Foundation"
@@ -65,11 +46,7 @@
       "browser"
     ]
   },
-<<<<<<< HEAD
-  "deprecated": false,
-=======
   "deprecated": "This plugin has been deprecated",
->>>>>>> origin/master
   "description": "Cordova File Transfer Plugin",
   "devDependencies": {
     "jscs": "^2.6.0",

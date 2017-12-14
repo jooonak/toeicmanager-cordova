@@ -11,7 +11,7 @@
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-* { font-family: 'Noto Sans KR', sans-serif !important; }
+*:not(.material-icons) { font-family: 'Noto Sans KR', sans-serif !important; }
 
 html {
   -webkit-text-size-adjust: 100%;

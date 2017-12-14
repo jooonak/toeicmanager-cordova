@@ -17,7 +17,7 @@
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Include the compiled Ratchet CSS -->
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
@@ -223,7 +223,7 @@
 
     <div class="box header">
         <header class="bar bar-nav dark">
-            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
             <h1 class="title" style="color: white">Toeic Manager</h1>
         </header>
     </div>
@@ -248,6 +248,7 @@
 
 </div>
 
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
@@ -264,7 +265,7 @@
     var examList = [];
 
     $.ajax({
-        url : "http://192.168.0.26:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
+        url : "http://192.168.0.24:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
         type: 'get',
         async: false,
         success : function(result) {
@@ -363,7 +364,7 @@
                 }
 
                 $.ajax({
-                    url : 'http://192.168.0.26:8080/learn/middle/' + eno,
+                    url : 'http://192.168.0.24:8080/learn/middle/' + eno,
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -383,7 +384,7 @@
             }
 
             $.ajax({
-                url : 'http://192.168.0.26:8080/learn/finished/' + eno,
+                url : 'http://192.168.0.24:8080/learn/finished/' + eno,
                 type: 'put',
                 data: JSON.stringify(data),
                 contentType: 'application/json;',

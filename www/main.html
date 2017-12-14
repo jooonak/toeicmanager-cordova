@@ -18,9 +18,9 @@
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Include the compiled Ratchet CSS -->
-    <link href="dist/css/ratchet.css?ver=2" rel="stylesheet">
+    <link href="dist/css/ratchet.css?ver=1" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
     <!-- <script src="dist/js/ratchet.js"></script>-->
@@ -43,23 +43,21 @@
         grid-template-areas:
                 'header header'
                 'contents contents'
-                'chatbot chatbot'
-                'result1 result2'
-                'progress progress'
-                'button button'
                 'footer footer';
-        grid-auto-rows: 1fr 24.5% 13% 20% 10% 5% 1fr;
+        grid-auto-rows: 1fr 85% 1fr;
         grid-column-gap: 15px;
         grid-row-gap: 15px;
         text-align: center;
         height: 100%;
+        /*width: 100%;
+        position: absolute;*/
     }
 
     .box {
         font-size: 150%;
         margin-right: 15px;
         margin-left: 15px;
-
+        opacity: .8;
     }
 
     .header {
@@ -69,66 +67,68 @@
 
     .contents {
         grid-column: 1/3;
-        grid-row: 2/3;
-        background-color: white;
-        opacity: .8;
-    }
-
-    .chatbot{
-        grid-column: 1/3;
-        grid-row: 3/4;
-        box-shadow: 0 0 10px #999;
-        background-color: white;
-        opacity: .8;
-    }
-
-    .result1 {
-        grid-column: 1/2;
-        grid-row: 4/5;
-        box-shadow: 0 0 10px #999;
-        margin-left: 15px;
-        font-size: 150%;
-        background-color: white;
-        opacity: .8;
-    }
-
-    .result2 {
-        grid-column: 2/3;
-        grid-row: 4/5;
-        box-shadow: 0 0 10px #999;
-        margin-right: 15px;
-        font-size: 150%;
-        background-color: white;
-        opacity: .8;
-    }
-    .progress{
-        grid-column: 1/3;
-        grid-row: 5/6;
-        box-shadow: 0 0 10px #999;
-    }
-    .button{
-        grid-column: 1/3;
-        grid-row: 6/8;
+        grid-row: 2/4;
     }
 
     .searchPosition{
-        min-height: 20%;
+        min-height: 60px;
+        margin-bottom: 3%;
+        box-shadow: 0 0 10px #999;
+        background-color: white;
     }
 
     .wordListPosition {
         box-shadow: 0 0 10px #999;
-        min-height: 60%;
+        min-height: 20%;
+        margin-bottom: 3%;
     }
+
+    .chatbot{
+        box-shadow: 0 0 10px #999;
+        min-height: 20%;
+        margin-bottom: 3%;
+
+    }
+
+    .result1 {
+        position: relative;
+        float: left;
+        min-height: 20%;
+        min-width: 48.5%;
+        box-shadow: 0 0 10px #999;
+        margin-right: 1.5%;
+        font-size: 150%;
+        margin-bottom: 3%;
+    }
+
+    .result2 {
+        position: relative;
+        float: left;
+        min-height: 20%;
+        min-width: 48.5%;
+        box-shadow: 0 0 10px #999;
+        margin-left: 1.5%;
+        font-size: 150%;
+        margin-bottom: 3%;
+    }
+
+    .progress{
+        position: relative;
+        min-height: 10%;
+        min-width: 100%;
+        box-shadow: 0 0 10px #999;
+        margin-bottom: 3%;
+    }
+
 
     .dark {
         background: #222222;
     }
 
     .camera {
-        margin: 7px 7px 7px 7px;
         float: left;
-        width: 39px;
-        height: 39px;
+        width: 14%;
+        height: 100%;
     }
 
     .img {
@@ -137,16 +137,25 @@
     }
 
     .search {
-        width: 80%;
-        margin: 7px;
+        height: 100%;
+        width: 72%;
         float: left;
+    }
+
+    #olinput {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .searchBtn{
+        float: left;
+        width: 14%;
     }
 
     .dayLeft>h5, .dayRight>h5{
         float: left;
         text-indent: 10px;
     }
-
 
     .center {
         display: -webkit-box;
@@ -157,17 +166,16 @@
         align-items: center;
     }
 
-    .btn {
-        margin-left: 10px;
-        margin-right: 10px;
+    .examBtn {
+        box-shadow: 0 0 10px #999;
     }
 
     .meter {
         height: 13px;
         background: #DCE0E3;
         border-radius: 8px;
-
     }
+
     .meter > span {
         display: block;
         height: 100%;
@@ -239,12 +247,15 @@
         }
     }
 
-    #olinput {
-        margin-top: 7px;
-        margin-bottom: 0px;
-        width: 80%;
-        height: 39px;
+    .a{
+        background-color: white;
     }
+
+    .a:active{
+        background-color: #0062cc;
+    }
+
+
 </style>
 
 <body>
@@ -253,13 +264,13 @@
 
     <div class=" header ">
         <header class="bar bar-nav dark">
-            <a class="icon icon-bars pull-left" style="color: white"></a>
-            <h1 class="title" style="color: white">Toeic Manager</h1>
+            <button class="btn btn-link btn-nav pull-right"><i class="large material-icons mod-active" style="color: white; float: left; margin: 10px 5px;">settings</i></button>
+            <img style="height: 100%; margin-left: -14%; position: absolute; width: 154px" src="img/main_image.png">
         </header>
     </div>
 
     <div class="contents box" >
-       <div class="searchPosition center" >
+        <div class="searchPosition center " >
 
             <div  class="camera center">
                 <div id="cameraTakePicture">
@@ -269,63 +280,62 @@
 
             <div class=" search" >
                 <form id="olform" method="GET" action="search.html">
-                    <input id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off">
-                    <img class="searchBtn" style="float: right; margin: 7px 7px 7px 7px;" src="img/serach.png">
+                    <input id="olinput" type="text" name="words" size="15" value="" class="ui-autocomplete-input" autocomplete="off" >
                 </form>
+            </div>
+
+            <div class="searchBtn">
+                <img src="img/serach.png">
+            </div>
+
+        </div>
+
+        <div class=" wordListPosition center a">
+            단어장리스트
+        </div>
+
+        <div class="chatbot center a">
+            챗봇 및 명언
+        </div>
+
+        <div class="result result1 a">
+            <div>
+                <h5>학습 목표량</h5>
+            </div>
+            <div class="center dayLearn">
+
             </div>
         </div>
 
-        <div class=" wordListPosition center">
-            단어장리스트
-        </div>
-    </div>
+        <div class="result result2 a">
+            <div>
+                <h5>시험 목표량</h5>
+            </div>
+            <h1 class="center dayExam">
 
-    <div class="chatbot box center">
-        <a href="chatbot.html">챗봇 및 명언</a>
-    </div>
-
-
-    <div class=" result1 result">
-        <div style="min-height: 20%;">
-            <h5>학습 목표량</h5>
-        </div>
-        <div class="center dayLearn">
-
+            </h1>
         </div>
 
-    </div>
+        <div class="result progress center a">
+            <h5 style="margin-bottom: 20px">달성률　</h5>
+            <div class="meter" style="width: 75%;">
 
-    <div class=" result2 result">
-        <div style="min-height: 20%;">
-            <h5>시험 목표량</h5>
+            </div>
         </div>
-        <h1 class="center dayExam">
 
-        </h1>
-    </div>
-
-
-    <div class="progress center box result">
-        <h6 style="margin-bottom: 20px">달성률　</h6>
-        <div class="meter" style="width: 75%;">
-
+        <div class="button center ">
+            <a href="#" class="learnbtn btn  btn-outlined btn-block a examBtn" style="margin-right: 1.5%">
+                학습
+            </a>
+            <a href="#" class="reviewbtn btn  btn-outlined btn-block a examBtn" data-offer="exam" style="margin-left: 1.5%">
+                시험
+            </a>
         </div>
-    </div>
-
-
-    <div class="button center box">
-        <a href="#" class="learnbtn btn btn-negative btn-outlined btn-block">학습
-        </a>
-        <a href="#" class="reviewbtn btn btn-negative btn-outlined btn-block" data-offer="exam">시험
-        </a>
     </div>
 
 
 </div>
-<form id="formData" action="result.html?" method="get">
-    <input type="hidden" >
-</form>
-</div>
+
 
 
 <script type="text/javascript" src="cordova.js"></script>
@@ -364,8 +374,8 @@
                     swal({
                         title: 'please wait..',
                         onOpen: () => {swal.showLoading()},
-                        allowOutsideClick: false
-                     });
+                    allowOutsideClick: false
+                });
                     function getFileEntry(imageData) { // FileEntry라는 객체에 사진을 담아서 스프링 서버로 보내려고 한다
                         window.resolveLocalFileSystemURL(imageData, function success(fileEntry) { // imageData를 받고 그걸 fileEntry라는 객체에다 넣는다
                             console.log("fileEntry: " + fileEntry); // fileEntry: [object Object]
@@ -416,9 +426,6 @@
             );
         }
 
-
-
-
         //학습 및 시험 목표량 정보를 가져오는 함수
         function getList() {
             var obj = [];
@@ -447,9 +454,11 @@
                 $(".dayLearn").html(str);
             });
             $.getJSON("http://192.168.0.24:8080/result/mainexam", function (result) {
+
                 for (var i = 0; i < result.length; i++){
                     cycleObj.push({nextCycle: result[i].nextCycle});
                 }
+
                 $(".dayExam").html(result.length);
             });
             $.getJSON("http://192.168.0.24:8080/result/mainbar", function (result) {
@@ -570,19 +579,22 @@
 
         //단어장 리스트 페이지 이동
         $(".wordListPosition").on("click", function (e) {
-            //window.location.href = "vocabulary.html?mid=m1";
-            window.plugins.nativepagetransitions.slide({ href: "vocabulary.html?mid=m1"})
+            window.plugins.nativepagetransitions.slide({ href: "vocabulary.html?mid=" + member.mid});
         });
 
         //암기현황 구역 클릭시 페이지 이동
         $(".result").on("click", function (e) {
-            e.preventDefault();
-            $("#formData").submit();
+            window.plugins.nativepagetransitions.slide({ href: "result.html?mid=" + member.mid});
+        });
+
+        //챗봇 구역 클릭시 페이지 이동
+        $(".chatbot").on("click", function (e) {
+            window.plugins.nativepagetransitions.slide({ href: "chatbot.html?mid=" + member.mid});
         });
 
         //btn에 event를 먹이면 검색 부분도 같이 먹여져서 btn-block으로 바꿈
         $(".btn-block").on("click", function (e) {
-//            e.preventDefault();
+
             if ($(e.target).data("offer")){
                 $(this).attr("href", "startpage.html?type=" + $(this).data("offer"));
             } else {

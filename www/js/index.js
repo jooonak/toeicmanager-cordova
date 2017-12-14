@@ -32,16 +32,37 @@ var app = {
                 console.log("token :"+ token);
 
                 if (localStorage.member) {
+                    console.log("멤버 있음");
                     var member = JSON.parse(localStorage.member);
                     if (member.pushToken === token) {
-
+                        console.log("같은 토큰");
                     } else {
+                        console.log("다른 토큰");
                         member.pushToken = token;
+                        localStorage.member = JSON.stringify(member);
+
                         // ajax -> DB의 member.pushToken값 변경
+                        var ajax = new XMLHttpRequest();
+                        var data = {mid : member.mid, token : token};
+                        ajax.open('PUT', 'http://192.168.0.24:8080/login/token');
+                        ajax.send(JSON.stringify(data));
+                        ajax.onreadystatechange = function (e) {
+                            // readyStates는 XMLHttpRequest의 상태(state)를 반환
+                            // readyState: 4 => DONE(서버 응답 완료)
+                            if (ajax.readyState === XMLHttpRequest.DONE) {
+                                // status는 response 상태 코드를 반환 : 200 => 정상 응답
+                                if(ajax.status === 200) {
+                                    console.log(ajax.responseText);
+                                } else {
+                                    console.log("Error!");
+                                }
+                            }
+                        };
                     }
                 } else {
                     localStorage.token = token;
                     //회원가입 할 때 업데이트
+                    console.log("로그인 해");
                 }
 
             },

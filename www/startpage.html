@@ -17,7 +17,7 @@
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Include the compiled Ratchet CSS -->
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
@@ -109,7 +109,7 @@
 
     <div class="box header">
         <header class="bar bar-nav dark">
-            <a class="icon icon-left-nav pull-left back" style="color: white"></a>
+            <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
             <h1 class="title" style="color: white">Toeic Manager</h1>
         </header>
     </div>
@@ -120,7 +120,7 @@
 
     </div>
     <div class="box img">
-        <img src="img/learn.png" style="width: 80%; height: 80%">
+        <img src="" style="width: 80%; height: 80%">
         <h3 style="margin: 0;"></h3>
     </div>
     <div class="box bottom">
@@ -128,6 +128,7 @@
     </div>
 </div>
 
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript">
@@ -148,7 +149,7 @@
                 } else {
                     $(".img>h3").html("더 외울 단어가 없습니다.");
 
-                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                    $(".btn-block").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
                 }
             });
         } else if (type === "review"){
@@ -161,7 +162,7 @@
                 } else {
                     $(".img>h3").html("더 풀 문제가 없습니다.");
 
-                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                    $(".btn-block").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
                 }
             });
         } else {
@@ -173,35 +174,35 @@
                 } else {
                     $(".img>h3").html("더 풀 문제가 없습니다.");
 
-                    $(".btn").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                    $(".btn-block").text("메인으로").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
                 }
             });
         }
 
-        $(".btn-primary").on("click",function(){
-
-            var data = {mid : member.mid};
-
-            $.ajax({
-                url: "http://192.168.0.24:8080/exams/timecheck",
-                method: "post",
-                data: data,
-                success: function (result) {
-
-
-                }
-            });
-        })
-
-
+        $('img').attr('src', 'img/'+ type +'.png');
 
     }
     checkExam(type);
 
+    $(".btn-primary").on("click",function(){
+
+        var data = {mid : member.mid};
+
+        $.ajax({
+            url: "http://192.168.0.24:8080/exam/timecheck",
+            method: "post",
+            data: data,
+            success: function (result) {
+
+
+            }
+        });
+    });
 
     //뒤로 가기 버튼
     $(".back").on("click",function(){
-        window.location.href = "main.html";
+        window.plugins.nativepagetransitions.slide({ href: "main.html"});
+//        window.location.href = "main.html";
     });
 </script>
 </body>
