@@ -353,6 +353,29 @@
         if (localStorage.member === undefined){
             window.location = 'login.html';
         } else {
+            // 현재 메인에 올 때마다 member table값을 가져와서 동기화 시키지만, 추 후 설계의 변경이 필요하다
+            var storage = JSON.parse(localStorage.member);
+            var data = {mid : storage.mid, mpw : storage.mpw};
+
+            $.ajax({
+                type :'post',
+                url: 'http://192.168.0.24:8080/login/',
+                data: JSON.stringify(data),
+                contentType: 'application/json;',
+                success: function(result) {
+
+                    console.log(result);
+                    if (result.mid) {
+                        localStorage.member = JSON.stringify(result);
+                    } else {
+                        swal({
+                            title: 'ID 또는 PW 확인',
+                            type: 'error'
+                        });
+                    }
+
+                }
+            });
             return JSON.parse(localStorage.member);
         }
     })();
@@ -602,7 +625,7 @@
                     title: '',
                     html:
                         member.lstatus === "review" ?
-                            "<a style='margin: 0; margin-bottom: 5px;' href='#' class='btn btn-block btn-negative btn-outlined'>새로운 단어가 없습니다</a>" +
+                            "<a style='margin: 0; margin-bottom: 5px;' href='#' class='btn btn-block btn-negative btn-outlined'>복습을 진행해 주세요</a>" +
                             "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>"
                             :
                             "<a style='margin: 0; margin-bottom: 5px;' href='startpage.html?type=learn' class='btn btn-block btn-positive btn-outlined'>새로운 단어 학습</a>" +
