@@ -202,12 +202,12 @@
 
             $('#messages').append(
                 "<li class='table-view-cell media chat-li user-side'>"+
-                "<img class='media-object pull-left chat-img' src='http://placehold.it/42x42'>"+
+                "<img class='media-object pull-left chat-img' src='img/lego.png'>"+
                 "<div class='media-body'>User"+
                 "<p>"+$('.inputbox').val()+"</p></div></li>"
             );
                 $.ajax({
-                    url : 'http://192.168.0.22:3000/chatbot',
+                    url : 'http://192.168.0.24:3000/chatbot',
                     type : 'post',
                     dataType : 'text',
                     contentType: "application/json; charset=utf-8",
@@ -221,7 +221,7 @@
                             console.log('tip');
                             $('#messages').append(
                                 "<li class='table-view-cell media chat-li bot-side'>"+
-                                "<img class='media-object pull-left chat-img' src='https://img.purch.com/rnb/793x446/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzAwNy85ODAvb3JpZ2luYWwvYnJhaW4tcmVnaW9ucy0xMDA0MTQtMDIuanBn'>"+
+                                "<img class='media-object pull-left chat-img' src='img/robot.png'>"+
                                 "<div class='media-body'>ChatBot"+
                                 "<p>"+parseResult.tip.text+"</p></div>" +
                                 "<a href = "+ parseResult.tip.media +" class = 'tip-media' style='width:200px;height:100px;padding:0;max-width:100%;height:auto;float:right;margin-right: 10px;margin-top: 10px;'>" +
@@ -236,7 +236,7 @@
                             "시험은 "+ ((parseResult.state[0].cycle === 0)?"다 한거 같네요": "<b>"+parseResult.state[0].cycle+"</b> 단어 남았네요,")+ ((parseResult.state[0].exam + parseResult.state[0].cycle === 0)?" 완벽해요!":" 화이팅!");
                             $('#messages').append(
                                 "<li class='table-view-cell media chat-li bot-side'>"+
-                                "<img class='media-object pull-left chat-img' src='https://img.purch.com/rnb/793x446/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzAwNy85ODAvb3JpZ2luYWwvYnJhaW4tcmVnaW9ucy0xMDA0MTQtMDIuanBn'>"+
+                                "<img class='media-object pull-left chat-img' src='img/robot.png'>"+
                                 "<div class='media-body'>ChatBot"+
                                 "<p>"+text+"</p></div>" +
                                 "</li>"
@@ -245,7 +245,7 @@
                             //이외의 경우(인사)
                             $('#messages').append(
                                 "<li class='table-view-cell media chat-li bot-side'>"+
-                                "<img class='media-object pull-left chat-img' src='https://img.purch.com/rnb/793x446/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzAwNy85ODAvb3JpZ2luYWwvYnJhaW4tcmVnaW9ucy0xMDA0MTQtMDIuanBn'>"+
+                                "<img class='media-object pull-left chat-img' src='img/robot.png'>"+
                                 "<div class='media-body'>ChatBot"+
                                 "<p>"+result+"</p></div>" +
                                 "</li>"
