@@ -329,20 +329,21 @@
     var selectedImg = "pt_1.jpg";   //테스트용, 추 후 이미지를 크롤링하여 가져오는 경우 첫번째 이미지를 selectedImg에 넣는다.
     var vno = 0;
 
-    $("document").ready(function(){
-        $(".word").html(words);
+        $("document").ready(function(){
+            $(".word").html(words);
+            console.log($(".sentence")[0]);
 
-        //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
-        $.ajax({
-            dataType: "json",
-            type : 'get',
-            url: 'http://192.168.0.22:3000/dic',
-            data: {'words':words},
-            success: function(data) {
-                $(".meaning").append(data);
-                meaning = data;
-            }
-        });
+            //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
+            $.ajax({
+                dataType: "json",
+                type : 'get',
+                url: 'http://192.168.0.22:3000/dic',
+                data: {'words':words},
+                success: function(data) {
+                    $(".meaning").append(data);
+                    meaning = data;
+                }
+            });
 
         //단어장 리스트를 가져오는 ajax 요청
         $.ajax({
