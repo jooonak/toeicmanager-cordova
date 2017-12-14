@@ -570,7 +570,8 @@
 
         //단어장 리스트 페이지 이동
         $(".wordListPosition").on("click", function (e) {
-            window.location.href = "vocabulary.html?mid=m1";
+            //window.location.href = "vocabulary.html?mid=m1"
+            window.plugins.nativepagetransitions.slide({ href: "vocabulary.html?mid=m1"})
 
         });
 
