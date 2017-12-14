@@ -88,13 +88,26 @@
 
     .word{
         float: left;
-        width: 65%;
-        text-indent: 15%;
+        width: 70%;
+        text-indent: 12%;
     }
     .meaning{
-        float: right;
-        width: 35%;
+        float: left;
+        width: 30%;
     }
+
+    hr{
+        margin-bottom: 0px;
+    }
+
+    .a{
+        background-color: white;
+    }
+
+    .a:active{
+        background-color:#CCC;
+    }
+
 </style>
 <body>
 <div class='container'>
@@ -110,7 +123,7 @@
 
         <div class = "table-view">
             <hr>
-            <h3 class='table-view-cell'>Toeic Voca</h3>
+            <h3 class='table-view-cell vname'></h3>
             <div class = "word-list">
 
 
@@ -129,6 +142,9 @@
     $(document).ready(function(){
 
         var vno = getUrlParams('vno');
+        var vname = getUrlParams('vname');
+
+        $(".vname").html(vname);
 
         //단어 리스트를 가져오는 ajax 요청
         $.ajax({
@@ -140,7 +156,7 @@
                 //console.log(result);
                 result.forEach(function(word){
                     //console.log(word.wno ,word.word, word.meaning);
-                    $wordList.append("<div class='table-view-cell' data-vno="+word.vno+" data-wno="+word.wno+">"
+                    $wordList.append("<div class='table-view-cell a' data-vno="+word.vno+" data-wno="+word.wno+">"
                         +"<div class='word' data-vno="+word.vno+" data-wno="+word.wno+">"+word.word+"</div><div class='meaning' data-vno="+word.vno+" data-wno="+word.wno+">"+word.meaning+"</div></div>");
                 })
             }
@@ -152,7 +168,7 @@
             //var vno = $(e.target);
             var vno = $(e.target).attr("data-vno");
             var wno = $(e.target).attr("data-wno");
-            window.location.href = "view.html?wno="+wno+"&vno="+vno+"";
+            window.location.href = "view.html?wno="+wno+"&vno="+vno+"&vname="+vname;
         })
 
         //뒤로가기

@@ -16,6 +16,8 @@
     <!-- Sets initial viewport load and disables zooming  -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
+    <script type="text/javascript" src="cordova.js"></script>
+
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -109,11 +111,10 @@
     }
 
     .plusbtn{
-        background-color:#F44336;
         width:60px;
         height:60px;
         border-radius:100%;
-        background:#F44336;
+        background:#d9534f;
         right:16px;
         bottom:16px;
         position:absolute;
@@ -129,6 +130,19 @@
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         pointer-events:all;
     }
+
+    .a{
+        background-color: white;
+    }
+
+    .a:active{
+        background-color: #CCC;
+    }
+
+    hr{
+        margin-bottom: 0px;
+    }
+
 
 </style>
 <body>
@@ -160,7 +174,7 @@
         </div>
 
         <div >
-            <button class="plusbtn" style="background-color:red; display: block">
+            <button class="plusbtn" style=" display: block">
                 <span class="" style="height: 60px; width: 60px; top: 22.4264px; left: -2.57361px;"></span>
                 <span style="">+</span>
             </button>
@@ -182,15 +196,21 @@
 <script TYPE="application/javascript">
     $(document).ready(function () {
 
+        var member = JSON.parse(localStorage.getItem("member"));
+
         var $systemvocabularyList = $(".systemvocabulary-list");
         var $uservocabularyLIst = $(".uservocabulary-list");
 
         //단어장 리스트를 가져오는 ajax 요청
         function getList() {
+
+        var data = {mid : member.mid, goal :member.goal};
+
             $.ajax({
-                url: "http://192.168.0.24:8080/vocabulary/",
+                url: "http://192.168.0.32:8080/vocabulary/",
                 dataType: "json",
                 type: 'get',
+                data:data,
                 success: function (data) {
                     //console.log(data);
                     var toeicvoca="";
@@ -202,15 +222,13 @@
 
                         if (voca.owner === 'SYSTEM') {
 
-                            toeicvoca +="<li class='table-view-cell voca' data-vno= "+voca.vno+" >"+voca.vname +
-                                "<button style=\"display: none; right: 67px;\" class=\"btn btn-negative delBtn\" data-oper='delete'> 삭제 </button>" +
-                                "<button style=\"display: none;\" class=\"btn btn-positive modBtn\" data-oper='put'>수정</button></li>";
+                            toeicvoca +="<li class='table-view-cell voca  a' data-vno= "+voca.vno+" data-vname='"+voca.vname+"' >"+voca.vname +"</li>"
 
                             $systemvocabularyList.html(toeicvoca);
 
                         } else {
 
-                            myvoca +="<li class='table-view-cell voca' data-vno="+voca.vno+">"+voca.vname +
+                            myvoca +="<li class='table-view-cell voca a' data-vno="+voca.vno+" data-vname='"+voca.vname+"'>"+voca.vname +
                                 "<button style='display: none; right: 67px;' class=\"btn btn-negative delBtn\" data-oper='delete'>삭제</button>" +
                                 "<button style='display: none; ' class=\"btn btn-positive modBtn\" data-oper='put'>수정</button></li>";
 
@@ -230,13 +248,15 @@
         //토익 단어장관련 단어페이지로 이동
         $systemvocabularyList.on("click", function (e) {
             var vno = $(e.target).attr("data-vno");
-            window.location.href = "words.html?mid=m1&vno="+vno;
+            var vanme = $(e.target).attr("data-vname");
+            window.location.href = "words.html?vno="+vno+"&vname="+vanme;
         });
 
         //내 단어장관련 단어페이지로 이동
         $uservocabularyLIst.on("click", function (e) {
             var vno = $(e.target).attr("data-vno");
-            window.location.href = "words.html?mid=m1&vno="+vno;
+            var vanme = $(e.target).attr("data-vname");
+            window.location.href = "words.html?vno="+vno+"&vname="+vanme;
         });
 
 
@@ -250,8 +270,9 @@
                 showCancelButton: true,
                 inputValidator: (value) => {
                 return $.ajax({
+                    data : {"owner":member.mid, vname: value, },
                     type : 'post',
-                    url: 'http://192.168.0.24:8080/vocabulary/'+value,
+                    url: 'http://192.168.0.32:8080/vocabulary/',
                     success: function() {
                         setTimeout(function () {
                             swal({title: 'success',
