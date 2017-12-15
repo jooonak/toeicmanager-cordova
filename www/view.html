@@ -9,6 +9,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
     <!-- Sets initial viewport load and disables zooming  -->
@@ -22,24 +23,23 @@
     <link href="dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <!--<script src="dist/js/ratchet.js"></script>-->
+    <!-- <script src="dist/js/ratchet.js"></script>-->
 
-    <title>Views</title>
+    <title>View</title>
 </head>
-
 <style>
     html, body {
         margin: 0;
         padding: 0;
 
     }
-
     .container {
         display: grid;
         grid-template-areas:
-                'header header header'
-                'top top top';
-        grid-auto-rows:  44px 90%;
+                'header header '
+                'contents contents'
+                'footer footer';
+        grid-auto-rows: 1fr 80% 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
@@ -54,13 +54,13 @@
     }
 
     .header {
-        grid-column: 1/4;
+        grid-column: 1/3;
         grid-row: 1/2;
     }
 
-    .top {
-        grid-column: 1/4;
-        grid-row: 2/3;
+    .contents {
+        grid-column: 1/3;
+        grid-row: 2/4;
     }
 
     .wordbox{
@@ -68,56 +68,97 @@
         border-style: solid ;
         border-color: #999;
         border-radius: 15px;
-        margin:10px 10px 20px 10px;
-        min-height: 80%;
+        margin:50px 10px 20px ;
+        min-height: 85%;
         box-shadow:0 0 10px #999;
     }
 
     .word-position{
-        margin-top: 10%;
-        min-height: 80%;
+        margin-top: 5%;
     }
 
     .word{
-        margin:15px;
-        font-size: 40px;
+        margin-bottom:10px;
+        font-size: 100%;
     }
 
     .meaning{
-        margin:15px;
-        font-size: 30px;
-
+        margin-bottom:10px;
+        font-size: 80%;
     }
 
     .img-position{
-        margin: 10px auto;
-        width: 240px;
-        height: 130px;
+        margin: 0px auto;
+        width: 280px;
+        height: 200px;
         border-radius: 5px;
-        box-shadow:0 0 10px #999;
-    }
+        box-shadow: 1px 1px #888888;
 
+    }
     .img{
         width: 100%;
         height: 100%;
+        background-size: cover;
     }
 
-    .stc-position{
-        height: 6em;
-        margin:15px 5%;
-        overflow: scroll;
-        -ms-overflow-style: none;
-    }
-    ::-webkit-scrollbar {
-        display: none;
-    }
     .dark {
         background: #222222;
     }
-    .slider {
-        background-color: #FFFFFF;
+
+    .sentence-div{
+        margin: 0px 19px 19px 19px;
+        height: 4em;
+        box-shadow: 1px 1px #888888;
+        background-color: #ebebeb;
+        font-size: 70%;
     }
+
+    .selected-sentence{
+        font-size: 0.6em;
+        height: 50px;
+        max-height: 50px;
+        margin: 5px;
+        text-align: left;
+        vertical-align: 20%;
+        font-weight: normal;
+        overflow: scroll;
+    }
+    .select-sentence {
+        display: block;
+        position: relative;
+        min-height: 30px;
+        z-index: 1000;
+    }
+
+    .viewBtn{
+        width:43%;
+        display: inline;
+        margin-bottom: 15px;
+        height: 50px;
+        padding:0px;
+        float: left;
+    }
+
+    .center {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .a{
+        background-color: white;
+    }
+
+    .a:active{
+        background-color:#CCC;
+    }
+
+
 </style>
+
 
 <body>
 <div class='container'>
@@ -126,33 +167,40 @@
             <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
             <h1 class="title" style="color: white">Toeic Manager</h1>
         </header>
+        <header class="bar bar-nav" style="margin-top: 45px">
+            <div class="vname title selected-voca-name">
+
+            </div>
+        </header>
     </div>
 
-    <div class="box top">
+    <div class="box contents ">
         <div class="wordbox">
             <div class="word-position">
                 <div class="word">
+
                 </div>
-                <div class="meaning">
+                <div class="meaning" style="display: inline-block" >
+
                 </div>
             </div>
 
             <div class="img-position">
-                <img class="img" src="img/pt_1.jpg">
+                <img  class="img"  src="" >
             </div>
 
-            <div class="stc-position" >
-                <ul class="stc">
-                    <li class="table-view-cell">1111</li>
-                    <li class="table-view-cell">1111</li>
-                    <li class="table-view-cell">1111</li>
-                    <li class="table-view-cell">1111</li>
-                    <li class="table-view-cell">1111</li>
-                </ul>
+            <hr style="width: 280px;">
+
+            <div class="sentence-div center" >
+
             </div>
-        </div>
-        <div>
-            <input class = "modBtn btn btn-negative btn-block" type="button" value="modify">
+            <button class = "regBtn btn btn-block btn-outlined viewBtn a" style="margin-left: 5%; margin-right: 2%;">
+                <
+            </button>
+            <button class = "regBtn btn btn-block btn-outlined viewBtn a" style="margin-left: 2%; margin-right: 5%;">
+                >
+            </button>
+
         </div>
     </div>
 </div>
@@ -162,13 +210,21 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="js/getUrlParams.js"></script>
-
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/popovers.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
+<script src="sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script TYPE="application/javascript">
     $(document).ready(function(){
         var vno = getUrlParams('vno');
         var wno = getUrlParams('wno');
+        var vname = getUrlParams('vname');
 
-        //단어 리스트를 가져오는 ajax 요청
+        $(".vname").html(vname);
+
+
+        //단어 데이터를 가져오는 ajax 요청
         $.ajax({
             url: "http://192.168.0.24:8080/vocabulary/"+vno+"/words/"+wno,
             dataType: "json",
@@ -177,13 +233,17 @@
                 console.log(result);
                 $(".word").append(result.word);
                 $(".meaning").append(result.meaning);
+                $(".sentence-div").append(result.sentence);
+                $(".img").attr("src",result.img);
+
 
             }
         });
 
         //뒤로 가기 버튼
         $(".back").on("click",function(){
-            window.location.href = "words.html?vno="+vno;
+            window.location.href = "words.html?vno="+vno+"&vname="+vname;
+
         });
 
 

@@ -37,8 +37,9 @@
         display: grid;
         grid-template-areas:
                 'header header header'
-                'top top top';
-        grid-auto-rows:  44px 90%;
+                'top top top'
+                'footer footer footer';
+        grid-auto-rows:  1fr 80% 1fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         background-color: white;
@@ -59,7 +60,7 @@
 
     .top {
         grid-column: 1/4;
-        grid-row: 2/3;
+        grid-row: 2/4;
     }
 
     .wordbox{
@@ -90,15 +91,14 @@
 
     .img-position{
         margin: 0px auto;
-
-        width: 280px;
-        height: 200px;
+        width: 80%;
+        height: 160px;
         border-radius: 5px;
         box-shadow: 1px 1px #888888;
     }
     .img{
-/*        width: 100%;
-        height: 100%;*/
+        /*        width: 100%;
+                height: 100%;*/
         background-size: cover;
     }
 
@@ -161,7 +161,7 @@
 
 
 
-/*문장 선택창의 radio box 설정*/
+    /*문장 선택창의 radio box 설정*/
     .radio-container {
         display: block;
         position: relative;
@@ -237,14 +237,15 @@
     .sentence-div{
         display:block;
         position: relative;
-        margin: 19px;
-        min-height: 60px;
+        margin: 5px auto;
+        min-height: 45%;
+        width: 80%;
         box-shadow: 1px 1px #888888;
         background-color: #ebebeb
     }
 
     .selected-sentence{
-        font-size: 0.6em;
+        font-size: 0.5em;
         height: 50px;
         max-height: 50px;
         margin: 5px;
@@ -253,7 +254,9 @@
         font-weight: normal;
         overflow: scroll;
     }
+
     .select-sentence {
+        font-size: 0.5em;
         display: block;
         position: relative;
         min-height: 30px;
@@ -264,116 +267,116 @@
 
 
 <body>
-    <div class='container'>
-        <div class="box header">
-            <header class="bar bar-nav dark">
-                <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
-                <h1 class="title" style="color: white">Toeic Manager</h1>
-            </header>
-            <header class="bar bar-nav" style="margin-top: 45px">
-                <a href="#popover">
-                    <h1 class="title selected-voca-name">
-                        Select Voca
-                        <i class="material-icons" style="vertical-align: middle;">keyboard_arrow_down</i>
-                    </h1>
+<div class='container'>
+    <div class="box header">
+        <header class="bar bar-nav dark">
+            <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
+            <h1 class="title" style="color: white">Toeic Manager</h1>
+        </header>
+        <header class="bar bar-nav" style="margin-top: 45px">
+            <a href="#popover">
+                <h1 class="title selected-voca-name">
+                    Select Voca
+                    <i class="material-icons" style="vertical-align: middle;">keyboard_arrow_down</i>
+                </h1>
 
-                </a>
-            </header>
-        </div>
+            </a>
+        </header>
+    </div>
 
-        <div class="box top">
-            <div class="wordbox">
-                <div class="word-position">
-                    <div class="word">
-                    </div>
-                    <div>
-                        <div class="meaning" style="display: inline-block" >
-                        </div>
-                    </div>
-
+    <div class="box top">
+        <div class="wordbox">
+            <div class="word-position">
+                <div class="word">
                 </div>
-
-                <div class="img-position">
-                    <div class="slider" id="mySlider">
-                        <div class="slide-group">
-                            <div class="slide">
-                                <img style="width: 100%; height: 100%;" class="img" data-imgNum = 0 src="" value = "pt_1.jpg">
-                            </div>
-                            <div class="slide">
-                                <img style="width: 100%; height: 100%;" class="img" data-imgNum = 1 src="" value = "pt_2.jpg">
-                            </div>
-                            <div class="slide">
-                                <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "pt_3.jpg">
-                            </div>
-                        </div>
+                <div>
+                    <div class="meaning" style="display: inline-block" >
                     </div>
                 </div>
 
-                <hr style="width: 280px;">
-                <h3 style="font-size: 0.8em; margin-top: 5px ;">
-                    choose sentence
-                </h3>
+            </div>
 
-                <a href="#sentenceModal" class="sentence-href" >
+            <div class="img-position">
+                <div class="slider" id="mySlider">
+                    <div class="slide-group">
+                        <div class="slide">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 0 src="" value = "pt_1.jpg">
+                        </div>
+                        <div class="slide">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 1 src="" value = "pt_2.jpg">
+                        </div>
+                        <div class="slide">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "pt_3.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="width: 80%;">
+            <div style="font-size: 0.7em; margin-top: 5px ;">
+                choose sentence
+            </div>
+
+            <a href="#sentenceModal" class="sentence-href" >
                 <div class="sentence-div" >
                     <div style="display:inline-block; position: relative; margin-top: 5px;">
-                        <h3 class = "selected-sentence">
-                        </h3>
+                        <div class = "selected-sentence">
+                        </div>
                     </div>
-                    <hr style="margin:0px;padding:0px;border: none;height: 1px;background-color: #b5b5b5; ">
+                    <hr style="margin:0px;padding:0px;border: none;height: 1px; background-color: #b5b5b5; ">
                     <i class="material-icons" >keyboard_arrow_up</i>
                 </div>
-                </a>
-                <input style="width:70%;display: inline;margin-bottom: 15px;height: 50px;padding:0px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
-            </div>
-
+            </a>
+            <input style="width:70%;display: inline; margin-bottom: 10px;height: 50px;padding:0px; margin-top:15px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
         </div>
 
     </div>
-    <div id="sentenceModal" class="modal">
-        <header class="bar bar-nav">
-            <h1 class="title">select sentence
-                <i class="material-icons" style="vertical-align: middle; text-align: right">keyboard_arrow_down</i>
-            </h1>
-        </header>
-        <div class = "sentence-box" style="margin-top: 60px">
-            <div class="select-sentence">
-                <label class="radio-container"style="font-size:15px; text-align: left">
-                    <div class = "sentence">&lt;!&ndash;Think like a man of action and act like man of thought.&ndash;&gt;</div>
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <hr>
-            <div class="select-sentence">
-                <label class="radio-container"  style="font-size:15px; text-align: left">
-                    <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <hr>
-            <div class="select-sentence">
-                    <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
-                        <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
-                        <input type="radio" name="radio">
-                        <span class="checkmark" ></span>
-                    </label>
-            </div>
-            <hr>
-        </div>
-        <a href="#sentenceModal" class="sentence-href" >
-            <input style="width:90%; height: 50px; padding:0px; margin:20px auto; display:block;" class = "btn btn-block btn-outlined" type="button" value="select" align="center" >
-        </a>
-    </div>
 
-    <div id="popover" class="popover" style="margin-top: 50px">
-        <header class="bar bar-nav">
-            <h1 class="title">VOCA LIST</h1>
-        </header>
-        <ul class="table-view vocaOpt">
-        </ul>
+</div>
+<div id="sentenceModal" class="modal">
+    <header class="bar bar-nav">
+        <h1 class="title">select sentence
+            <i class="material-icons" style="vertical-align: middle; text-align: right">keyboard_arrow_down</i>
+        </h1>
+    </header>
+    <div class = "sentence-box" style="margin-top: 60px">
+        <div class="select-sentence">
+            <label class="radio-container"style="font-size:15px; text-align: left">
+                <div class = "sentence">&lt;!&ndash;Think like a man of action and act like man of thought.&ndash;&gt;</div>
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <hr>
+        <div class="select-sentence">
+            <label class="radio-container"  style="font-size:15px; text-align: left">
+                <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <hr>
+        <div class="select-sentence">
+            <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
+                <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                <input type="radio" name="radio">
+                <span class="checkmark" ></span>
+            </label>
+        </div>
+        <hr>
     </div>
+    <a href="#sentenceModal" class="sentence-href" >
+        <input style="width:90%; height: 50px; padding:0px; margin:20px auto; display:block;" class = "btn btn-block btn-outlined" type="button" value="select" align="center" >
+    </a>
+</div>
+
+<div id="popover" class="popover" style="margin-top: 50px">
+    <header class="bar bar-nav">
+        <h1 class="title">VOCA LIST</h1>
+    </header>
+    <ul class="table-view vocaOpt">
+    </ul>
+</div>
 </body>
 
 <script type="text/javascript" src="cordova.js"></script>
@@ -401,9 +404,9 @@
             showConfirmButton: false,
             onOpen: () => {
             swal.showLoading();
-         },
-            allowOutsideClick: false
-        });
+    },
+        allowOutsideClick: false
+    });
 
 
         $(".word").html(words);
