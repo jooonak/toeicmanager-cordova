@@ -52,11 +52,11 @@
         position: absolute;*/
     }
 
-    .box {
+    .box:not(.chatbotIcon)  {
         font-size: 150%;
         margin-right: 15px;
         margin-left: 15px;
-        opacity: .8;
+        opacity: .9;
     }
 
     .header {
@@ -86,8 +86,8 @@
         box-shadow: 0 0 10px #999;
         min-height: 20%;
         margin-bottom: 3%;
-
     }
+
 
     .result1 {
         position: relative;
@@ -154,6 +154,27 @@
     .dayLeft>h5, .dayRight>h5{
         float: left;
         text-indent: 10px;
+    }
+
+    .chatbotIcon{
+        float: left;
+        width: 25%;
+        height: 100%;
+    }
+
+    .wisePosition{
+        flex-wrap: wrap;
+        float: left;
+        width: 75%;
+        height: 100%;
+    }
+
+    #wiseSaying{
+        font-size: 75%;
+        margin-bottom: 3%;
+    }
+    #translate{
+        font-size: 60%;
     }
 
     .center {
@@ -294,7 +315,17 @@
         </div>
 
         <div class="chatbot center a">
-            챗봇 및 명언
+            <div class="chatbotIcon">
+                <img class="img" src="img/robot.png"/>
+            </div>
+            <div class="wisePosition ">
+                <div id = wiseSaying class="box">
+
+                </div>
+                <div id = translate class="box">
+
+                </div>
+            </div>
         </div>
 
         <div class="result result1 a">
@@ -363,7 +394,6 @@
                 contentType: 'application/json;',
                 success: function(result) {
 
-                    console.log(result);
                     if (result.mid) {
                         localStorage.member = JSON.stringify(result);
                     } else {
@@ -449,7 +479,7 @@
         }
 
         //학습 및 시험 목표량 정보를 가져오는 함수
-        function getList() {
+        function getMainData() {
             var obj = [];
             var cycleObj = [];
             var learnObj =[];
@@ -503,8 +533,26 @@
                 var str ="<span style='width: "+resultSum/totalSum*100+"%;'></span>";
                 $(".meter").html(str);
             });
+
+            $.getJSON("http://192.168.0.32:8080/result/wise", function (result) {
+
+                var wiseObj =[];
+
+                for(var i = 0; i < result.length; i++){
+                    wiseObj.push({
+                        wsno: result[i].wsno,
+                        wisesaying : result[i].wisesaying,
+                        translate : result[i].translate,
+                    });
+
+                var random = Math.floor(Math.random()*result.length);
+
+                }
+                $("#wiseSaying").html(wiseObj[random].wisesaying);
+                $("#translate").html(wiseObj[random].translate);
+            });
         }
-        getList();
+        getMainData();
 
 
         //자동 완성 기능에 대한 이벤트 등록
