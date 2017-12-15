@@ -85,7 +85,7 @@
     .meaning{
         margin-bottom:10px;
         font-size: 20px;
-
+        min-height: 21px;
     }
 
     .img-position{
@@ -94,8 +94,7 @@
         width: 280px;
         height: 200px;
         border-radius: 5px;
-        box-shadow:0 0 10px #999;
-
+        box-shadow: 1px 1px #888888;
     }
     .img{
 /*        width: 100%;
@@ -174,6 +173,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        z-index: 5;
     }
 
     /* Hide the browser's default radio button */
@@ -185,6 +185,7 @@
     /* Create a custom radio button */
     .checkmark {
         position: absolute;
+        margin-left: 5px ;
         top: 0;
         left: 0;
         height: 25px;
@@ -227,6 +228,38 @@
     .material-icons {
         margin-top: 0px;
     }
+
+    .sentence-href {
+        color:black;
+        background-color: none;
+    }
+
+    .sentence-div{
+        display:block;
+        position: relative;
+        margin: 19px;
+        min-height: 60px;
+        box-shadow: 1px 1px #888888;
+        background-color: #ebebeb
+    }
+
+    .selected-sentence{
+        font-size: 0.6em;
+        height: 50px;
+        max-height: 50px;
+        margin: 5px;
+        text-align: left;
+        vertical-align: 20%;
+        font-weight: normal;
+        overflow: scroll;
+    }
+    .select-sentence {
+        display: block;
+        position: relative;
+        min-height: 30px;
+        z-index: 1000;
+    }
+
 </style>
 
 
@@ -241,22 +274,23 @@
                 <a href="#popover">
                     <h1 class="title selected-voca-name">
                         Select Voca
-                        <i class="material-icons">keyboard_arrow_down</i>
+                        <i class="material-icons" style="vertical-align: middle;">keyboard_arrow_down</i>
                     </h1>
 
                 </a>
             </header>
         </div>
 
-
         <div class="box top">
-
             <div class="wordbox">
                 <div class="word-position">
                     <div class="word">
                     </div>
-                    <div class="meaning">
+                    <div>
+                        <div class="meaning" style="display: inline-block" >
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="img-position">
@@ -271,67 +305,66 @@
                             <div class="slide">
                                 <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "pt_3.jpg">
                             </div>
-
                         </div>
                     </div>
                 </div>
 
                 <hr style="width: 280px;">
-                <h3 style="font-size: 0.7em; margin-top: 5px">
-                    sentence example
+                <h3 style="font-size: 0.8em; margin-top: 5px ;">
+                    choose sentence
                 </h3>
-                <a href="#myModalexample" style="" >
-                <div style="margin-left: 19px; margin-right:19px; min-height: 60px; box-shadow: 1px 1px #888888;">
-                        <h3 style="font-size: 0.6em; margin: 10px; text-align: left; vertical-align: 20%; ">
-                            one of the greatest wits of all time
+
+                <a href="#sentenceModal" class="sentence-href" >
+                <div class="sentence-div" >
+                    <div style="display:inline-block; position: relative; margin-top: 5px;">
+                        <h3 class = "selected-sentence">
                         </h3>
-                    <i class="material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <hr style="margin:0px;padding:0px;border: none;height: 1px;background-color: #b5b5b5; ">
+                    <i class="material-icons" >keyboard_arrow_up</i>
                 </div>
                 </a>
-
-
-
-
-
-                <input style="width:70%; display: inline" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
+                <input style="width:70%;display: inline;margin-bottom: 15px;height: 50px;padding:0px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
             </div>
 
         </div>
 
     </div>
-    <div id="myModalexample" class="modal">
+    <div id="sentenceModal" class="modal">
         <header class="bar bar-nav">
-            <a class="icon icon-close pull-right" href="#myModalexample"></a>
-            <h1 class="title">Modal</h1>
+            <h1 class="title">select sentence
+                <i class="material-icons" style="vertical-align: middle; text-align: right">keyboard_arrow_down</i>
+            </h1>
         </header>
-
-        <div class="content">
-            <div class="stc-position" >
-                <ul class="stc" style="padding: 0; margin-left: 0px; margin-right: 0px">
-                    <li class="table-view-cell" style="padding: 0; margin-left: 10px; margin-right: 10px">
-                        <label class="radio-container"style="font-size:15px; text-align: left">
-                            <div class = "sentence"><!--Think like a man of action and act like man of thought.--></div>
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
-                        <label class="radio-container"  style="font-size:15px; text-align: left">
-                            <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
-                        <label class="radio-container"  style="font-size:15px; text-align: left">
-                            <div class = "sentence"><!--Courage is very important. Like a muscle, it is strengthened by use.--></div>
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>
+        <div class = "sentence-box" style="margin-top: 60px">
+            <div class="select-sentence">
+                <label class="radio-container"style="font-size:15px; text-align: left">
+                    <div class = "sentence">&lt;!&ndash;Think like a man of action and act like man of thought.&ndash;&gt;</div>
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
             </div>
+            <hr>
+            <div class="select-sentence">
+                <label class="radio-container"  style="font-size:15px; text-align: left">
+                    <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <hr>
+            <div class="select-sentence">
+                    <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
+                        <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                        <input type="radio" name="radio">
+                        <span class="checkmark" ></span>
+                    </label>
+            </div>
+            <hr>
         </div>
+        <a href="#sentenceModal" class="sentence-href" >
+            <input style="width:90%; height: 50px; padding:0px; margin:20px auto; display:block;" class = "btn btn-block btn-outlined" type="button" value="select" align="center" >
+        </a>
     </div>
 
     <div id="popover" class="popover" style="margin-top: 50px">
@@ -358,8 +391,21 @@
     var sentence = "";
     var selectedImg = "pt_1.jpg";   //테스트용, 추 후 이미지를 크롤링하여 가져오는 경우 첫번째 이미지를 selectedImg에 넣는다.
     var vno = 0;
+    //로딩 카운트, img와 문장 크롤링이 끝나는 지점동안 로딩 모달을 띄워주기 위해 사용한다.
+    var loadingCnt = 2;
 
     $("document").ready(function(){
+
+        swal({
+            title: 'please wait..',
+            showConfirmButton: false,
+            onOpen: () => {
+            swal.showLoading();
+         },
+            allowOutsideClick: false
+        });
+
+
         $(".word").html(words);
 
         //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
@@ -387,7 +433,7 @@
                 //가져온 단어장 리스트에 event 처리(클릭시 header부분 변경 및 regist 용 input 데이터 삽입)
                 $(".vocabulary").on("click", function(e){
                     vno = $(e.target)[0].getAttribute('value');
-                    $(".selected-voca-name").html($(e.target).html()+"<span class='icon icon-caret'></span>");
+                    $(".selected-voca-name").html($(e.target).html()+"<i class='material-icons' style='vertical-align: middle;'>keyboard_arrow_down</i>");
                 });
             }
         });
@@ -423,6 +469,14 @@
             });
         });
 
+        //radio-botton에 의해 두번 적용된다 해결 필요..
+        $(".radio-container").on("click", function(e){
+            if($(e.target).find(".sentence").prevObject["0"].innerHTML != ""){
+                $(".selected-sentence").html($(e.target).find(".sentence").prevObject["0"].innerHTML);
+            }
+
+        });
+
 
         document.querySelector('#mySlider').addEventListener('slide', function(e){
             selectedImg = $("img[data-imgnum = '"+e.detail.slideNumber+"']")[0].getAttribute('value');
@@ -433,15 +487,26 @@
             e.stopPropagation();
             sentence = $(e.currentTarget).find(".sentence").html();
         });
-        
+
+        //문장 크롤링
         function getSentences(word) {
             $.getJSON('http://192.168.0.24:3000/crawling/sentences?words='+word, function (result) {
                 for (var i = 0; i < result.sentences.length; i++) {
+                    if (i === 0){
+                        sentence = result.sentences[i];
+                        $(".selected-sentence").html(result.sentences[i]);
+                    }
                     $('.sentence')[i].innerHTML = result.sentences[i];
+                }
+                loadingCnt = loadingCnt - 1;
+                if(loadingCnt === 0){
+                    swal.hideLoading();
+                    swal.clickConfirm();
                 }
             });
         }
-        
+
+        //이미지 크롤링
         function getImgs(word) {
             $.getJSON('http://192.168.0.24:3000/crawling/imgs?words='+word, function (result) {
                 console.log(result);
@@ -450,10 +515,16 @@
                     console.log(result.imgs[i]);
                 }
             });
+            loadingCnt = loadingCnt - 1;
+            if(loadingCnt === 0){
+                swal.hideLoading();
+                swal.clickConfirm();
+            }
         }
 
         getSentences(words);
         getImgs(words);
+
     });
 </script>
 </html>
