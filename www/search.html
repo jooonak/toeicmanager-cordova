@@ -90,9 +90,8 @@
 
     .img-position{
         margin: 0px auto;
-
-        width: 280px;
-        height: 200px;
+        width: 80%;
+        height: 160px;
         border-radius: 5px;
         box-shadow: 1px 1px #888888;
     }
@@ -237,14 +236,15 @@
     .sentence-div{
         display:block;
         position: relative;
-        margin: 19px;
-        min-height: 60px;
+        margin: 19px auto;
+        min-height: 45%;
+        width: 80%;
         box-shadow: 1px 1px #888888;
         background-color: #ebebeb
     }
 
     .selected-sentence{
-        font-size: 0.6em;
+        font-size: 0.5em;
         height: 50px;
         max-height: 50px;
         margin: 5px;
@@ -253,7 +253,9 @@
         font-weight: normal;
         overflow: scroll;
     }
+
     .select-sentence {
+        font-size: 0.5em;
         display: block;
         position: relative;
         min-height: 30px;
@@ -290,7 +292,6 @@
                         <div class="meaning" style="display: inline-block" >
                         </div>
                     </div>
-
                 </div>
 
                 <div class="img-position">
@@ -309,27 +310,26 @@
                     </div>
                 </div>
 
-                <hr style="width: 280px;">
-                <h3 style="font-size: 0.8em; margin-top: 5px ;">
+                <hr style="width: 80%;">
+                <div style="font-size: 0.7em; margin-top: 5px ;">
                     choose sentence
-                </h3>
+                </div>
 
                 <a href="#sentenceModal" class="sentence-href" >
-                <div class="sentence-div" >
-                    <div style="display:inline-block; position: relative; margin-top: 5px;">
-                        <h3 class = "selected-sentence">
-                        </h3>
+                    <div class="sentence-div" >
+                        <div style="display:inline-block; position: relative; margin-top: 5px;">
+                            <div class = "selected-sentence">
+                            </div>
+                        </div>
+                        <hr style="margin:0px;padding:0px;border: none;height: 1px; background-color: #b5b5b5; ">
+                        <i class="material-icons" >keyboard_arrow_up</i>
                     </div>
-                    <hr style="margin:0px;padding:0px;border: none;height: 1px;background-color: #b5b5b5; ">
-                    <i class="material-icons" >keyboard_arrow_up</i>
-                </div>
                 </a>
-                <input style="width:70%;display: inline;margin-bottom: 15px;height: 50px;padding:0px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
+                <input style="width:70%;display: inline; margin-bottom: 15px;height: 50px;padding:0px; margin-top:15px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
             </div>
-
         </div>
-
     </div>
+
     <div id="sentenceModal" class="modal">
         <header class="bar bar-nav">
             <h1 class="title">select sentence
@@ -354,11 +354,11 @@
             </div>
             <hr>
             <div class="select-sentence">
-                    <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
-                        <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
-                        <input type="radio" name="radio">
-                        <span class="checkmark" ></span>
-                    </label>
+                <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
+                    <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                    <input type="radio" name="radio">
+                    <span class="checkmark" ></span>
+                </label>
             </div>
             <hr>
         </div>
@@ -482,11 +482,6 @@
             selectedImg = $("img[data-imgnum = '"+e.detail.slideNumber+"']")[0].getAttribute('value');
         });
 
-        //event가 두번 발생하는 문제가 있음 해결필요.
-        $(".radio-container").on("click", function(e){
-            e.stopPropagation();
-            sentence = $(e.currentTarget).find(".sentence").html();
-        });
 
         //문장 크롤링
         function getSentences(word) {
