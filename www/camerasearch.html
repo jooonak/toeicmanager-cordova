@@ -300,13 +300,13 @@
                 <div class="slider" id="mySlider">
                     <div class="slide-group">
                         <div class="slide">
-                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 0 src="" value = "pt_1.jpg">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 0 src="" value = "">
                         </div>
                         <div class="slide">
-                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 1 src="" value = "pt_2.jpg">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 1 src="" value = "">
                         </div>
                         <div class="slide">
-                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "pt_3.jpg">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "">
                         </div>
                     </div>
                 </div>
@@ -461,7 +461,7 @@
 
             var data = {word:words, vno: vno,sentence: sentence, meaning:meaning, img:selectedImg };
             console.log(data);
-            $.ajax({
+            /$.ajax({
                 type : 'post',
                 data : JSON.stringify(data),
                 contentType:"application/json; charset=UTF-8",
@@ -522,6 +522,7 @@
                 console.log(result);
                 for (var i = 0; i < result.imgs.length; i++) {
                     $('.img')[i].setAttribute('src', result.imgs[i]);
+                    $('.img')[i].setAttribute('value', result.imgs[i]);
                     console.log(result.imgs[i]);
                 }
             });
