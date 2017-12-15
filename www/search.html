@@ -237,7 +237,11 @@
     .sentence-div{
         display:block;
         position: relative;
+<<<<<<< HEAD
         margin: 5px auto;
+=======
+        margin: 19px auto;
+>>>>>>> c2dc1ae0a8d1d8cca52a61d9203cf3cb067b5774
         min-height: 45%;
         width: 80%;
         box-shadow: 1px 1px #888888;
@@ -312,6 +316,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <hr style="width: 80%;">
             <div style="font-size: 0.7em; margin-top: 5px ;">
                 choose sentence
@@ -328,9 +333,67 @@
                 </div>
             </a>
             <input style="width:70%;display: inline; margin-bottom: 10px;height: 50px;padding:0px; margin-top:15px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
-        </div>
+=======
+                <hr style="width: 80%;">
+                <div style="font-size: 0.7em; margin-top: 5px ;">
+                    choose sentence
+                </div>
 
+                <a href="#sentenceModal" class="sentence-href" >
+                    <div class="sentence-div" >
+                        <div style="display:inline-block; position: relative; margin-top: 5px;">
+                            <div class = "selected-sentence">
+                            </div>
+                        </div>
+                        <hr style="margin:0px;padding:0px;border: none;height: 1px; background-color: #b5b5b5; ">
+                        <i class="material-icons" >keyboard_arrow_up</i>
+                    </div>
+                </a>
+                <input style="width:70%;display: inline; margin-bottom: 15px;height: 50px;padding:0px; margin-top:15px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
+            </div>
+>>>>>>> c2dc1ae0a8d1d8cca52a61d9203cf3cb067b5774
+        </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <div id="sentenceModal" class="modal">
+        <header class="bar bar-nav">
+            <h1 class="title">select sentence
+                <i class="material-icons" style="vertical-align: middle; text-align: right">keyboard_arrow_down</i>
+            </h1>
+        </header>
+        <div class = "sentence-box" style="margin-top: 60px">
+            <div class="select-sentence">
+                <label class="radio-container"style="font-size:15px; text-align: left">
+                    <div class = "sentence">&lt;!&ndash;Think like a man of action and act like man of thought.&ndash;&gt;</div>
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <hr>
+            <div class="select-sentence">
+                <label class="radio-container"  style="font-size:15px; text-align: left">
+                    <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <hr>
+            <div class="select-sentence">
+                <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
+                    <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                    <input type="radio" name="radio">
+                    <span class="checkmark" ></span>
+                </label>
+            </div>
+            <hr>
+        </div>
+        <a href="#sentenceModal" class="sentence-href" >
+            <input style="width:90%; height: 50px; padding:0px; margin:20px auto; display:block;" class = "btn btn-block btn-outlined" type="button" value="select" align="center" >
+        </a>
+    </div>
+>>>>>>> c2dc1ae0a8d1d8cca52a61d9203cf3cb067b5774
 
 </div>
 <div id="sentenceModal" class="modal">
@@ -485,11 +548,6 @@
             selectedImg = $("img[data-imgnum = '"+e.detail.slideNumber+"']")[0].getAttribute('value');
         });
 
-        //event가 두번 발생하는 문제가 있음 해결필요.
-        $(".radio-container").on("click", function(e){
-            e.stopPropagation();
-            sentence = $(e.currentTarget).find(".sentence").html();
-        });
 
         //문장 크롤링
         function getSentences(word) {
