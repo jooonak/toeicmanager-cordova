@@ -125,7 +125,7 @@
         <h3 style="margin: 0;"></h3>
     </div>
     <div class="box bottom">
-        <a style="margin: 0; width: 80%; border-radius: 25px" href="#" class="btn btn-primary btn-block btn-outlined">START</a>
+        <button style="margin: 0; width: 80%; border-radius: 25px" class="btn btn-primary btn-block btn-outlined">START</button>
     </div>
 </div>
 
@@ -146,11 +146,11 @@
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
-                    $(".btn").attr("href", type + ".html?eno=" + result[0].eno);
+                    $(".btn").attr("data-href", type + ".html?eno=" + result[0].eno);
                 } else {
                     $(".img>h3").html("더 외울 단어가 없습니다.");
 
-                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("data-href", "main.html");
                 }
             });
         } else if (type === "review"){
@@ -159,11 +159,11 @@
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
 
-                    $(".btn").attr("href", type + ".html");
+                    $(".btn").attr("data-href", type + ".html");
                 } else {
                     $(".img>h3").html("더 풀 문제가 없습니다.");
 
-                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("data-href", "main.html");
                 }
             });
         } else {
@@ -171,21 +171,20 @@
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
 
-                    $(".btn").attr("href", type + ".html");
+                    $(".btn").attr("data-href", type + ".html");
                 } else {
                     $(".img>h3").html("더 풀 문제가 없습니다.");
 
-                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("href", "main.html");
+                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("data-href", "main.html");
                 }
             });
         }
 
         $('.img').attr('src', 'img/'+ type +'.png');
-
     }
     checkExam(type);
 
-    $(".btn-primary").on("click",function(){
+    $(".bottom").on("click", ".btn-primary", function(){
 
         var data = {mid : member.mid};
 
@@ -195,16 +194,21 @@
             data: data,
             success: function (result) {
 
-
             }
         });
+        console.log($(this).data("href"));
+        window.location = $(this).data("href");
+    });
+
+    $(".bottom").on('click', '.btn-negative', function (e) {
+        window.location = $(this).data("href");
     });
 
     //뒤로 가기 버튼
     $(".back").on("click",function(){
-        window.plugins.nativepagetransitions.slide({ href: "main.html"});
-//        window.location.href = "main.html";
+        window.location = "main.html";
     });
+
 </script>
 </body>
 </html>

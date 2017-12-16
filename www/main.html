@@ -165,10 +165,6 @@
         align-items: center;
     }
 
-    .examBtn {
-        box-shadow: 0 0 10px #999;
-    }
-
     .meter {
         height: 13px;
         background: #DCE0E3;
@@ -246,15 +242,14 @@
         }
     }
 
-    .a{
-         background-color: white;
-     }
-
-    .a:active{
-        background-color:#CCC;
+    .btn-outlined {
+        box-shadow: 0 0 10px #999;
+        background-color: white;
     }
 
-
+    .btn-outlined:active{
+        background-color:#CCC;
+    }
 </style>
 
 <body>
@@ -264,7 +259,7 @@
     <div class=" header ">
         <header class="bar bar-nav dark">
             <button class="btn btn-link btn-nav pull-right"><i class="large material-icons mod-active" style="color: white; float: left; margin: 10px 5px;">settings</i></button>
-            <img style="height: 100%; margin-left: -14%; position: absolute; width: 154px" src="img/main_image.png">
+            <img style="height: 100%; margin-left: -15%; position: absolute; width: 154px" src="img/main_image.png">
         </header>
     </div>
 
@@ -323,12 +318,12 @@
         </div>
 
         <div class="button center ">
-            <a href="#" class="learnbtn btn  btn-outlined btn-block a examBtn" style="margin-right: 1.5%">
+            <button href="#" class="btn btn-outlined btn-block" style="margin-right: 1.5%">
                 학습
-            </a>
-            <a href="#" class="reviewbtn btn  btn-outlined btn-block a examBtn" data-offer="exam" style="margin-left: 1.5%">
+            </button>
+            <button href="#" class="btn btn-outlined btn-block" data-offer="exam" style="margin-left: 1.5%">
                 시험
-            </a>
+            </button>
         </div>
     </div>
 
@@ -355,7 +350,6 @@
             // 현재 메인에 올 때마다 member table값을 가져와서 동기화 시키지만, 추 후 설계의 변경이 필요하다
             var storage = JSON.parse(localStorage.member);
             var data = {mid : storage.mid, mpw : storage.mpw};
-
             $.ajax({
                 type :'post',
                 url: 'http://192.168.0.24:8080/login/',
@@ -367,10 +361,6 @@
                     if (result.mid) {
                         localStorage.member = JSON.stringify(result);
                     } else {
-                        swal({
-                            title: 'ID 또는 PW 확인',
-                            type: 'error'
-                        });
                     }
 
                 }
@@ -601,39 +591,44 @@
 
         //단어장 리스트 페이지 이동
         $(".wordListPosition").on("click", function (e) {
-            window.plugins.nativepagetransitions.slide({ href: "vocabulary.html?mid=" + member.mid});
+            window.location = "vocabulary.html?mid=" + member.mid;
         });
 
         //암기현황 구역 클릭시 페이지 이동
         $(".result").on("click", function (e) {
-            window.plugins.nativepagetransitions.slide({ href: "result.html?mid=" + member.mid});
+            window.location = "result.html?mid=" + member.mid;
         });
 
         //챗봇 구역 클릭시 페이지 이동
         $(".chatbot").on("click", function (e) {
-            window.plugins.nativepagetransitions.slide({ href: "chatbot.html?mid=" + member.mid});
+            window.location = "chatbot.html?mid=" + member.mid;
         });
 
-        //btn에 event를 먹이면 검색 부분도 같이 먹여져서 btn-block으로 바꿈
+
         $(".btn-block").on("click", function (e) {
 
             if ($(e.target).data("offer")){
-                $(this).attr("href", "startpage.html?type=" + $(this).data("offer"));
+                window.location = "startpage.html?type=" + $(this).data("offer");
             } else {
                 swal({
-                    title: '',
+                    title: '학습하기',
                     html:
                         member.lstatus === "review" ?
-                            "<a style='margin: 0; margin-bottom: 5px;' href='#' class='btn btn-block btn-negative btn-outlined'>복습을 진행해 주세요</a>" +
-                            "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>"
+                            "<button style='margin-top: 20px;' class='btn btn-block btn-negative btn-outlined'>복습을 진행해 주세요</button>" +
+                            "<button style='margin: 5px 0;' class='btn btn-block btn-outlined swalBtn' data-offer='review'>모르는 단어 복습</button>"
                             :
-                            "<a style='margin: 0; margin-bottom: 5px;' href='startpage.html?type=learn' class='btn btn-block btn-positive btn-outlined'>새로운 단어 학습</a>" +
-                            "<a style='margin: 0;' href='startpage.html?type=review' class='btn btn-block btn-positive btn-outlined'>모르는 단어 복습</a>",
+                            "<button style='margin-top: 20px; margin-bottom: 5px;' class='btn btn-block btn-outlined swalBtn' data-offer='learn'>새로운 단어 학습</button>" +
+                            "<button style='margin: 5px 0;' class='btn btn-block btn-outlined swalBtn' data-offer='review'>모르는 단어 복습</button>",
                     showConfirmButton: false,
+                    cancelButtonColor: '#da2f2f',
                     showCancelButton: true
                 });
             }
 
+        });
+        
+        $(document).on('click', '.swalBtn', function (e) {
+            window.location = "startpage.html?type=" + $(this).data('offer');
         });
     });
 </script>

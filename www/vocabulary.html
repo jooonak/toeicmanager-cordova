@@ -207,7 +207,7 @@
         var data = {mid : member.mid, goal :member.goal};
 
             $.ajax({
-                url: "http://192.168.0.32:8080/vocabulary/",
+                url: "http://192.168.0.24:8080/vocabulary/",
                 dataType: "json",
                 type: 'get',
                 data:data,
@@ -272,7 +272,7 @@
                 return $.ajax({
                     data : {"owner":member.mid, vname: value, },
                     type : 'post',
-                    url: 'http://192.168.0.32:8080/vocabulary/',
+                    url: 'http://192.168.0.24:8080/vocabulary/',
                     success: function() {
                         setTimeout(function () {
                             swal({title: 'success',
