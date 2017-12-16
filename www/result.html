@@ -129,7 +129,8 @@
 
             //뒤로 가기 버튼
             $(".back").on("click",function(){
-                window.plugins.nativepagetransitions.slide({ href: "main.html?mid=m1"});
+                window.location.href = "main.html?mid=m1";
+                //window.plugins.nativepagetransitions.slide({ href: "main.html?mid=m1"});
             });
 
         })

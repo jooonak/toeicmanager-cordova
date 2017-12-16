@@ -86,17 +86,15 @@
     .meaning{
         margin-bottom:10px;
         font-size: 20px;
-
+        min-height: 21px;
     }
 
     .img-position{
         margin: 0px auto;
-
-        width: 280px;
-        height: 200px;
+        width: 80%;
+        height: 160px;
         border-radius: 5px;
-        box-shadow:0 0 10px #999;
-
+        box-shadow: 1px 1px #888888;
     }
     .img{
         /*        width: 100%;
@@ -175,6 +173,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        z-index: 5;
     }
 
     /* Hide the browser's default radio button */
@@ -186,6 +185,7 @@
     /* Create a custom radio button */
     .checkmark {
         position: absolute;
+        margin-left: 5px ;
         top: 0;
         left: 0;
         height: 25px;
@@ -225,8 +225,45 @@
         border-radius: 50%;
         background: white;
     }
-</style>
+    .material-icons {
+        margin-top: 0px;
+    }
 
+    .sentence-href {
+        color:black;
+        background-color: none;
+    }
+
+    .sentence-div{
+        display:block;
+        position: relative;
+        margin: 19px auto;
+        min-height: 45%;
+        width: 80%;
+        box-shadow: 1px 1px #888888;
+        background-color: #ebebeb
+    }
+
+    .selected-sentence{
+        font-size: 0.5em;
+        height: 50px;
+        max-height: 50px;
+        margin: 5px;
+        text-align: left;
+        vertical-align: 20%;
+        font-weight: normal;
+        overflow: scroll;
+    }
+
+    .select-sentence {
+        font-size: 0.5em;
+        display: block;
+        position: relative;
+        min-height: 30px;
+        z-index: 1000;
+    }
+
+</style>
 
 <body>
 <div class='container'>
@@ -239,7 +276,7 @@
             <a href="#popover">
                 <h1 class="title selected-voca-name">
                     Select Voca
-                    <span class="icon icon-caret"></span>
+                    <i class="material-icons" style="vertical-align: middle;">keyboard_arrow_down</i>
                 </h1>
 
             </a>
@@ -253,7 +290,9 @@
             <div class="word-position">
                 <div class="word">
                 </div>
-                <div class="meaning">
+                <div>
+                    <div class="meaning" style="display: inline-block" >
+                    </div>
                 </div>
             </div>
 
@@ -261,51 +300,77 @@
                 <div class="slider" id="mySlider">
                     <div class="slide-group">
                         <div class="slide">
-                            <img data-imgNum = 0 src="img/pt_1.jpg" value = "pt_1.jpg">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 0 src="" value = "">
                         </div>
                         <div class="slide">
-                            <img data-imgNum = 1 src="img/pt_2.jpg" value = "pt_2.jpg">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 1 src="" value = "">
                         </div>
                         <div class="slide">
-                            <img data-imgNum = 2 src="img/pt_3.jpg" value = "pt_3.jpg">
+                            <img style="width: 100%; height: 100%;" class="img" data-imgNum = 2 src="" value = "">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="stc-position" >
-                <ul class="stc" style="padding: 0; margin-left: 0px; margin-right: 0px">
-                    <li class="table-view-cell" style="padding: 0; margin-left: 10px; margin-right: 10px">
-                        <label class="radio-container"style="font-size:15px; text-align: left">
-                            <div class = "sentence">Think like a man of action and act like man of thought.</div>
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
-                        <label class="radio-container"  style="font-size:15px; text-align: left">
-                            <div class = "sentence">Courage is very important. Like a muscle, it is strengthened by use.</div>
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                    <li class="table-view-cell" style=" padding: 0; margin-left: 10px; margin-right: 10px">
-                        <label class="radio-container"  style="font-size:15px; text-align: left">
-                            <div class = "sentence">Courage is very important. Like a muscle, it is strengthened by use.</div>
-                            <input type="radio" checked="checked" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </ul>
+            <hr style="width: 80%;">
+            <div style="font-size: 0.7em; margin-top: 5px ;">
+                choose sentence
             </div>
 
-            <input style="width:70%; display: inline" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
+
+            <a href="#sentenceModal" class="sentence-href" >
+                <div class="sentence-div" >
+                    <div style="display:inline-block; position: relative; margin-top: 5px;">
+                        <div class = "selected-sentence">
+                        </div>
+                    </div>
+                    <hr style="margin:0px;padding:0px;border: none;height: 1px; background-color: #b5b5b5; ">
+                    <i class="material-icons" >keyboard_arrow_up</i>
+                </div>
+            </a>
+
+            <input style="width:70%;display: inline; margin-bottom: 15px;height: 50px;padding:0px; margin-top:15px;" class = "regBtn btn btn-block btn-outlined" type="button" value="register" >
         </div>
 
     </div>
 
 </div>
-
+<div id="sentenceModal" class="modal">
+    <header class="bar bar-nav">
+        <h1 class="title">select sentence
+            <i class="material-icons" style="vertical-align: middle; text-align: right">keyboard_arrow_down</i>
+        </h1>
+    </header>
+    <div class = "sentence-box" style="margin-top: 60px">
+        <div class="select-sentence">
+            <label class="radio-container"style="font-size:15px; text-align: left">
+                <div class = "sentence">&lt;!&ndash;Think like a man of action and act like man of thought.&ndash;&gt;</div>
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <hr>
+        <div class="select-sentence">
+            <label class="radio-container"  style="font-size:15px; text-align: left">
+                <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <hr>
+        <div class="select-sentence">
+            <label class="radio-container"  style="font-size:15px; text-align: left; background-color: #\\; z-index: 4; position: relative">
+                <div class = "sentence">&lt;!&ndash;Courage is very important. Like a muscle, it is strengthened by use.&ndash;&gt;</div>
+                <input type="radio" name="radio">
+                <span class="checkmark" ></span>
+            </label>
+        </div>
+        <hr>
+    </div>
+    <a href="#sentenceModal" class="sentence-href" >
+        <input style="width:90%; height: 50px; padding:0px; margin:20px auto; display:block;" class = "btn btn-block btn-outlined" type="button" value="select" align="center" >
+    </a>
+</div>
 
 <div id="popover" class="popover" style="margin-top: 50px">
     <header class="bar bar-nav">
@@ -321,29 +386,42 @@
 <script type="text/javascript" src="js/getUrlParams.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
 <script type="text/javascript" src="js/popovers.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
 <script src="sweetalert2/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
 <script TYPE="application/javascript">
     var wordList = getUrlParams('wordList');
-    var word = wordList.split(",")[0];
+    var words = wordList.split(",")[0];
     var meaning = "";
     var sentence = "";
     var selectedImg = "pt_1.jpg";   //테스트용, 추 후 이미지를 크롤링하여 가져오는 경우 첫번째 이미지를 selectedImg에 넣는다.
     var vno = 0;
     wordList = wordList.substring(wordList.indexOf(',') + 1);
+    //로딩 카운트, img와 문장 크롤링이 끝나는 지점동안 로딩 모달을 띄워주기 위해 사용한다.
+    var loadingCnt = 2;
+
     console.log(wordList);
-    console.log(word);
+    console.log(words);
 
 
     $("document").ready(function(){
-        $(".word").html(word);
+        $(".word").html(words);
+
+            swal({
+                title: 'please wait..',
+                showConfirmButton: false,
+                onOpen: () => {
+                swal.showLoading();
+        },
+            allowOutsideClick: false
+        });
 
         //단어 뜻 정보를 node.js 서버에 요청하여 callback 함수로 받은 후 화면에 표시해 주는 ajax 요청
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://192.168.0.22:3000/dic',
-            data: {'words':word},
+            url: 'http://192.168.0.24:3000/dic',
+            data: {'words':words},
             success: function(data) {
                 $(".meaning").append(data);
                 meaning = data;
@@ -363,7 +441,7 @@
                 //가져온 단어장 리스트에 event 처리(클릭시 header부분 변경 및 regist 용 input 데이터 삽입)
                 $(".vocabulary").on("click", function(e){
                     vno = $(e.target)[0].getAttribute('value');
-                    $(".selected-voca-name").html($(e.target).html()+"<span class='icon icon-caret'></span>");
+                    $(".selected-voca-name").html($(e.target).html()+"<i class='material-icons' style='vertical-align: middle;'>keyboard_arrow_down</i>");
                 });
             }
         });
@@ -381,24 +459,24 @@
                 return;
             }
 
-            var data = {word:word, vno: vno,sentence: sentence, meaning:meaning, img:selectedImg };
+            var data = {word:words, vno: vno,sentence: sentence, meaning:meaning, img:selectedImg };
             console.log(data);
-            $.ajax({
+            /$.ajax({
                 type : 'post',
                 data : JSON.stringify(data),
                 contentType:"application/json; charset=UTF-8",
                 url: 'http://192.168.0.24:8080/vocabulary/'+vno+"/words",
                 success: function() {
                     alert("등록 성공");
-                    if(word === wordList){
+                    if(words === wordList){
                         swal({
                             title: 'complete!',
                             confirmButtonText: 'ok'
                         }).then(
-                            window.plugins.nativepagetransitions.slide({ href: "main.html"})
-                        );
+                            window.location.href = "main.html"
+                    );
                     }else{
-                        window.plugins.nativepagetransitions.slide({ href: "camerasearch.html?wordList="+ wordList});
+                        window.location.href = "camerasearch.html?wordList="+ wordList;
                     }
 
                 }
@@ -410,17 +488,53 @@
             selectedImg = $("img[data-imgnum = '"+e.detail.slideNumber+"']")[0].getAttribute('value');
         });
 
-        //event가 두번 발생하는 문제가 있음 해결필요.
+        //radio-botton에 의해 두번 적용된다 해결 필요..
         $(".radio-container").on("click", function(e){
-            e.stopPropagation();
-            sentence = $(e.currentTarget).find(".sentence").html();
+            if($(e.target).find(".sentence").prevObject["0"].innerHTML != ""){
+                $(".selected-sentence").html($(e.target).find(".sentence").prevObject["0"].innerHTML);
+            }
         });
-
-
-
 
         //nativa back 버튼 클릭시 동작하는 이벤트, back버튼을 누르면 경고 modal이 발생하며, ok를 누를 경우 main으로 간다.
         document.addEventListener("backbutton", onBackKeyDown, false);
+
+        //문장 크롤링
+        function getSentences(word) {
+            $.getJSON('http://192.168.0.24:3000/crawling/sentences?words='+word, function (result) {
+                for (var i = 0; i < result.sentences.length; i++) {
+                    if (i === 0){
+                        sentence = result.sentences[i];
+                        $(".selected-sentence").html(result.sentences[i]);
+                    }
+                    $('.sentence')[i].innerHTML = result.sentences[i];
+                }
+                loadingCnt = loadingCnt - 1;
+                if(loadingCnt === 0){
+                    swal.hideLoading();
+                    swal.clickConfirm();
+                }
+            });
+        }
+
+        //이미지 크롤링
+        function getImgs(word) {
+            $.getJSON('http://192.168.0.24:3000/crawling/imgs?words='+word, function (result) {
+                console.log(result);
+                for (var i = 0; i < result.imgs.length; i++) {
+                    $('.img')[i].setAttribute('src', result.imgs[i]);
+                    $('.img')[i].setAttribute('value', result.imgs[i]);
+                    console.log(result.imgs[i]);
+                }
+            });
+            loadingCnt = loadingCnt - 1;
+            if(loadingCnt === 0){
+                swal.hideLoading();
+                swal.clickConfirm();
+            }
+        }
+
+        getSentences(words);
+        getImgs(words);
 
         function onBackKeyDown() {
             swal({

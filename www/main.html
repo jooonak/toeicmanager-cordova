@@ -56,7 +56,6 @@
         font-size: 150%;
         margin-right: 15px;
         margin-left: 15px;
-        opacity: .8;
     }
 
     .header {
@@ -67,13 +66,13 @@
     .contents {
         grid-column: 1/3;
         grid-row: 2/4;
+        background:rgba(255, 255, 255, 0.7);
     }
 
     .searchPosition{
         min-height: 60px;
         margin-bottom: 3%;
         box-shadow: 0 0 10px #999;
-        background-color: white;
     }
 
     .wordListPosition {
@@ -86,7 +85,6 @@
         box-shadow: 0 0 10px #999;
         min-height: 20%;
         margin-bottom: 3%;
-
     }
 
     .result1 {
@@ -154,6 +152,27 @@
     .dayLeft>h5, .dayRight>h5{
         float: left;
         text-indent: 10px;
+    }
+
+    .chatbotIcon{
+        float: left;
+        width: 25%;
+        height: 100%;
+    }
+
+    .wisePosition{
+        flex-wrap: wrap;
+        float: left;
+        width: 75%;
+        height: 100%;
+    }
+
+    #wiseSaying{
+        font-size: 75%;
+        margin-bottom: 3%;
+    }
+    #translate{
+        font-size: 60%;
     }
 
     .center {
@@ -289,7 +308,17 @@
         </div>
 
         <div class="chatbot center a">
-            챗봇 및 명언
+            <div class="chatbotIcon">
+                <img class="img" src="img/robot.png"/>
+            </div>
+            <div class="wisePosition ">
+                <div id = wiseSaying class="box">
+
+                </div>
+                <div id = translate class="box">
+
+                </div>
+            </div>
         </div>
 
         <div class="result result1 a">
@@ -357,7 +386,6 @@
                 contentType: 'application/json;',
                 success: function(result) {
 
-                    console.log(result);
                     if (result.mid) {
                         localStorage.member = JSON.stringify(result);
                     } else {
@@ -439,7 +467,7 @@
         }
 
         //학습 및 시험 목표량 정보를 가져오는 함수
-        function getList() {
+        function getMainData() {
             var obj = [];
             var cycleObj = [];
             var learnObj =[];
@@ -493,8 +521,26 @@
                 var str ="<span style='width: "+resultSum/totalSum*100+"%;'></span>";
                 $(".meter").html(str);
             });
+
+            $.getJSON("http://192.168.0.32:8080/result/wise", function (result) {
+
+                var wiseObj =[];
+
+                for(var i = 0; i < result.length; i++){
+                    wiseObj.push({
+                        wsno: result[i].wsno,
+                        wisesaying : result[i].wisesaying,
+                        translate : result[i].translate,
+                    });
+
+                var random = Math.floor(Math.random()*result.length);
+
+                }
+                $("#wiseSaying").html(wiseObj[random].wisesaying);
+                $("#translate").html(wiseObj[random].translate);
+            });
         }
-        getList();
+        getMainData();
 
 
         //자동 완성 기능에 대한 이벤트 등록
@@ -620,13 +666,13 @@
                             "<button style='margin-top: 20px; margin-bottom: 5px;' class='btn btn-block btn-outlined swalBtn' data-offer='learn'>새로운 단어 학습</button>" +
                             "<button style='margin: 5px 0;' class='btn btn-block btn-outlined swalBtn' data-offer='review'>모르는 단어 복습</button>",
                     showConfirmButton: false,
-                    cancelButtonColor: '#da2f2f',
+                    cancelButtonColor: '#d9534f',
                     showCancelButton: true
                 });
             }
 
         });
-        
+
         $(document).on('click', '.swalBtn', function (e) {
             window.location = "startpage.html?type=" + $(this).data('offer');
         });
