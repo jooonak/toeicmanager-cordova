@@ -194,11 +194,11 @@
             <div class="sentence-div center" >
 
             </div>
-            <button class = "regBtn btn btn-block btn-outlined viewBtn a" style="margin-left: 5%; margin-right: 2%;">
-                <
+            <button class = "btn btn-block btn-outlined viewBtn a prev" style="margin-left: 5%; margin-right: 2%;" data-offer="prev">
+                <i class="material-icons">navigate_before</i>
             </button>
-            <button class = "regBtn btn btn-block btn-outlined viewBtn a" style="margin-left: 2%; margin-right: 5%;">
-                >
+            <button class = "btn btn-block btn-outlined viewBtn a" style="margin-left: 2%; margin-right: 5%;" data-offer="next">
+                <i class="material-icons">navigate_next</i>
             </button>
 
         </div>
@@ -223,6 +223,9 @@
 
         $(".vname").html(vname);
 
+        if ( wno == 1) {
+            $('.prev').attr('disabled', 'disabled');
+        }
 
         //단어 데이터를 가져오는 ajax 요청
         $.ajax({
@@ -246,7 +249,22 @@
 
         });
 
+        function next() {
+            window.location = "view.html?wno=" + ( parseInt(wno) + 1 ) + "&vno="+vno+"&vname="+vname;
+        }
 
+        function prev() {
+            window.location = "view.html?wno=" + ( wno - 1 ) + "&vno="+vno+"&vname="+vname;
+        }
+
+        $('.btn-block').on('click', function (e) {
+            if ($(this).data('offer') === 'next') {
+                next();
+            } else {
+                prev();
+            };
+        });
+        
     });
 </script>
 </html>
