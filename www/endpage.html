@@ -152,7 +152,7 @@
         $('.btn').on('click', function (e) {
             e.preventDefault();
             $.ajax({
-                url: 'http://192.168.0.26:3000/fcm?token=' + JSON.parse(localStorage.member).token,
+                url: 'http://192.168.0.32:3000/fcm?token=' + JSON.parse(localStorage.member).token,
                 type: 'get',
                 async: false,
                 success : function(result) {

@@ -151,7 +151,7 @@
     <div class=" header" >
        <header class="bar bar-nav dark">
             <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
-            <h1 class="title" style="color: white">Toeic Manager</h1>
+            <h1 class="title" style="color: white">basic Manager</h1>
             <button class="btn btn-link btn-nav pull-right"><i class="large material-icons mod-active" style="color: white; float: left; margin: 10px 5px;">settings</i></button>
         </header>
     </div>
@@ -161,7 +161,7 @@
         <div class="table-view">
 
             <hr>
-            <h3 class='table-view-cell'>Toeic Voca</h3>
+            <h3 class='table-view-cell'>basic Voca</h3>
             <ul class = "systemvocabulary-list vocaList">
 
             </ul>
@@ -207,7 +207,7 @@
         var data = {mid : member.mid, goal :member.goal};
 
             $.ajax({
-                url: "http://192.168.0.24:8080/vocabulary/",
+                url: "http://192.168.0.32:8080/vocabulary/",
                 dataType: "json",
                 type: 'get',
                 data:data,
@@ -272,7 +272,7 @@
                 return $.ajax({
                     data : {"owner":member.mid, vname: value, },
                     type : 'post',
-                    url: 'http://192.168.0.24:8080/vocabulary/',
+                    url: 'http://192.168.0.32:8080/vocabulary/',
                     success: function() {
                         setTimeout(function () {
                             swal({title: 'success',
@@ -304,7 +304,7 @@
                     inputValidator: (value) => {
                     return $.ajax({
                         type : 'put',
-                        url: 'http://192.168.0.24:8080/vocabulary/'+vno,
+                        url: 'http://192.168.0.32:8080/vocabulary/'+vno,
                         data:JSON.stringify({vno : vno , vname: value}),
                         contentType:"application/json; charset=utf-8",
                         success: function() {
@@ -340,7 +340,7 @@
                     if(result.value){
                     $.ajax({
                         type: 'delete',
-                        url: 'http://192.168.0.24:8080/vocabulary/' + vno,
+                        url: 'http://192.168.0.32:8080/vocabulary/' + vno,
                         success: function () {
                             setTimeout(function () {
                                 swal({

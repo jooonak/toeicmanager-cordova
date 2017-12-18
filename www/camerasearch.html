@@ -399,6 +399,7 @@
     wordList = wordList.substring(wordList.indexOf(',') + 1);
     //로딩 카운트, img와 문장 크롤링이 끝나는 지점동안 로딩 모달을 띄워주기 위해 사용한다.
     var loadingCnt = 2;
+    var member = JSON.parse(localStorage.member);
 
     console.log(wordList);
     console.log(words);
@@ -420,7 +421,7 @@
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://192.168.0.24:3000/dic',
+            url: 'http://192.168.0.32:3000/dic',
             data: {'words':words},
             success: function(data) {
                 $(".meaning").append(data);
@@ -432,11 +433,14 @@
         $.ajax({
             dataType: "json",
             type : 'get',
-            url: 'http://192.168.0.24:8080/vocabulary/',
+            data : {mid: member.mid, goal:member.goal},
+            url: 'http://192.168.0.32:8080/vocabulary/',
             success: function(data) {
                 data.forEach(function(voca){
-                    $(".vocaOpt").append("<li class= 'table-view-cell vocabulary' value="+voca.vno+">"+voca.vname+"</li>");
-                    console.log(voca);
+                    if(voca.owner != 'SYSTEM'){
+                        $(".vocaOpt").append("<li class= 'table-view-cell vocabulary' value="+voca.vno+">"+voca.vname+"</li>");
+                        console.log(voca);
+                    }
                 });
                 //가져온 단어장 리스트에 event 처리(클릭시 header부분 변경 및 regist 용 input 데이터 삽입)
                 $(".vocabulary").on("click", function(e){
@@ -461,11 +465,11 @@
 
             var data = {word:words, vno: vno,sentence: sentence, meaning:meaning, img:selectedImg };
             console.log(data);
-            /$.ajax({
+            $.ajax({
                 type : 'post',
                 data : JSON.stringify(data),
                 contentType:"application/json; charset=UTF-8",
-                url: 'http://192.168.0.24:8080/vocabulary/'+vno+"/words",
+                url: 'http://192.168.0.32:8080/vocabulary/'+vno+"/words",
                 success: function() {
                     alert("등록 성공");
                     if(words === wordList){
@@ -499,14 +503,16 @@
         document.addEventListener("backbutton", onBackKeyDown, false);
 
         //문장 크롤링
-        function getSentences(word) {
-            $.getJSON('http://192.168.0.24:3000/crawling/sentences?words='+word, function (result) {
+        function getSentences(words) {
+            $.getJSON('http://192.168.0.32:3000/crawling/sentences?word='+words, function (result) {
                 for (var i = 0; i < result.sentences.length; i++) {
                     if (i === 0){
                         sentence = result.sentences[i];
                         $(".selected-sentence").html(result.sentences[i]);
                     }
-                    $('.sentence')[i].innerHTML = result.sentences[i];
+                    console.log(result.sentences[i]);
+                    console.log($($('.sentence')[i]).html());
+                    $($('.sentence')[i]).html(result.sentences[i]);
                 }
                 loadingCnt = loadingCnt - 1;
                 if(loadingCnt === 0){
@@ -517,8 +523,8 @@
         }
 
         //이미지 크롤링
-        function getImgs(word) {
-            $.getJSON('http://192.168.0.24:3000/crawling/imgs?words='+word, function (result) {
+        function getImgs(words) {
+            $.getJSON('http://192.168.0.32:3000/crawling/imgs?word='+words, function (result) {
                 console.log(result);
                 for (var i = 0; i < result.imgs.length; i++) {
                     $('.img')[i].setAttribute('src', result.imgs[i]);

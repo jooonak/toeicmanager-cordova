@@ -283,7 +283,7 @@
     var examList = [];
 
     $.ajax({
-        url : "http://192.168.0.24:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
+        url : "http://192.168.0.32:8080/learn/"+ eno + "?eno=" + eno + "&mid=" + member.mid,
         type: 'get',
         async: false,
         success : function(result) {
@@ -298,7 +298,7 @@
             $(".cnt>h1").html( (ord + 1) + "/" + total);
             $(".exampleUl").attr("data-total", list.length);
 
-            $('.question').html("<img src=http://192.168.0.24:8080/file/" + list[ord].img + ">" + list[ord].word);
+            $('.question').html("<img src=http://192.168.0.32:8080/file/" + list[ord].img + ">" + list[ord].word);
 
             var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><i class='material-icons dp48'>clear</i></button></li>";
 
@@ -397,7 +397,7 @@
                 };
 
                 $.ajax({
-                    url : 'http://192.168.0.24:8080/learn/middle/' + eno,
+                    url : 'http://192.168.0.32:8080/learn/middle/' + eno,
                     type: 'put',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
@@ -417,7 +417,7 @@
             };
 
             $.ajax({
-                url : 'http://192.168.0.24:8080/learn/finished/' + eno,
+                url : 'http://192.168.0.32:8080/learn/finished/' + eno,
                 type: 'put',
                 data: JSON.stringify(data),
                 contentType: 'application/json;',

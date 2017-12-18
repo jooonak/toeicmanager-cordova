@@ -142,7 +142,7 @@
         $(".info>h2").text(str);
 
         if (type === "learn"){
-            $.getJSON("http://192.168.0.24:8080/" + type + "/?mid=" + member.mid, function (result) {
+            $.getJSON("http://192.168.0.32:8080/" + type + "/?mid=" + member.mid, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
@@ -155,7 +155,7 @@
             });
         } else if (type === "review"){
             var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.exampointer};
-            $.getJSON("http://192.168.0.24:8080/" + type + "/", param, function (result) {
+            $.getJSON("http://192.168.0.32:8080/" + type + "/", param, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
 
@@ -167,7 +167,7 @@
                 }
             });
         } else {
-            $.getJSON("http://192.168.0.24:8080/" + type + "/today?mid=" + member.mid, function (result) {
+            $.getJSON("http://192.168.0.32:8080/" + type + "/today?mid=" + member.mid, function (result) {
                 if (result[0]) {
                     $(".img>h3").html("TOTAL: " + (result.length) + "개");
 
@@ -189,7 +189,7 @@
         var data = {mid : member.mid};
 
         $.ajax({
-            url: "http://192.168.0.24:8080/exam/timecheck",
+            url: "http://192.168.0.32:8080/exam/timecheck",
             method: "post",
             data: data,
             success: function (result) {

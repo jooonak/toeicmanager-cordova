@@ -62,7 +62,7 @@
                 'contents contents'
                 'bottom bottom'
                 'footer footer';
-        grid-auto-rows:  1fr 15% 45% 15% 1fr;
+        grid-auto-rows:  1fr 15% 45% 15% 1.5fr;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         height: 100%;
@@ -132,7 +132,7 @@
 <div class='container'>
 
     <div class="box header"></div>
-    <div class="box top"><h1 class="title" style="color: white; font-size: 35px;">Toeic Manager</h1></div>
+    <div class="box top"><h1 class="title" style="color: white; font-size: 35px;">Remember me</h1></div>
     <div class="box contents">
         <div class="input">
 
@@ -186,7 +186,7 @@
 
                 $.ajax({
                     type :'post',
-                    url: 'http://192.168.0.24:8080/login/',
+                    url: 'http://192.168.0.32:8080/login/',
                     data: JSON.stringify(data),
                     contentType: 'application/json;',
                     success: function(result) {
@@ -226,7 +226,7 @@
                 preConfirm: () => {
                 return $.ajax({
                     type: 'post',
-                    url: 'http://192.168.0.24:8080/login/join' ,
+                    url: 'http://192.168.0.32:8080/login/join' ,
                     contentType: 'application/json;',
                     data :JSON.stringify(
                         {mid : $('#swal-input1').val(),
