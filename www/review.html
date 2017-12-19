@@ -298,7 +298,7 @@
         $(".cnt>h1").html( (ord + 1) + "/" + total);
         $(".exampleUl").attr("data-total", list.length);
 
-        $('.question').html("<img src=http://192.168.0.32:8080/file/" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+        $('.question').html("<img src=" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
 
         var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><i class='material-icons dp48'>clear</i></button></li>";
 
