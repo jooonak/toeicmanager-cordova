@@ -315,9 +315,9 @@
             var str = "";
             for (var i = 0; i < examples.length; i++){
                 if (examples[i] === list[ord].meaning){
-                    str += "<button class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
+                    str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
                 } else {
-                    str += "<button class='btn' data-wno=" + list[ord].wno + ">" + examples[i].meaning + "</button>";
+                    str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + ">" + examples[i].meaning + "</button>";
                 }
             }
 
@@ -330,9 +330,9 @@
             var str = "";
             for (var i = 0; i < examples.length; i++){
                 if (examples[i] === list[ord].word){
-                    str += "<button class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
+                    str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
                 } else {
-                    str += "<button class='btn' data-wno=" + list[ord].wno + ">" + examples[i].word + "</button>";
+                    str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + ">" + examples[i].word + "</button>";
                 }
             }
 
@@ -347,13 +347,13 @@
             var str = "";
             for (var i = 0; i < examples.length; i++){
                 if (examples[i] === list[ord].word){
-                    str += "<button class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
+                    str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + " data-answer=true>" + examples[i] + "</button>";
                 } else {
-                    str += "<button class='btn' data-wno=" + list[ord].wno + ">" + examples[i].word + "</button>";
+                    str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + ">" + examples[i].word + "</button>";
                 }
             }
         }
-        str += "<button class='btn' data-wno=" + list[ord].wno + ">모르냐</button>";
+        str += "<button style='font-size: 200%;' class='btn' data-wno=" + list[ord].wno + ">PASS</button>";
 
         $("#timeLeft").html(time);
         $(".example> ul").html(str);
