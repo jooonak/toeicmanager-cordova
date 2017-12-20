@@ -145,18 +145,22 @@
         if (type === "learn"){
             $.getJSON("http://192.168.0.32:8080/" + type + "/?mid=" + member.mid, function (result) {
 
-                console.log(result[0].examDate === date);
-                if (result[0].examDate === date) {
-                    if (result[0]) {
-                        $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
+                if (result[0]) {
+                    if (result[0].examDate === date) {
+                    $(".img>h3").html("TOTAL: " + (result[0].total - result[0].result) + "개");
 
-                        $(".btn").attr("data-href", type + ".html?eno=" + result[0].eno);
+                    $(".btn").attr("data-href", type + ".html?eno=" + result[0].eno);
                     } else {
                         $(".img>h3").html("더 외울 단어가 없습니다.");
 
                         $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("data-href", "main.html");
                     }
+                } else {
+                    $(".img>h3").html("더 외울 단어가 없습니다.");
+
+                    $(".btn-block").text("GO MAIN").attr("class", "btn btn-negative btn-block btn-outlined").attr("data-href", "main.html");
                 }
+
             });
         } else if (type === "review"){
             var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.exampointer};
