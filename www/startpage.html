@@ -163,7 +163,7 @@
 
             });
         } else if (type === "review"){
-            var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.exampointer};
+            var param = {mid : member.mid, lstatus : member.lstatus, examPointer : member.examPointer};
             $.getJSON("http://192.168.0.32:8080/" + type + "/", param, function (result) {
 
                 if (result[0]) {
