@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <!-- <script src="dist/js/ratchet.js"></script>-->
+
+    <title>View</title>
+</head>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+
+    }
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header '
+                'contents contents'
+                'footer footer';
+        grid-auto-rows: 1fr 80% 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 100%;
+    }
+
+    .box {
+        font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header {
+        grid-column: 1/3;
+        grid-row: 1/2;
+    }
+
+    .contents {
+        grid-column: 1/3;
+        grid-row: 2/4;
+    }
+
+    .wordbox{
+        border-width: 1px;
+        border-style: solid ;
+        border-color: #999;
+        border-radius: 15px;
+        margin:50px 10px 20px ;
+        min-height: 85%;
+        box-shadow:0 0 10px #999;
+    }
+
+    .word-position{
+        margin-top: 5%;
+    }
+
+    .word{
+        margin-bottom:10px;
+        font-size: 100%;
+    }
+
+    .meaning{
+        margin-bottom:10px;
+        font-size: 80%;
+    }
+
+    .img-position{
+        margin: 0px auto;
+        width: 280px;
+        height: 200px;
+        border-radius: 5px;
+        /*box-shadow: 1px 1px #888888;*/
+
+    }
+    .img{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+
+    .dark {
+        background: #222222;
+    }
+
+    .sentence-div{
+        margin: 0px 19px 19px 19px;
+        height: 4em;
+        box-shadow: 1px 1px #888888;
+        background-color: #ebebeb;
+        font-size: 70%;
+    }
+
+    .selected-sentence{
+        font-size: 0.6em;
+        height: 50px;
+        max-height: 50px;
+        margin: 5px;
+        text-align: left;
+        vertical-align: 20%;
+        font-weight: normal;
+        overflow: scroll;
+    }
+    .select-sentence {
+        display: block;
+        position: relative;
+        min-height: 30px;
+        z-index: 1000;
+    }
+
+    .viewBtn{
+        width:43%;
+        display: inline;
+        margin-bottom: 15px;
+        height: 50px;
+        padding:0px;
+        float: left;
+    }
+
+    .center {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .a{
+        background-color: white;
+    }
+
+    .a:active{
+        background-color:#CCC;
+    }
+
+
+</style>
+
+
+<body>
+<div class='container'>
+    <div class="box header">
+        <header class="bar bar-nav dark">
+            <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
+            <img style="height: 100%; margin-left: -22%; position: absolute; width: 154px" src="img/main_image.png">
+        </header>
+        <header class="bar bar-nav" style="margin-top: 45px">
+            <div class="vname title selected-voca-name">
+
+            </div>
+        </header>
+    </div>
+
+    <div class="box contents ">
+        <div class="wordbox">
+            <div class="word-position">
+                <div class="word">
+
+                </div>
+                <div class="meaning" style="display: inline-block" >
+
+                </div>
+            </div>
+
+            <div class="img-position">
+                <img  class="img"  src="" >
+            </div>
+
+            <hr style="width: 280px;">
+
+            <div class="sentence-div center" >
+
+            </div>
+            <button class = "btn btn-block btn-outlined viewBtn a prev" style="margin-left: 5%; margin-right: 2%;" data-offer="prev">
+                <i class="material-icons">navigate_before</i>
+            </button>
+            <button class = "btn btn-block btn-outlined viewBtn a" style="margin-left: 2%; margin-right: 5%;" data-offer="next">
+                <i class="material-icons">navigate_next</i>
+            </button>
+
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/popovers.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
+<script src="sweetalert2/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+<script TYPE="application/javascript">
+    $(document).ready(function(){
+        var vno = getUrlParams('vno');
+        var wno = getUrlParams('wno');
+        var vname = getUrlParams('vname');
+
+        $(".vname").html(vname);
+
+        if ( wno == 1) {
+            $('.prev').attr('disabled', 'disabled');
+        }
+
+        //단어 데이터를 가져오는 ajax 요청
+        $.ajax({
+            url: "http://192.168.0.32:8080/vocabulary/"+vno+"/words/"+wno,
+            dataType: "json",
+            type : 'get',
+            success: function(result) {
+                console.log(result);
+                $(".word").append(result.word);
+                $(".meaning").append(result.meaning);
+                $(".sentence-div").append(result.sentence);
+                $(".img").attr("src",result.img);
+
+
+            }
+        });
+
+        //뒤로 가기 버튼
+        $(".back").on("click",function(){
+            window.location.href = "words.html?vno="+vno+"&vname="+vname;
+
+        });
+
+        function next() {
+            window.location = "view.html?wno=" + ( parseInt(wno) + 1 ) + "&vno="+vno+"&vname="+vname;
+        }
+
+        function prev() {
+            window.location = "view.html?wno=" + ( wno - 1 ) + "&vno="+vno+"&vname="+vname;
+        }
+
+        $('.btn-block').on('click', function (e) {
+            if ($(this).data('offer') === 'next') {
+                next();
+            } else {
+                prev();
+            };
+        });
+        
+    });
+</script>
+</html>

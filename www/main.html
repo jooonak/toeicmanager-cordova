@@ -381,7 +381,7 @@
             var data = {mid : storage.mid, mpw : storage.mpw};
             $.ajax({
                 type :'post',
-                url: 'http://192.168.0.32:8080/login/',
+                url: 'http://192.168.219.110:8080/login/',
                 data: JSON.stringify(data),
                 contentType: 'application/json;',
                 success: function(result) {
@@ -428,7 +428,7 @@
                                 options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
                                 options.mimeType = "image/jpeg";
                                 var fileTransfer = new FileTransfer();
-                                fileTransfer.upload(imageURI, encodeURI("http://192.168.0.32:3000/ocr"), win, fail, options); // 마지막으로 서버에 파일 전송을 담당하는 함수.
+                                fileTransfer.upload(imageURI, encodeURI("http://192.168.219.110:3000/ocr"), win, fail, options); // 마지막으로 서버에 파일 전송을 담당하는 함수.
                             }
                             var win = function (r) { // 얘는 왜 있는건지 아직 사실 잘 모르겠음. Success해도 찍히지 않으니 나중에 누가 알게되면 추가 부탁.
                                 console.log(r.response);
@@ -472,7 +472,7 @@
             var cycleObj = [];
             var learnObj =[];
             var examObj =[];
-            $.getJSON("http://192.168.0.32:8080/result/mainlearn", function (result) {
+            $.getJSON("http://192.168.219.110:8080/result/mainlearn", function (result) {
                 for (var i = 0; i < result.length; i++){
                     obj.push({eno : result[i].eno,
                         result : result[i].result,
@@ -493,7 +493,7 @@
                 }
                 $(".dayLearn").html(str);
             });
-            $.getJSON("http://192.168.0.32:8080/result/mainexam", function (result) {
+            $.getJSON("http://192.168.219.110:8080/result/mainexam", function (result) {
 
                 for (var i = 0; i < result.length; i++){
                     cycleObj.push({nextCycle: result[i].nextCycle});
@@ -501,7 +501,7 @@
 
                 $(".dayExam").html(result.length);
             });
-            $.getJSON("http://192.168.0.32:8080/result/mainbar", function (result) {
+            $.getJSON("http://192.168.219.110:8080/result/mainbar", function (result) {
                 var resultSum = 0;
                 var totalSum = 0;
                 var date = new Date().getTime();
@@ -522,7 +522,7 @@
                 $(".meter").html(str);
             });
 
-            $.getJSON("http://192.168.0.32:8080/result/wise", function (result) {
+            $.getJSON("http://192.168.219.110:8080/result/wise", function (result) {
 
                 var wiseObj =[];
 

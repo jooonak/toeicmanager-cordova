@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><!--한글 깨짐 문제 해결-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *;
+   img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;
+   style-src  'self' 'unsafe-inline' *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- Ratchet 관련 태그임 필요에 따라 js는 주석처리하면 됩니다 -->
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="dist/css/ratchet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2/sweetalert2.min.css">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="dist/js/ratchet.js"></script>
+
+    <title>Views</title>
+</head>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header'
+                'cnt cnt'
+                'question question'
+                'example example'
+                'bottom bottom';
+        grid-auto-rows:  1fr 10% 50% 20% 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        background-color: white;
+        text-align: center;
+        height: 100%;
+    }
+
+    .box {
+        font-size: 150%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .header {
+        grid-column: 1/3;
+    }
+
+    .cnt {
+        grid-column: 1/3;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .question {
+        background-color: #f2f2f2;
+        grid-column: 1/3;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .question>img {
+        width: 90%;
+        height: 80%;
+    }
+
+    .question>p {
+        width: 80%;
+        font-size: 150%;
+        color: black;
+    }
+
+    .example {
+        grid-column: 1/3;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .bottom {
+        margin: 0;
+        grid-column: 1/3;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bottom > h6 {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+    .word{
+        border-style: solid ;
+        border:5px;
+        border-color: #00AFF0;
+
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ul>li{
+        margin-left: 0;
+        text-align: center;
+        list-style: none;
+        float: left;
+        width: 50%;
+        height: 20%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+    }
+
+    .meter {
+        height: 12px;
+        background: #DCE0E3;
+        border-radius: 8px;
+    }
+
+    .dark {
+        background: #222222;
+    }
+
+    .meter > span {
+        display: block;
+        height: 100%;
+        -webkit-border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-radius-topright: 20px;
+        -moz-border-radius-bottomright: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-radius-topleft: 20px;
+        -moz-border-radius-bottomleft: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: darkorange;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .meter > span:after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #f0bb4b), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, #f0bb4b), color-stop(.75, #f0bb4b), color-stop(.75, transparent), to(transparent));
+        background-image: -webkit-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        background-image: -moz-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        background-image: -ms-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        background-image: -o-linear-gradient(-45deg, #f0bb4b 25%, transparent 25%, transparent 50%, #f0bb4b 50%, #f0bb4b 75%, transparent 75%, transparent);
+        z-index: 1;
+        -webkit-background-size: 20px 20px;
+        -moz-background-size:    20px 20px;
+        background-size:         20px 20px;
+        -webkit-animation: move 2s linear infinite;
+        -webkit-border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-radius-topright: 20px;
+        -moz-border-radius-bottomright: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        -webkit-border-top-left-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-radius-topleft: 20px;
+        -moz-border-radius-bottomleft: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        overflow: hidden;
+    }
+
+    /* PROGRESS BAR - ANIMATION */
+    @-webkit-keyframes move {
+        0% {background-position: 0 0;}
+        100% {background-position: 30px 30px;}
+    }
+    @-moz-keyframes move {
+        0% {background-position: 0 0;}
+        100% {background-position: 30px 30px;}
+    }
+
+    .result {
+        width: 65%;
+        height: auto;
+        position: absolute;
+        z-index: 100;
+        display: none;
+        transform: translate(27%,75%);
+        opacity: .9;
+    }
+</style>
+<body>
+<div class='container'>
+
+    <img class="result correct" src="img/success.png">
+    <div class="box header">
+        <header class="bar bar-nav dark">
+            <button class="btn btn-link btn-nav pull-left"><i class="large material-icons back" style="color: white; float: left; margin-top: 10px;">chevron_left</i></button>
+            <!--<h1 class="title" style="color: white">EXAM PAGE</h1>-->
+            <img style="height: 100%; margin-left: -22%; position: absolute; width: 154px" src="img/main_image.png">
+        </header>
+    </div>
+
+    <div class="box cnt">
+        <h1 style="margin: 0"></h1>
+    </div>
+    <div class="box question">
+
+    </div>
+    <div class="box example">
+        <ul class="exampleUl">
+        </ul>
+    </div>
+
+    <div class="box bottom dark">
+        <h6 style="color: white">남은시간:　</h6>
+        <div class="meter" style="width: 75%;">
+            <span style="width: 100%;"></span>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script src="sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/getUrlParams.js"></script>
+<script type="text/javascript">
+
+    var member = JSON.parse(localStorage.member);
+    var eno = getUrlParams('eno');
+
+    var time = 5;
+    var ord = 0;
+    var score = 0;
+    var total = 0;
+    var list = [];
+    var examList = [];
+
+    $.ajax({
+        url : "http://192.168.0.32:8080/review/?mid=" + member.mid + "&lstatus=" + member.lstatus + "&examPointer=" + member.examPointer,
+        type: 'get',
+        async: false,
+        success : function(result) {
+            list = result;
+        }
+    });
+
+    function getList() {
+
+        total = total === 0 ? list.length : total;
+        $(".cnt>h1").html( (ord + 1) + "/" + total);
+        $(".exampleUl").attr("data-total", list.length);
+
+        $('.question').html("<img src=" + list[ord].img + "><h1>" + list[ord].word + "</h1>");
+
+        var str = "<li data-wno=" + list[ord].wno + "><button class='btn btn-negative btn-block btn-outlined' style='margin: 0'><i class='material-icons dp48'>clear</i></button></li>";
+
+        str += "<li data-wno=" + list[ord].wno + "><button class='btn btn-primary btn-block btn-outlined' data-answer='true' style='margin: 0'><i class='material-icons dp48' data-answer='true'>done</i></button></li>";
+
+        $("#timeLeft").html(time);
+        $(".example> ul").html(str);
+
+    }
+
+    getList();
+
+    function timeLimit() {
+        if (time > 1){
+            time--;
+            $("#timeLeft").html(time);
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: (time)*20 + '%'
+                    }, 500)
+            });
+
+        } else {
+            var qNum = $('.header').html().split("/");
+
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: 0
+                    }, 500)
+            });
+
+            if (qNum[0] === qNum[1]){
+                dataTransfer();
+            } else {
+                showAnswer();
+                dataTransfer();
+            }
+        }
+    }
+
+    window.onload = function TimerStart(){ itv = setInterval('timeLimit()',1000) };
+
+    document.querySelector(".exampleUl").addEventListener("touchend", dataTransfer);
+
+    function showAnswer() {
+        var str = "<p>" + list[ord].word + "</p>";
+        str += "<p>" + list[ord].meaning + "</p>";
+
+        $('.question').html(str);
+    }
+
+    function dataTransfer(e) {
+        clearInterval(itv);
+
+        var $correct = $(".correct");
+        var uAnswer = e || null;
+        var wno = $("div>ul>li").data("wno");
+
+        if (uAnswer){
+            if (uAnswer.target.getAttribute("data-answer")){
+                examList.push({wno: wno, result : "o"});
+                score++;
+                $correct.show();
+                setTimeout(function () { $correct.hide() }, 1400);
+            } else {
+                showAnswer();
+                examList.push({wno: wno, result : "x"});
+            }
+        } else {
+            examList.push({wno: wno, result : "x"});
+        }
+
+        if (++ord < total){
+
+            time = 5;
+            $(".meter>span").each(function () {
+                $(this)
+                    .width($(this).width())
+                    .animate({
+                        width: (time)*20 + '%'
+                    }, 500)
+            });
+
+            if (examList.length === Math.ceil(total/2)) {
+                var data = {
+                    examList : examList,
+                    examPointer : member.examPointer,
+                    mid : member.mid,
+                    lstatus : member.lstatus
+                }
+
+                $.ajax({
+                    url : 'http://192.168.0.32:8080/review/middle/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function() {
+                        examList = [];
+                    }
+                });
+            }
+            setTimeout(getList,1400);
+            setTimeout(function TimerStart(){ itv = setInterval('timeLimit()',1000) }, 1400);
+        } else if (ord === list.length) {
+            var data = {
+                examList : examList,
+                examPointer : member.examPointer,
+                mid : member.mid,
+                lstatus : member.lstatus
+            }
+
+            if (member.lstatus === "review") {
+                // review/finished에는 member의 status가 review일 때만 전송하고(현재 학습자의 학습 상태가 review인경우) 나머지는 middle로 데이터 전송
+                $.ajax({
+                    url : 'http://192.168.0.32:8080/review/finished/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function(result) {
+
+                        // localStorage.member 의 lstaus값을 learn으로 바꿔준다.
+                        var member = JSON.parse(localStorage.member);
+                        member.lstatus = result;
+                        localStorage.member = JSON.stringify(member);
+
+                        window.location = "endpage.html?score=" + score + "&status=" + result;
+                    }
+                });
+            } else {
+                $.ajax({
+                    url : 'http://192.168.0.32:8080/review/middle/',
+                    type: 'put',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;',
+                    success : function() {
+                        window.loaction = "endpage.html?score=" + score + "&status=end";
+                    }
+                });
+            }
+
+        }
+    }
+
+    $(".back").on("click",function(){
+        swal({
+            title: 'Are you sure?',
+            html: $('<div>')
+                .css('color', 'red')
+                .text('If you leave, it will not be saved'),
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.value) {
+            window.location = "main.html";
+        }
+    });
+    });
+</script>
+</body>
+</html>
